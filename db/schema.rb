@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028235655) do
+ActiveRecord::Schema.define(version: 20151029004652) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "title"
@@ -72,5 +72,55 @@ ActiveRecord::Schema.define(version: 20151028235655) do
   end
 
   add_index "pages", ["event_id"], name: "index_pages_on_event_id"
+
+  create_table "staff_members", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "staff_role_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "staff_members", ["event_id"], name: "index_staff_members_on_event_id"
+  add_index "staff_members", ["staff_role_id"], name: "index_staff_members_on_staff_role_id"
+  add_index "staff_members", ["user_id"], name: "index_staff_members_on_user_id"
+
+  create_table "staff_roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "modern_first_name"
+    t.string   "modern_last_name"
+    t.string   "sca_first_name"
+    t.string   "sca_last_name"
+    t.string   "username"
+    t.integer  "title_id"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["title_id"], name: "index_users_on_title_id"
 
 end
