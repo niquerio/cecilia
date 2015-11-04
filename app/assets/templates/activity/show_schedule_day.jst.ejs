@@ -1,0 +1,11 @@
+<h2><%= moment(day).format('dddd, MMMM Do YYYY')%></h2>
+<table class="table table-bordered">
+<thead>
+<th>Time</th>
+<% for(var i=0; i< classrooms.length; i++){ %>
+  <th><%= classrooms[i] %></th>
+<% } %>
+</thead>
+<tbody>
+</tbody>
+</table>

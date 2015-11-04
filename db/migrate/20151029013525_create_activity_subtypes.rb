@@ -1,6 +1,6 @@
-class CreateCategories < ActiveRecord::Migration
+class CreateActivitySubtypes < ActiveRecord::Migration
   def change
-    create_table :categories do |t|
+    create_table :activity_subtypes do |t|
       t.string :name
       t.string :description
 

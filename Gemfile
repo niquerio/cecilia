@@ -20,6 +20,14 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
+gem 'acts_as_tree'
+gem 'backbone-on-rails'
+gem 'ejs'
+gem 'backbone-support'
+gem "json2-rails"
+gem 'marionette-rails'
+gem 'bootstrap-sass'
+gem 'momentjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

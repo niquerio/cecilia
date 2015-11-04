@@ -11,25 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029004652) do
+ActiveRecord::Schema.define(version: 20151031014542) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "title"
     t.integer  "difficulty_id"
     t.text     "description"
-    t.integer  "category_id"
     t.integer  "event_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "classroom_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "activity_type_id"
+    t.integer  "activity_subtype_id"
   end
 
-  add_index "activities", ["category_id"], name: "index_activities_on_category_id"
+  add_index "activities", ["activity_subtype_id"], name: "index_activities_on_activity_subtype_id"
+  add_index "activities", ["activity_type_id"], name: "index_activities_on_activity_type_id"
   add_index "activities", ["classroom_id"], name: "index_activities_on_classroom_id"
   add_index "activities", ["difficulty_id"], name: "index_activities_on_difficulty_id"
   add_index "activities", ["event_id"], name: "index_activities_on_event_id"
+
+  create_table "activity_subtypes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "activity_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +75,14 @@ ActiveRecord::Schema.define(version: 20151029004652) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
