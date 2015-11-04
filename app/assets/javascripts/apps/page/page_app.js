@@ -1,8 +1,9 @@
 Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _){
+  this.startWithParent = false;
 
   PageApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      ":url": "showPage",
+      "*url": "showPage",
     },
   });
 
@@ -16,9 +17,11 @@ Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _)
       Cecilia.navigate(url);
       API.showPage(url);
   });
-  Cecilia.on("start", function(){
+  PageApp.on("start", function(){
     new PageApp.Router({
       controller: API,
     });
   });
+
+  
 });

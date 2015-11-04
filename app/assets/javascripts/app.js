@@ -51,13 +51,6 @@ Cecilia.on("start", function(){
 
     if(this.getCurrentRoute() === ""){
       Cecilia.trigger("menu:page:show", 'home');
-    } else if(this.getCurrentRoute() === "class_schedule"){
-     Cecilia.trigger("menu:activity:showSchedule")
-    } else if(this.getCurrentRoute() === "classes"){
-     Cecilia.trigger("menu:activity:list")
-    } else{
-     var currentRoute = this.getCurrentRoute();
-     Cecilia.trigger("menu:page:show", currentRoute)
-    }
+    } 
   }
 });

@@ -2,6 +2,7 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
   ActivityApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
       "classes" : "listActivities",
+      "class_schedule" : "showActivitiesSchedule",
     }
   });
 
@@ -23,7 +24,7 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
     API.showActivitiesSchedule();
   });
 
-  Cecilia.on("start", function(){
+  ActivityApp.on("start", function(){
     new ActivityApp.Router({
       controller: API,
     });
