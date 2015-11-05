@@ -45,12 +45,12 @@ Cecilia.on("before:start", function(){
 });
 
 Cecilia.on("start", function(){
-  console.log("Cecilia App Has Started");
+  //Modules started in order. Page app at top because it is the default route
+  Cecilia.module("PageApp").start();
+  Cecilia.module("MenuApp").start();
+  Cecilia.module("ActivityApp").start();
   if(Backbone.history){
     Backbone.history.start();
 
-    if(this.getCurrentRoute() === ""){
-      Cecilia.trigger("menu:page:show", 'home');
-    } 
   }
 });

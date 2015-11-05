@@ -1,13 +1,16 @@
 Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _){
-  this.startWithParent = false;
-
+  this.startWithParent = false; //so I can start module in order
   PageApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
+      "": "showHome",
       "*url": "showPage",
     },
   });
 
   var API = {
+    showHome: function(){
+      PageApp.Show.Controller.showPage('home');
+    },
     showPage: function(url){
       PageApp.Show.Controller.showPage(url);
     },

@@ -1,4 +1,5 @@
 Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionette, $, _){
+  this.startWithParent = false;//so I can start module in order
   ActivityApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
       "classes" : "listActivities",
