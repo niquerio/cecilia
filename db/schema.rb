@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031014542) do
+ActiveRecord::Schema.define(version: 20151108145414) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "title"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20151031014542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "event_id"
+    t.string   "stub"
   end
 
   add_index "pages", ["event_id"], name: "index_pages_on_event_id"
@@ -115,6 +116,16 @@ ActiveRecord::Schema.define(version: 20151031014542) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "teachers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "teachers", ["activity_id"], name: "index_teachers_on_activity_id"
+  add_index "teachers", ["user_id"], name: "index_teachers_on_user_id"
 
   create_table "titles", force: :cascade do |t|
     t.string   "name"
@@ -141,6 +152,8 @@ ActiveRecord::Schema.define(version: 20151031014542) do
     t.string   "sca_last_name"
     t.string   "username"
     t.integer  "title_id"
+    t.string   "nickname"
+    t.text     "bio"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

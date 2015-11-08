@@ -15,12 +15,13 @@ Difficulty.create([
   {level: 5, description: 'This class is very challenging and/or requires a significant amount of specialized knowledge as a prerequisite.'}
 ])
 
-["Master","Mistress","Sir","Baron","Baroness","THL","Lord","Lady"].each do |title|
-  Title.find_or_create_by_name(title)
+Title.delete_all
+["","Lady","Lord","THL","Master","Mistress","Sir","Baron","Baroness","Count","Countess","Viscount","Viscountess","Duke","Duchess","King","Queen"].each do |title|
+  Title.find_or_create_by(name: title)
 end
 
 ActivityType.delete_all
-Activity.create([
+ActivityType.create([
  {name: 'Lecture',description: 'In this class the teacher will lecture to the students'},
  {name: 'Playing',description: 'In this class the students will be encouraged to play or sing music'},
 ])
@@ -32,4 +33,11 @@ ActivitySubtype.create([
  {name: 'Vocal & Instrumental', description: 'This class is suitable for both vocalists and instrumentalists'},
 ])
 
+StaffRole.delete_all
+StaffRole.create([
+  {name: 'Event Steward', description: 'Person in charge of running the event'},
+  {name: 'Deputy Event Steward', description: 'Second in Command of the event'},
+  {name: 'Tavern Steward', description: 'Person in charge of running the lunch and dinner taverns'},
+  {name: 'Lodging Coordinator', description: 'Person in charge of coordinating housing for out of town attendees'},
+])
 
