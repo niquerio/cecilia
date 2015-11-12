@@ -115,13 +115,13 @@ namespace :old_data do
   end
   desc "Add Stubs to Pages"
   task :page_stubs => :environment do
-    Page.where(title: "F.A.Q.").update_all(stub: 'faq')
-    Page.where(title: "Directions").update_all(stub: 'directions')
-    Page.where(title: "Taverns").update_all(stub: 'taverns')
-    Page.where(title: "Concerts").update_all(stub: 'concert')
-    Page.where(title: "Evening Activities").update_all(stub: 'evening_activities')
-    Page.where(title: "Fees").update_all(stub: 'fees')
-    Page.where(title: "Master Schedule").update_all(stub: 'master')
+    Page.where(title: "F.A.Q.").update_all(slug: 'faq')
+    Page.where(title: "Directions").update_all(slug: 'directions')
+    Page.where(title: "Taverns").update_all(slug: 'taverns')
+    Page.where(title: "Concerts").update_all(slug: 'concert')
+    Page.where(title: "Evening Activities").update_all(slug: 'evening_activities')
+    Page.where(title: "Fees").update_all(slug: 'fees')
+    Page.where(title: "Master Schedule").update_all(slug: 'master')
   end
 
   def readFile (filename)

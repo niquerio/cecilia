@@ -4,6 +4,10 @@ Marionette.Renderer.render = function(template, data){
 
 var Cecilia = new Marionette.Application();
 
+Cecilia.Constants = {
+  current_event_id: 19,
+};
+
 Cecilia.navigate = function(route,  options){
   options || (options = {});
   Backbone.history.navigate(route, options);

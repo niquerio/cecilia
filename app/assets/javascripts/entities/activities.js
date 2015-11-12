@@ -2,6 +2,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.Activity = Backbone.Model.extend({
   });
   Entities.ActivityCollection = Backbone.Collection.extend({
+    url: function(){
+      return '/api/activities/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+    },
     model: Entities.Activity,
     comparator: function(a, b){
       var aStart = a.get("start_time");
@@ -38,6 +41,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.ScheduleDayCollection = Backbone.Collection.extend({
     model: Entities.ScheduleDay,
+    url: function(){
+      return '/api/activities/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/schedule'
+    },
   });
 
   var initializeSchedule = function(){
@@ -217,24 +223,34 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   var API = {
     getActivities: function(){
-      if(Entities.activities == undefined){
-        initializeActivities();
-      }
-      return Entities.activities
+      var activities = new Entities.ActivityCollection();
+      var defer = $.Deferred();
+      activities.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
     },
 
-   getActivity: function(id){
+    getActivity: function(id){
       if(Entities.activities == undefined){
-        initializeActivities();
+          initializeActivities();
       }
       return Entities.pages.find(id);
     },
-   getSchedule: function(){
-    if(Entities.schedule == undefined){
-      initializeSchedule();
-    }
-    return Entities.schedule;
-   },
+    getSchedule: function(){
+      var schedule = new Entities.ScheduleDayCollection();
+      var defer = $.Deferred();
+      schedule.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
+    },
   }
 
 

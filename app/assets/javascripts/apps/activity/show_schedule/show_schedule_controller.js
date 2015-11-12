@@ -1,10 +1,12 @@
 Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backbone, Marionette, $, _){
   ShowSchedule.Controller = {
     showActivitiesSchedule: function(){
-      var activities = Cecilia.request("activity:entities:schedule");
-      var scheduleView = new ShowSchedule.Activities({collection:activities});
+      var fetchingSchedule = Cecilia.request("activity:entities:schedule");
+      $.when(fetchingSchedule).done(function(activities){
+        var scheduleView = new ShowSchedule.Activities({collection:activities});
 
-      Cecilia.regions.main.show(scheduleView);
+        Cecilia.regions.main.show(scheduleView);
+      });
     },
   };
 });

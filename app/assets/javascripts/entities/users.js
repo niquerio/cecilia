@@ -7,6 +7,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
   Entities.TeacherCollection = Backbone.Collection.extend({
+    url: function(){
+      return '/api/teachers/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+    },
     model: Entities.Teacher,
   });
 
@@ -14,6 +17,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
 
   Entities.StaffMemberCollection = Backbone.Collection.extend({
+    url: function(){
+      return '/api/staff/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+    },
     model: Entities.StaffMember,
   });
 
@@ -88,16 +94,26 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   var API = {
     getTeachers: function(){
-      if(Entities.teachers == undefined){
-        initializeTeachers();
-      }
-      return Entities.teachers;
+      var teachers = new Entities.TeacherCollection();
+      var defer = $.Deferred();
+      teachers.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
     },
     getStaff: function(){
-      if(Entities.staff == undefined){
-        initializeStaff();
-      }
-      return Entities.staff;
+      var staff = new Entities.StaffMemberCollection();
+      var defer = $.Deferred();
+      staff.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
     },
   }
 

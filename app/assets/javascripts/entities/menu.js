@@ -19,7 +19,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         
       ] }, 
       { name: 'Schedule', id: 6, url: 'schedule', children: [
-        { name: 'Master Schedule', id: 7, url: 'master_schedule', page_type: 'page' }, 
+        { name: 'Master Schedule', id: 7, url: 'master', page_type: 'page' }, 
         { name: 'Class Schedule', id: 8, url: 'class_schedule', page_type: 'class_schedule' }, 
       ] }, 
       { name: 'Classes & Activities', url: 'classes_activities', id: 5, children: [
