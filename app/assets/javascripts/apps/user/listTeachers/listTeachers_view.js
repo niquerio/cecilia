@@ -3,6 +3,7 @@ Cecilia.module("UserApp.ListTeachers", function(ListTeachers, Cecilia, Backbone,
   ListTeachers.Activity = Marionette.ItemView.extend({
     template: "user/listTeachers_activity",
     tagName: "li",
+    className: "activity_list_item",
   });
   ListTeachers.Teacher = Marionette.CompositeView.extend({
     template: "user/listTeachers_teacher",

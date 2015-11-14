@@ -1,6 +1,61 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "cecilia";
+
+$level-1: #1B9E77;
+$level-2: #A6761D;
+$level-3: #E7298A;
+$level-4: #7570B3;
+$level-5: #D95F02;
 
 ul {
     list-style-type: none;
+}
+
+.description{
+  margin: 1em;
+}
+.activity_list_item{
+  margin-bottom: 3em;
+}
+
+.label-level-1{
+  background-color: $level-1;
+}
+.label-level-2{
+  background-color: $level-2;
+}
+.label-level-3{
+  background-color: $level-3;
+}
+.label-level-4{
+  background-color: $level-4;
+}
+.label-level-5{
+  background-color: $level-5;
+}
+
+.level-0{
+}
+.level-1{
+  color: $level-1;
+}
+.level-2{
+  color: $level-2;
+}
+.level-3{
+  color: $level-3;
+}
+.level-4{
+  color: $level-4;
+}
+.level-5{
+  color: $level-5;
+}
+.activity-cell{
+  &:hover{
+    background-color: $gray-lighter;
+    cursor: pointer;
+
+  }
 }

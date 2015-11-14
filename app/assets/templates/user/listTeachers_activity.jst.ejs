@@ -1,4 +1,25 @@
 <h4><%= title %></h4>
-Time: <%= moment(start_time).format('dddd h:mm a') %>
-Classroom: <%= classroom %>
-<%= description %>
+<h4><span class="label label-default">Difficulty: <%= difficulty %></span> 
+<span class="label label-default">
+<% if (activity_type != "n/a"){ %>
+<i class="glyphicon 
+<% if (activity_type == "Lecture"){ %>
+icon-lecture<% }else if( activity_type == "Playing"){ %>
+icon-playing<% } %>"></i>
+<%= activity_type %></span> 
+<% } %>
+<% if(activity_subtype != "(none)"){ %>
+<span class="label label-default">
+<% if(activity_subtype.match('Vocal') ) { %>
+<i class="glyphicon icon-sing"></i> 
+<% }if(activity_subtype.match('Instrumental') ){ %>
+<i class="glyphicon icon-violin"></i> 
+<% } %>
+<%= activity_subtype %></span>
+<% } %></h4>
+<ul class="list-inline">
+  <li><strong>Time:</strong> <%= moment(start_time).format('dddd, h:mm a') %> - <%= moment(end_time).format('h:mm a')%></li>
+<li><strong>Location:</strong> <%= classroom %> </li>
+</ul>
+
+<div class="description h6"><%= description %></div>

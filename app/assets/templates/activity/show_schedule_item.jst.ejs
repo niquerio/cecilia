@@ -1,1 +1,20 @@
-<%= title %>
+<% if(title){ %>
+  <%= title %> (<span class="teachers"></span>)
+  <span class="h3 pull-right">
+  <label class="label label-level-<%=difficulty %>" title="<%=difficulty_description %>"><%=difficulty %></label>
+  <% if (activity_type != "n/a"){ %>
+    <% if (activity_type == "Lecture"){ %>
+  <i class="glyphicon icon-lecture" title="Lecture"> </i>
+    <% }else if( activity_type == "Playing"){ %>
+  <i class="glyphicon icon-playing" title="Playing"> </i>
+    <% } %>
+  <% } %>
+  <% if(activity_subtype != "(none)"){ %>
+    <% if(activity_subtype.match('Vocal') ) { %>
+    <i class="glyphicon icon-sing" title="Vocal"></i> 
+    <% }if(activity_subtype.match('Instrumental') ){ %>
+    <i class="glyphicon icon-violin" title="Instrumental"></i> 
+    <% } %>
+  <% } %></span>
+<% } %>
+

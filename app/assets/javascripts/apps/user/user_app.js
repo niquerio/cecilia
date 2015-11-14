@@ -1,4 +1,5 @@
 Cecilia.module("UserApp", function(UserApp, Cecilia, Backbone, Marionette, $, _){
+  this.startWithParent = false; //so I can start module in order
   UserApp.Router = Marionette.AppRouter.extend({
     appRoutes: {
       "teachers" : "listTeachers",

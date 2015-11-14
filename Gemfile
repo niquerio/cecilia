@@ -28,6 +28,7 @@ gem "json2-rails"
 gem 'marionette-rails'
 gem 'bootstrap-sass'
 gem 'momentjs-rails'
+gem 'fontello_rails_converter'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

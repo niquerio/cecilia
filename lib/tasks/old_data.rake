@@ -75,6 +75,10 @@ namespace :old_data do
     makePage('Master Schedule', 'master')
   end
 
+  desc "Migrate Lodging"
+  task :lodging => :environment do
+    makePage('Lodging', 'lodging')
+  end
 
   desc "Migrate Staff"
   task :staff => :environment do
@@ -113,8 +117,8 @@ namespace :old_data do
       
     }
   end
-  desc "Add Stubs to Pages"
-  task :page_stubs => :environment do
+  desc "Add Slugs to Pages"
+  task :page_slugs => :environment do
     Page.where(title: "F.A.Q.").update_all(slug: 'faq')
     Page.where(title: "Directions").update_all(slug: 'directions')
     Page.where(title: "Taverns").update_all(slug: 'taverns')
@@ -122,6 +126,7 @@ namespace :old_data do
     Page.where(title: "Evening Activities").update_all(slug: 'evening_activities')
     Page.where(title: "Fees").update_all(slug: 'fees')
     Page.where(title: "Master Schedule").update_all(slug: 'master')
+    Page.where(title: "Lodging").update_all(slug: 'lodging')
   end
 
   def readFile (filename)

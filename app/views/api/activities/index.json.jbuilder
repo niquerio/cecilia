@@ -11,6 +11,9 @@ json.array! (@activities) do |activity|
   json.teachers do
     json.array! (@teachers.where(activity_id: activity.id)) do |teacher|
       json.username teacher.user.username
+      json.title teacher.user.title.name
+      json.sca_first_name teacher.user.sca_first_name
+      json.sca_last_name teacher.user.sca_last_name
     end 
   end
 end

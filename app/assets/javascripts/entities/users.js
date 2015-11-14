@@ -2,8 +2,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   Entities.Teacher = Backbone.Model.extend({
     initialize: function(){
-      var activities = this.get('activities');
-      this.set('activities', new Entities.ActivityCollection(activities));
+      if(this.get('activities')){
+        var activities = this.get('activities');
+        this.set('activities', new Entities.ActivityCollection(activities));
+      }
     },
   });
   Entities.TeacherCollection = Backbone.Collection.extend({

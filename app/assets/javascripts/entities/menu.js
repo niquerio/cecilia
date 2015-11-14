@@ -16,6 +16,8 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       { name: 'Logistics', id: 2, url: 'logistics',children: [
         { name: 'Directions', id: 3, url: 'directions', page_type: 'page'  }, 
         { name: 'Staff', id: 10, url: 'staff', page_type: 'staff'  }, 
+        { name: 'Taverns', id: 11, url: 'taverns', page_type: 'page'  }, 
+        { name: 'Fees', id: 12, url: 'fees', page_type: 'page'  }, 
         
       ] }, 
       { name: 'Schedule', id: 6, url: 'schedule', children: [
@@ -26,6 +28,8 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         { name: 'FAQ', id: 1, url: 'faq', page_type: 'page' }, 
         { name: 'Classes', id: 5, url: 'classes', page_type: 'classes' }, 
         { name: 'Teachers', id: 9, url: 'teachers', page_type: 'teachers' }, 
+        { name: 'Concert', id: 13, url: 'concert', page_type: 'page'  }, 
+        { name: 'Evening Activities', id: 14, url: 'evening_activities', page_type: 'page'  }, 
       ] }, 
     ]);
   };

@@ -27,25 +27,25 @@ Cecilia.on("before:start", function(){
     }
   });
   Cecilia.regions = new RegionContainer();
-  Cecilia.regions.dialog.onShow = function(view){
-    var self = this;
-    var closeDialog = function(){
-      self.stopListening();
-      self.empty();
-      self.$el.dialog("destroy");
-    };
+  //Cecilia.regions.dialog.onShow = function(view){
+  //  var self = this;
+  //  var closeDialog = function(){
+  //    self.stopListening();
+  //    self.empty();
+  //    self.$el.dialog("destroy");
+  //  };
 
-    this.listenTo(view, "dialog:close", closeDialog);
+  //  this.listenTo(view, "dialog:close", closeDialog);
 
-    this.$el.dialog({
-      modal: true,
-      title: view.title,
-      width: "auto",
-      close: function(e, ui){
-        closeDialog();
-      }
-    });
-  };
+  //  this.$el.dialog({
+  //    modal: true,
+  //    title: view.title,
+  //    width: "auto",
+  //    close: function(e, ui){
+  //      closeDialog();
+  //    }
+  //  });
+  //};
 });
 
 Cecilia.on("start", function(){
@@ -53,6 +53,7 @@ Cecilia.on("start", function(){
   Cecilia.module("PageApp").start();
   Cecilia.module("MenuApp").start();
   Cecilia.module("ActivityApp").start();
+  Cecilia.module("UserApp").start();
   if(Backbone.history){
     Backbone.history.start();
 

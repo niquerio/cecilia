@@ -13,6 +13,7 @@ json.array! (@activities) do |act|
   
           if(activity.difficulty)
             json.difficulty activity.difficulty.level
+            json.difficulty_description activity.difficulty.description
           end
           if(activity.activity_type)
             json.activity_type activity.activity_type.name
@@ -23,6 +24,9 @@ json.array! (@activities) do |act|
           json.teachers do
             json.array! (@teachers.where(activity_id: activity.id)) do |teacher|
               json.username =  teacher.user.username
+              json.title teacher.user.title.name
+              json.sca_first_name teacher.user.sca_first_name
+              json.sca_last_name teacher.user.sca_last_name
             end
           end
         end

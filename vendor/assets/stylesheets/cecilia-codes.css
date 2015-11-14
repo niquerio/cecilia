@@ -1,0 +1,5 @@
+
+.icon-playing:before { content: '\e800'; } /* '' */
+.icon-violin:before { content: '\e801'; } /* '' */
+.icon-lecture:before { content: '\e802'; } /* '' */
+.icon-sing:before { content: '\e804'; } /* '' */
