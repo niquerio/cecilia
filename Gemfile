@@ -55,5 +55,6 @@ end
 group :test do
   gem "database_cleaner"
   gem "json-schema"
+  gem 'simplecov', :require => false
 end
 
