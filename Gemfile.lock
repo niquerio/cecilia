@@ -232,6 +232,7 @@ DEPENDENCIES
   ejs
   factory_girl_rails
   fontello_rails_converter
+  i18n
   jbuilder (~> 2.0)
   jquery-rails
   json-schema
