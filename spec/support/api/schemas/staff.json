@@ -1,0 +1,14 @@
+{
+  "title": "Staff Schema",
+  "type": "array",
+  "items": {
+    "title": "Staff Member",
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "sca_first_name": { "type": "string" },
+      "sca_last_name": { "type": "string" },
+      "staff_role": { "type": "string" }
+    }
+  }
+}

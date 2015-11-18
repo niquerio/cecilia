@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   belongs_to :title
   has_many :teachers
   has_many :activities, through: :teachers
+  validates :username, presence: true
 end

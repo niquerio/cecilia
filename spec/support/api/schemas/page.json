@@ -1,0 +1,15 @@
+{
+  "title": "Page Schema",
+  "type" : "object",  
+  "properties" : {
+    "title" : {
+      "type" : "string"
+    },
+    "body" : {
+      "type" : "string"
+    }, 
+    "stub" : {
+      "type" : "string"
+    }
+  }
+}

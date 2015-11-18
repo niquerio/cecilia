@@ -7,4 +7,6 @@ class Activity < ActiveRecord::Base
   belongs_to :activity_subtype
   has_many :teachers
   has_many :users, through: :teachers
+
+  validates :title, presence: true
 end
