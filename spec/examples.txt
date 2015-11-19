@@ -1,7 +1,9 @@
-example_id                                  | status | run_time        |
-------------------------------------------- | ------ | --------------- |
-./spec/requests/api/activities_spec.rb[1:1] | passed | 0.0626 seconds  |
-./spec/requests/api/pages_spec.rb[1:1]      | passed | 0.03655 seconds |
-./spec/requests/api/schedule_spec.rb[1:1]   | passed | 0.03397 seconds |
-./spec/requests/api/staff_spec.rb[1:1]      | passed | 0.03006 seconds |
-./spec/requests/api/teachers_spec.rb[1:1]   | passed | 0.04588 seconds |
+example_id                                                | status | run_time        |
+--------------------------------------------------------- | ------ | --------------- |
+./spec/controllers/api/activity_controller_spec.rb[1:1:1] | passed | 0.02562 seconds |
+./spec/controllers/api/activity_controller_spec.rb[1:2:1] | passed | 0.03741 seconds |
+./spec/requests/api/activities_spec.rb[1:1]               | passed | 0.04187 seconds |
+./spec/requests/api/pages_spec.rb[1:1]                    | passed | 0.03101 seconds |
+./spec/requests/api/schedule_spec.rb[1:1]                 | passed | 0.04017 seconds |
+./spec/requests/api/staff_spec.rb[1:1]                    | passed | 0.03363 seconds |
+./spec/requests/api/teachers_spec.rb[1:1]                 | passed | 0.07657 seconds |
