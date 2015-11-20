@@ -10,7 +10,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.TeacherCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/teachers/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/teachers';
     },
     model: Entities.Teacher,
   });
@@ -20,7 +20,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   Entities.StaffMemberCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/staff/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/staff'
     },
     model: Entities.StaffMember,
   });

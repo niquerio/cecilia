@@ -1,5 +1,6 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Activity = Backbone.Model.extend({
+    urlRoot: '/api/activities', 
     initialize: function(){
       if(this.get('teachers')){
         var teachers = this.get('teachers');
@@ -9,7 +10,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.ActivityCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/activities/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
     },
     model: Entities.Activity,
     comparator: function(a, b){
@@ -48,7 +49,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.ScheduleDayCollection = Backbone.Collection.extend({
     model: Entities.ScheduleDay,
     url: function(){
-      return '/api/activities/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/schedule'
+      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities/schedule'
     },
   });
 
@@ -66,11 +67,16 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       return promise;
     },
 
-    getActivity: function(id){
-      if(Entities.activities == undefined){
-          initializeActivities();
-      }
-      return Entities.pages.find(id);
+    getActivity: function(activityId){
+      var activity = new Entities.Activity({id: activityId});
+      var defer = $.Deferred();
+      activity.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
     },
     getSchedule: function(){
       var schedule = new Entities.ScheduleDayCollection();
@@ -90,7 +96,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     return API.getActivities();
   });
   Cecilia.reqres.setHandler("activity:entity",function(id){
-    return API.getActivity(slug);
+    return API.getActivity(id);
   });
   Cecilia.reqres.setHandler("activity:entities:schedule",function(){
     return API.getSchedule();

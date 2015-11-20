@@ -1,8 +1,9 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Page = Backbone.Model.extend({
     url: function(){
-      return '/api/pages/' + encodeURIComponent(this.attributes.slug) + 
-        '/events/' + encodeURIComponent(Cecilia.Constants.current_event_id)
+      return 'api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + 
+        '/api/pages/' + encodeURIComponent(this.attributes.slug);
+        
     },
   });
   Entities.PageCollection = Backbone.Collection.extend({
@@ -19,12 +20,6 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   };
 
   var API = {
-    getPages: function(){
-      if(Entities.pages == undefined){
-        initializePages();
-      }
-      return Entities.pages
-    },
 
     getPage: function(slug){
       var page = new Entities.Page({slug: slug});

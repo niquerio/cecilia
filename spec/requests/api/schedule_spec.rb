@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "GET /api/activities/:event_id/schedule" do
+RSpec.describe "GET /api/events/:event_id/activities/schedule" do
   it "returns a list of activities for a given event in schedule form" do
     start_time = DateTime.now
     end_time = DateTime.now + 1.hour
@@ -14,7 +14,7 @@ RSpec.describe "GET /api/activities/:event_id/schedule" do
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
     
 
-    get "/api/activities/#{event.id}/schedule"
+    get "/api/events/#{event.id}/activities/schedule"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("schedule")

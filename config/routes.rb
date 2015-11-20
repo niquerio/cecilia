@@ -7,12 +7,12 @@ Rails.application.routes.draw do
    root 'home#index'
 
   namespace :api , defaults: { format: 'json' } do
-    get 'pages/:slug/events/:event_id' => 'pages#show'
-    get 'activities/:event_id' => 'activities#index'
-    get 'activities/:event_id/schedule' => 'activities#schedule'
-    get 'staff/:event_id' => 'staff#index'
-    get 'teachers/:event_id' => 'teachers#index'
-    #get 'activities/:id/events/:event_id' => 'activities#show'
+    get '/events/:event_id/pages/:slug' => 'pages#show'
+    get 'events/:event_id/activities' => 'activities#index'
+    get 'events/:event_id/activities/schedule' => 'activities#schedule'
+    get 'events/:event_id/staff' => 'staff#index'
+    get 'events/:event_id/teachers' => 'teachers#index'
+    #get '/activities/:id' => 'activities#show'
   end
 
   # Example of regular route:
