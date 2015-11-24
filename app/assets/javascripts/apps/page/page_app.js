@@ -7,7 +7,7 @@ Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _)
     },
   });
 
-  var API = {
+  PageApp._API = {
     showHome: function(){
       PageApp.Show.Controller.showPage('home');
     },
@@ -18,11 +18,11 @@ Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _)
 
   Cecilia.on("menu:page:show", function(url){
       Cecilia.navigate(url);
-      API.showPage(url);
+      PageApp._API.showPage(url);
   });
   PageApp.on("start", function(){
     new PageApp.Router({
-      controller: API,
+      controller: PageApp._API,
     });
   });
 

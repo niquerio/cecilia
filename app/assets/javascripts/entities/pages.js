@@ -1,8 +1,8 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Page = Backbone.Model.extend({
     url: function(){
-      return 'api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + 
-        '/api/pages/' + encodeURIComponent(this.attributes.slug);
+      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + 
+        '/pages/' + encodeURIComponent(this.attributes.slug);
         
     },
   });

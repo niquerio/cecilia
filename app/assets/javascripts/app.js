@@ -16,36 +16,23 @@ Cecilia.navigate = function(route,  options){
 Cecilia.getCurrentRoute = function(){
   return Backbone.history.fragment
 };
+
+Cecilia.RegionContainer = Marionette.LayoutView.extend({
+  el: "#app-container",
+
+  regions: {
+    header: "#header-region",
+    main: "#main-region",
+    dialog: "#dialog-region"
+  }
+});
+
+Cecilia._configureRegions = function(){
+  this.regions = new Cecilia.RegionContainer();
+};
+
 Cecilia.on("before:start", function(){
-  var RegionContainer = Marionette.LayoutView.extend({
-    el: "#app-container",
-
-    regions: {
-      header: "#header-region",
-      main: "#main-region",
-      dialog: "#dialog-region"
-    }
-  });
-  Cecilia.regions = new RegionContainer();
-  //Cecilia.regions.dialog.onShow = function(view){
-  //  var self = this;
-  //  var closeDialog = function(){
-  //    self.stopListening();
-  //    self.empty();
-  //    self.$el.dialog("destroy");
-  //  };
-
-  //  this.listenTo(view, "dialog:close", closeDialog);
-
-  //  this.$el.dialog({
-  //    modal: true,
-  //    title: view.title,
-  //    width: "auto",
-  //    close: function(e, ui){
-  //      closeDialog();
-  //    }
-  //  });
-  //};
+  Cecilia._configureRegions();
 });
 
 Cecilia.on("start", function(){

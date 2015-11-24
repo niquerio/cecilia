@@ -2,6 +2,7 @@ describe("Activity entitity", function(){
   describe("Model", function(){
     describe("activity:entity request", function(){
       it("should call Activity with id", function(done){
+        //setup
         this.activity = new Cecilia.Entities.Activity
         var self = this;
         sinon.stub(this.activity, "fetch", function(options){
@@ -49,6 +50,7 @@ describe("Activity entitity", function(){
         Cecilia.Entities.ActivityCollection.restore(); 
       });
     });
+
     describe("activity:entities:schedule request", function(){
       it("should fetch schedule", function(done){
         this.activities = new Cecilia.Entities.ScheduleDayCollection();

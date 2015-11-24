@@ -8690,3 +8690,250 @@ Processing by Api::ActivitiesController#index as JSON
   Rendered api/activities/index.json.jbuilder (5.4ms)
 Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.4ms)
   [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pages" ("slug", "created_at", "updated_at") VALUES (?, ?, ?)  [["slug", "page_slug"], ["created_at", "2015-11-22 23:08:53.199383"], ["updated_at", "2015-11-22 23:08:53.199383"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.208949"], ["updated_at", "2015-11-22 23:08:53.208949"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "username", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "example@example.com"], ["encrypted_password", "$2a$04$woCQ/w2cKYM20lov9QsA7eGM5HDF0Ef4In3CKAoj9xVhiMHeGn/v6"], ["username", "example"], ["created_at", "2015-11-22 23:08:53.336163"], ["updated_at", "2015-11-22 23:08:53.336163"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "activities" ("title", "created_at", "updated_at") VALUES (?, ?, ?)  [["title", "The Best Class"], ["created_at", "2015-11-22 23:08:53.363452"], ["updated_at", "2015-11-22 23:08:53.363452"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "classrooms" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Classroom One"], ["created_at", "2015-11-22 23:08:53.385780"], ["updated_at", "2015-11-22 23:08:53.385780"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "teachers" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2015-11-22 23:08:53.418963"], ["updated_at", "2015-11-22 23:08:53.418963"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "staff_members" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-11-22 23:08:53.425249"], ["updated_at", "2015-11-22 23:08:53.425249"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.428804"], ["updated_at", "2015-11-22 23:08:53.428804"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTitle Load (0.2ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1  [["name", "Lord"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "example@example.com"], ["encrypted_password", "$2a$04$rUrdLdaLu.A5biJBQ2AEV.yl.gyEQnhA398JRaw5V49dYdA3PzTLW"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.444851"], ["updated_at", "2015-11-22 23:08:53.444851"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Classroom One"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.447178"], ["updated_at", "2015-11-22 23:08:53.447178"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mActivityType Load (0.1ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.1ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.1ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 1], ["start_time", "2015-11-22 23:08:53.427844"], ["end_time", "2015-11-23 00:08:53.427853"], ["created_at", "2015-11-22 23:08:53.476209"], ["updated_at", "2015-11-22 23:08:53.476209"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["activity_id", 1], ["created_at", "2015-11-22 23:08:53.479121"], ["updated_at", "2015-11-22 23:08:53.479121"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/api/events/1/activities" for 127.0.0.1 at 2015-11-22 18:08:53 -0500
+Processing by Api::ActivitiesController#index as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT "activities".* FROM "activities" WHERE "activities"."event_id" = ?[0m  [["event_id", 1]]
+  [1m[35mClassroom Load (0.1ms)[0m  SELECT  "classrooms".* FROM "classrooms" WHERE "classrooms"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mDifficulty Load (0.1ms)[0m  [1mSELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mActivityType Load (0.0ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.0ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTeacher Load (0.1ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."activity_id" = ?  [["activity_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTitle Load (0.1ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered api/activities/index.json.jbuilder (13.2ms)
+Completed 200 OK in 42ms (Views: 40.7ms | ActiveRecord: 0.9ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.573147"], ["updated_at", "2015-11-22 23:08:53.573147"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTitle Load (0.0ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1  [["name", "Lord"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "example@example.com"], ["encrypted_password", "$2a$04$bJeOcgBQEkyvyVgX49DGM.RDjjRQJUzM546b.gngHM4iKJ4GWK6PG"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.579126"], ["updated_at", "2015-11-22 23:08:53.579126"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Classroom One"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.581443"], ["updated_at", "2015-11-22 23:08:53.581443"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mActivityType Load (0.1ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.0ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.0ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 1], ["start_time", "2015-11-22 23:08:53.572008"], ["end_time", "2015-11-23 00:08:53.572017"], ["created_at", "2015-11-22 23:08:53.584758"], ["updated_at", "2015-11-22 23:08:53.584758"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["activity_id", 1], ["created_at", "2015-11-22 23:08:53.586707"], ["updated_at", "2015-11-22 23:08:53.586707"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/api/events/1/teachers" for 127.0.0.1 at 2015-11-22 18:08:53 -0500
+Processing by Api::TeachersController#index as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT DISTINCT "users".* FROM "users" INNER JOIN "teachers" ON "teachers"."user_id" = "users"."id" INNER JOIN "activities" ON "activities"."id" = "teachers"."activity_id" WHERE "activities"."event_id" = ?  ORDER BY "users"."sca_first_name" ASC, "users"."sca_last_name" ASC  [["event_id", 1]]
+  [1m[36mTitle Load (0.0ms)[0m  [1mSELECT  "titles".* FROM "titles" WHERE "titles"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mActivity Load (0.2ms)[0m  SELECT "activities".* FROM "activities" INNER JOIN "teachers" ON "activities"."id" = "teachers"."activity_id" WHERE "teachers"."user_id" = ? AND "activities"."event_id" = ?  [["user_id", 1], ["event_id", 1]]
+  [1m[36mClassroom Load (0.0ms)[0m  [1mSELECT  "classrooms".* FROM "classrooms" WHERE "classrooms"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.1ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivityType Load (0.0ms)[0m  [1mSELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mActivitySubtype Load (0.0ms)[0m  SELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/teachers/index.json.jbuilder (35.2ms)
+Completed 200 OK in 43ms (Views: 36.9ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.654943"], ["updated_at", "2015-11-22 23:08:53.654943"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTitle Load (0.0ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1  [["name", "Lord"]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "example@example.com"], ["encrypted_password", "$2a$04$dldJhbLGJLDkEAiXwCipXeOxCeGkEM0fGLFuVM2gCX2XricV2olqq"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.661280"], ["updated_at", "2015-11-22 23:08:53.661280"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Classroom One"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.663555"], ["updated_at", "2015-11-22 23:08:53.663555"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mActivityType Load (0.0ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.0ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.0ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 1], ["start_time", "2015-11-22 23:08:53.653749"], ["end_time", "2015-11-23 01:08:53.653749"], ["created_at", "2015-11-22 23:08:53.667742"], ["updated_at", "2015-11-22 23:08:53.667742"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["activity_id", 1], ["created_at", "2015-11-22 23:08:53.670875"], ["updated_at", "2015-11-22 23:08:53.670875"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by Api::ActivitiesController#schedule as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mActivity Load (0.2ms)[0m  SELECT "activities".* FROM "activities" WHERE "activities"."event_id" = ?  ORDER BY "activities"."start_time" ASC, "activities"."classroom_id" ASC  [["event_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT DISTINCT "activities"."classroom_id" FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')[0m
+  [1m[35mActivity Load (0.1ms)[0m  SELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023')  ORDER BY "activities"."start_time" ASC LIMIT 1
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')  ORDER BY "activities"."start_time" DESC LIMIT 1[0m
+  Rendered api/activities/schedule.json.jbuilder (0.5ms)
+Completed 200 OK in 15ms (Views: 9.7ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.704103"], ["updated_at", "2015-11-22 23:08:53.704103"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTitle Load (0.1ms)[0m  [1mSELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1[0m  [["name", "Lord"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["email", "example@example.com"], ["encrypted_password", "$2a$04$vjph2jt3xufAzy0NzlC2..VTg5A/JMSCaeJC.pqpAf9OqMCXe0t82"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.710170"], ["updated_at", "2015-11-22 23:08:53.710170"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Classroom One"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.714703"], ["updated_at", "2015-11-22 23:08:53.714703"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Empty Classroom"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.716818"], ["updated_at", "2015-11-22 23:08:53.716818"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mActivityType Load (0.0ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.0ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.0ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 1], ["start_time", "2015-11-22 23:08:53.702799"], ["end_time", "2015-11-23 00:08:53.702799"], ["created_at", "2015-11-22 23:08:53.721256"], ["updated_at", "2015-11-22 23:08:53.721256"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mActivityType Load (0.0ms)[0m  SELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivitySubtype Load (0.0ms)[0m  [1mSELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.0ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 2], ["start_time", "2015-11-23 00:08:53.702799"], ["end_time", "2015-11-23 01:08:53.702799"], ["created_at", "2015-11-22 23:08:53.725665"], ["updated_at", "2015-11-22 23:08:53.725665"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["activity_id", 1], ["created_at", "2015-11-22 23:08:53.729076"], ["updated_at", "2015-11-22 23:08:53.729076"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["user_id", 1], ["activity_id", 2], ["created_at", "2015-11-22 23:08:53.730681"], ["updated_at", "2015-11-22 23:08:53.730681"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::ActivitiesController#schedule as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivity Load (0.1ms)[0m  [1mSELECT "activities".* FROM "activities" WHERE "activities"."event_id" = ?  ORDER BY "activities"."start_time" ASC, "activities"."classroom_id" ASC[0m  [["event_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT DISTINCT "activities"."classroom_id" FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')
+  [1m[36mActivity Load (0.1ms)[0m  [1mSELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023')  ORDER BY "activities"."start_time" ASC LIMIT 1[0m
+  [1m[35mActivity Load (0.1ms)[0m  SELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')  ORDER BY "activities"."start_time" DESC LIMIT 1
+  Rendered api/activities/schedule.json.jbuilder (0.3ms)
+Completed 200 OK in 6ms (Views: 0.9ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.743031"], ["updated_at", "2015-11-22 23:08:53.743031"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mTitle Load (0.0ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1  [["name", "Lord"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "example@example.com"], ["encrypted_password", "$2a$04$mH5qZ0IO/cP6BM5w70ik1ewOwZydZ08g1i7Fu1BiCs58jX9mi8xd6"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.748648"], ["updated_at", "2015-11-22 23:08:53.748648"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mStaffRole Load (0.1ms)[0m  [1mSELECT  "staff_roles".* FROM "staff_roles" WHERE "staff_roles"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "staff_members" ("user_id", "event_id", "staff_role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["event_id", 1], ["staff_role_id", 1], ["created_at", "2015-11-22 23:08:53.757634"], ["updated_at", "2015-11-22 23:08:53.757634"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/api/events/1/staff" for 127.0.0.1 at 2015-11-22 18:08:53 -0500
+Processing by Api::StaffController#index as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[36mStaffMember Load (0.2ms)[0m  [1mSELECT "staff_members".* FROM "staff_members" WHERE "staff_members"."event_id" = ?[0m  [["event_id", 1]]
+  [1m[35mStaffRole Load (0.0ms)[0m  SELECT  "staff_roles".* FROM "staff_roles" WHERE "staff_roles"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTitle Load (0.0ms)[0m  SELECT  "titles".* FROM "titles" WHERE "titles"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered api/staff/index.json.jbuilder (6.1ms)
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.779239"], ["updated_at", "2015-11-22 23:08:53.779239"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "pages" ("slug", "title", "body", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["slug", "directions"], ["title", "Directions"], ["body", "Here's How to get to place"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.781352"], ["updated_at", "2015-11-22 23:08:53.781352"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/api/events/1/pages/directions" for 127.0.0.1 at 2015-11-22 18:08:53 -0500
+Processing by Api::PagesController#show as JSON
+  Parameters: {"event_id"=>"1", "slug"=>"directions"}
+  [1m[36mPage Load (0.2ms)[0m  [1mSELECT  "pages".* FROM "pages" WHERE "pages"."slug" = ? AND "pages"."event_id" = ? LIMIT 1[0m  [["slug", "directions"], ["event_id", 1]]
+  Rendered api/pages/show.json.jbuilder (1.1ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "events" ("title", "start_date", "end_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "St. Cecilia XLL"], ["start_date", "2015-11-22 23:08:52.456023"], ["end_date", "2015-11-23 05:00:00.000000"], ["created_at", "2015-11-22 23:08:53.799702"], ["updated_at", "2015-11-22 23:08:53.799702"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mTitle Load (0.0ms)[0m  [1mSELECT  "titles".* FROM "titles" WHERE "titles"."name" = ? LIMIT 1[0m  [["name", "Lord"]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'example@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "username", "title_id", "sca_first_name", "sca_last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["email", "example@example.com"], ["encrypted_password", "$2a$04$TB5BZtAvbkneaXwrESfgBOTXQn3QT6ElwbLYAIOjiHlI3IMTPAQSm"], ["username", "example"], ["title_id", 3], ["sca_first_name", "Mundungus"], ["sca_last_name", "Smith"], ["created_at", "2015-11-22 23:08:53.804960"], ["updated_at", "2015-11-22 23:08:53.804960"]]
+  [1m[36m (0.3ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "classrooms" ("name", "event_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Classroom One"], ["event_id", 1], ["created_at", "2015-11-22 23:08:53.807505"], ["updated_at", "2015-11-22 23:08:53.807505"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mActivityType Load (0.0ms)[0m  [1mSELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mActivitySubtype Load (0.1ms)[0m  SELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mDifficulty Load (0.0ms)[0m  [1mSELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "activities" ("title", "activity_type_id", "activity_subtype_id", "description", "difficulty_id", "event_id", "classroom_id", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "It's a class"], ["activity_type_id", 1], ["activity_subtype_id", 1], ["description", "This is the description for this class"], ["difficulty_id", 1], ["event_id", 1], ["classroom_id", 1], ["start_time", "2015-11-22 23:08:53.797726"], ["end_time", "2015-11-23 00:08:53.797736"], ["created_at", "2015-11-22 23:08:53.811337"], ["updated_at", "2015-11-22 23:08:53.811337"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "teachers" ("user_id", "activity_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["user_id", 1], ["activity_id", 1], ["created_at", "2015-11-22 23:08:53.813600"], ["updated_at", "2015-11-22 23:08:53.813600"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/events/1/activities/schedule" for 127.0.0.1 at 2015-11-22 18:08:53 -0500
+Processing by Api::ActivitiesController#schedule as JSON
+  Parameters: {"event_id"=>"1"}
+  [1m[35mEvent Load (0.1ms)[0m  SELECT  "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivity Load (0.1ms)[0m  [1mSELECT "activities".* FROM "activities" WHERE "activities"."event_id" = ?  ORDER BY "activities"."start_time" ASC, "activities"."classroom_id" ASC[0m  [["event_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT DISTINCT "activities"."classroom_id" FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023')  ORDER BY "activities"."start_time" ASC LIMIT 1[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT  "activities".* FROM "activities" WHERE (start_time >= '2015-11-22 23:08:52.456023' AND start_time <= '2015-11-23 23:08:52.456023')  ORDER BY "activities"."start_time" DESC LIMIT 1
+  [1m[36mClassroom Load (0.1ms)[0m  [1mSELECT  "classrooms".* FROM "classrooms" WHERE "classrooms"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDifficulty Load (0.0ms)[0m  SELECT  "difficulties".* FROM "difficulties" WHERE "difficulties"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mActivityType Load (0.0ms)[0m  [1mSELECT  "activity_types".* FROM "activity_types" WHERE "activity_types"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mActivitySubtype Load (0.0ms)[0m  SELECT  "activity_subtypes".* FROM "activity_subtypes" WHERE "activity_subtypes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."activity_id" = ?[0m  [["activity_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTitle Load (0.0ms)[0m  [1mSELECT  "titles".* FROM "titles" WHERE "titles"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered api/activities/schedule.json.jbuilder (5.5ms)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 1.0ms)
+  [1m[35m (0.2ms)[0m  rollback transaction

@@ -1,5 +1,7 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
-
+  Entities.User = Backbone.Model.extend({
+    urlRoot: '/api/users',
+  });
   Entities.Teacher = Backbone.Model.extend({
     initialize: function(){
       if(this.get('activities')){
@@ -117,8 +119,22 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       var promise = defer.promise();
       return promise;
     },
-  }
+    getUser: function(userId){
+      var user = new Entities.User({id: userId});
+      var defer = $.Deferred();
+      user.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      var promise = defer.promise();
+      return promise;
+    },
+  };
 
+  Cecilia.reqres.setHandler("user:entity",function(userId){
+    return API.getUser(userId);
+  });
   Cecilia.reqres.setHandler("user:entities:teachers",function(){
     return API.getTeachers();
   });
