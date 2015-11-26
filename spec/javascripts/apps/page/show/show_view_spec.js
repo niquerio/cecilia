@@ -1,4 +1,4 @@
-describe("PageApp.Show", function(){
+describe("PageApp.Show.Page", function(){
   it("displays the title and the page body", function(done){
     this.fixture = fixture.set("<div id='fixture'></div>")
     var model = new Cecilia.Entities.Page({ title: 'Title', body: 'Body of page' });
@@ -8,6 +8,7 @@ describe("PageApp.Show", function(){
     });
     view.once("render", function(){
       expect($('#fixture').find("h1").text()).to.equal("Title");
+      expect($('#fixture').text()).to.contain("Body of page");
       done();
     }); 
 

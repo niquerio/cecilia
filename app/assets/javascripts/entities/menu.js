@@ -10,34 +10,42 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     model: Entities.MenuItem,
   });
 
-  var initializeMenuItems = function(){
-    Entities.menuItems = new Entities.MenuItemCollection([
-      { name: 'Home',  id: 4, url: 'home', page_type: 'page' }, 
-      { name: 'Logistics', id: 2, url: 'logistics',children: [
-        { name: 'Directions', id: 3, url: 'directions', page_type: 'page'  }, 
-        { name: 'Staff', id: 10, url: 'staff', page_type: 'staff'  }, 
-        { name: 'Taverns', id: 11, url: 'taverns', page_type: 'page'  }, 
-        { name: 'Fees', id: 12, url: 'fees', page_type: 'page'  }, 
+  Entities._menuInitialized = function(){
+    return Entities.menuItems !== undefined;
+  };
+  Entities._initializeMenuItems = function(){
+    return new Entities.MenuItemCollection([
+      { name: 'Home',   url: 'home'}, 
+      { name: 'Logistics',  url: 'logistics', children: [
+        { name: 'Directions',  url: 'directions'}, 
+        { name: 'Staff',  url: 'staff'}, 
+        { name: 'Taverns',  url: 'taverns'}, 
+        { name: 'Fees',  url: 'fees'}, 
         
       ] }, 
-      { name: 'Schedule', id: 6, url: 'schedule', children: [
-        { name: 'Master Schedule', id: 7, url: 'master', page_type: 'page' }, 
-        { name: 'Class Schedule', id: 8, url: 'class_schedule', page_type: 'class_schedule' }, 
+      { name: 'Schedule',  url: 'schedule', children: [
+        { name: 'Master Schedule',  url: 'master'}, 
+        { name: 'Class Schedule',  url: 'class_schedule'}, 
       ] }, 
-      { name: 'Classes & Activities', url: 'classes_activities', id: 5, children: [
-        { name: 'FAQ', id: 1, url: 'faq', page_type: 'page' }, 
-        { name: 'Classes', id: 5, url: 'classes', page_type: 'classes' }, 
-        { name: 'Teachers', id: 9, url: 'teachers', page_type: 'teachers' }, 
-        { name: 'Concert', id: 13, url: 'concert', page_type: 'page'  }, 
-        { name: 'Evening Activities', id: 14, url: 'evening_activities', page_type: 'page'  }, 
+      { name: 'Classes & Activities', url: 'classes_activities',  children: [
+        { name: 'FAQ',  url: 'faq'}, 
+        { name: 'Classes',  url: 'classes'}, 
+        { name: 'Teachers',  url: 'teachers'}, 
+        { name: 'Concert',  url: 'concert'}, 
+        { name: 'Evening Activities',  url: 'evening_activities'}, 
+      ] }, 
+      { name: 'Archives',  url: 'archives', children: [
+        { name: 'Old Classes',  url: 'old_classes'}, 
+        { name: 'Teachers',  url: 'all_teachers'}, 
+        
       ] }, 
     ]);
   };
 
   var API = {
     getMenu: function(){
-      if(Entities.menuItems == undefined){
-        initializeMenuItems();
+      if(! Entities._menuInitialized()){
+        Entities.menuItems = Entities._initializeMenuItems();
       }
       return Entities.menuItems;
     },

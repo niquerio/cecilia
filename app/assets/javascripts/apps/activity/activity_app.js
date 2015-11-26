@@ -7,7 +7,7 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
     }
   });
 
-  var API = {
+  ActivityApp._API = {
     listActivities: function(){
       ActivityApp.List.Controller.listActivities();
     },
@@ -16,18 +16,18 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
     },
   };
 
-  Cecilia.on("menu:activity:list", function(){
+  Cecilia.on("activity:list", function(){
     Cecilia.navigate('classes')
-    API.listActivities();
+    ActivityApp._API.listActivities();
   });
-  Cecilia.on("menu:activity:showSchedule", function(){
+  Cecilia.on("activity:showSchedule", function(){
     Cecilia.navigate('class_schedule')
-    API.showActivitiesSchedule();
+    ActivityApp._API.showActivitiesSchedule();
   });
 
   ActivityApp.on("start", function(){
     new ActivityApp.Router({
-      controller: API,
+      controller: ActivityApp._API,
     });
   });
 });

@@ -51,6 +51,30 @@ describe("Users entitity", function(){
       });
     });
 
+    describe.only("user:entities:teachers:all request", function(){
+      it("should fetch all teachers", function(done){
+        this.teachers = new Cecilia.Entities.CompleteTeacherCollection();
+        var teacher = new Cecilia.Entities.Teacher();
+        this.teacherArray = [teacher];
+        var self = this;
+        sinon.stub(this.teachers, "fetch", function(options){
+          return options.success(self.teacherArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "CompleteTeacherCollection").returns(this.teachers);
+
+        var promise = Cecilia.request("user:entities:teachers:all"); 
+
+        $.when(promise).done(function(fetchedActivities){
+          expect(self.teachers.fetch).to.have.been.called.once;
+          expect(fetchedActivities).to.equal(self.teacherArray);
+          done();
+        });
+        
+        delete this.teachers;
+        delete this.teachersArray;
+        Cecilia.Entities.CompleteTeacherCollection.restore(); 
+      });
+    });
     describe("user:entities:staff request", function(){
       it("should fetch staff", function(done){
         this.staff = new Cecilia.Entities.StaffMemberCollection();

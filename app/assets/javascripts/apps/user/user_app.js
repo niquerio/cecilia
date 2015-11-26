@@ -4,30 +4,38 @@ Cecilia.module("UserApp", function(UserApp, Cecilia, Backbone, Marionette, $, _)
     appRoutes: {
       "teachers" : "listTeachers",
       "staff" : "listStaff",
+      "all_teachers" : "listAllTeachers",
     }
   });
 
-  var API = {
+  UserApp._API = {
     listTeachers: function(){
       UserApp.ListTeachers.Controller.listTeachers();
+    },
+    listAllTeachers: function(){
+      UserApp.ListAllTeachers.Controller.listAllTeachers();
     },
     listStaff: function(){
       UserApp.ListStaff.Controller.listStaff();
     },
   };
 
-  Cecilia.on("menu:user:teachers:list", function(){
+  Cecilia.on("user:teachers:list", function(){
     Cecilia.navigate('teachers')
-    API.listTeachers();
+    UserApp._API.listTeachers();
   });
-  Cecilia.on("menu:user:staff:list", function(){
+  Cecilia.on("user:teachers:list:all", function(){
+    Cecilia.navigate('all_teachers')
+    UserApp._API.listAllTeachers();
+  });
+  Cecilia.on("user:staff:list", function(){
     Cecilia.navigate('staff')
-    API.listStaff();
+    UserApp._API.listStaff();
   });
 
   UserApp.on("start", function(){
     new UserApp.Router({
-      controller: API,
+      controller: UserApp._API,
     });
   });
 });

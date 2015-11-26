@@ -16,7 +16,7 @@ Cecilia.module("PageApp", function(PageApp, Cecilia, Backbone, Marionette, $, _)
     },
   };
 
-  Cecilia.on("menu:page:show", function(url){
+  Cecilia.on("page:show", function(url){
       Cecilia.navigate(url);
       PageApp._API.showPage(url);
   });

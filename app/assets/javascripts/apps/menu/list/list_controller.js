@@ -4,32 +4,37 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       var links = Cecilia.request("menu:entities");
       var menu = new List.Menu({collection: links});
       
-      var childViewNavigate = function(childView, args){
+      var childViewNavigate = function(args){
         var url = args.model.get('url');
-        var page_type = args.model.get('page_type');
-        switch(page_type){
-          case "page":
-            Cecilia.trigger('menu:page:show', url);
-            break;
+        switch(url){
           case "class_schedule":
-            Cecilia.trigger('menu:activity:showSchedule');
+            Cecilia.trigger('activity:showSchedule');
             break;
           case "classes":
-            Cecilia.trigger('menu:activity:list');
+            Cecilia.trigger('activity:list');
+            break;
+          case "classes":
+            Cecilia.trigger('activity:list:old');
             break;
           case "teachers":
-            Cecilia.trigger('menu:user:teachers:list');
+            Cecilia.trigger('user:teachers:list');
+            break;
+          case "all_teachers":
+            Cecilia.trigger('user:teachers:list:all');
             break;
           case "staff":
-            Cecilia.trigger('menu:user:staff:list');
+            Cecilia.trigger('user:staff:list');
+            break;
+          default:
+            Cecilia.trigger('page:show', url);
             break;
         }
       };
-      menu.on("childview:childview:navigate", function(childView, args){
-        childViewNavigate(childView, args);
+      menu.on("childview:childview:navigate", function(parentArgs, childArgs){
+        childViewNavigate(childArgs);
       });
-      menu.on("childview:navigate", function(childView, args){
-        childViewNavigate(childView, args);
+      menu.on("childview:navigate", function(args){
+        childViewNavigate(args);
       });
       Cecilia.regions.header.show(menu);
     },

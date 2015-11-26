@@ -5,5 +5,8 @@ module Api
       @users = User.joins(:activities).where(activities: { event_id: params[:event_id] }).distinct.order(:sca_first_name, :sca_last_name) 
       
     end
+    def index_all
+      @users = User.joins(:teachers).distinct      
+    end
   end
 end

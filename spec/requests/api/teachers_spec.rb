@@ -18,3 +18,19 @@ RSpec.describe "GET /api/events/:event_id/teachers" do
     expect(response).to match_response_schema("teachers")
   end
 end
+
+RSpec.describe "GET /api/teachers" do
+  it "returns complete list of teachers" do
+    start_time = DateTime.now
+    end_time = DateTime.now + 1.hour
+    event = create(:event)
+    user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
+    activity = create(:activity, event_id: event.id)
+
+    teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
+    get "/api/teachers"
+    
+    expect(response.status).to eq 200
+    expect(response).to match_response_schema("all_teachers")
+  end
+end
