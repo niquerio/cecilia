@@ -1,0 +1,28 @@
+{
+  "title": "Activities Schema",
+  "type": "array",
+  "items": {
+    "title": "Activity",
+    "type": "object",
+    "properties": {
+      "id": { "type": "number" },
+      "title": { "type": "string" },
+      "year": { "type": "string" },
+      "difficulty": { "type": "integer" },
+      "activity_type": { "type": "string" },
+      "activity_subtype": { "type": "string" },
+      "teachers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "username": { "type": "string" },
+            "title": { "type": "string" },
+            "sca_first_name": { "type": "string" },
+            "sca_last_name": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

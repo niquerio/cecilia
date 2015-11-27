@@ -1,27 +1,27 @@
 describe("Users entitity", function(){
   describe("Model", function(){
-    describe("user:entity request", function(){
-      it("should fetch User with id", function(done){
+    describe("teacher:entity request", function(){
+      it("should fetch Teacher with id", function(done){
         //setup
-        this.user = new Cecilia.Entities.User
+        this.teacher = new Cecilia.Entities.Teacher
         var self = this;
-        sinon.stub(this.user, "fetch", function(options){
-          return options.success(self.user);
+        sinon.stub(this.teacher, "fetch", function(options){
+          return options.success(self.teacher);
         }); 
-        sinon.stub(Cecilia.Entities, "User").returns(this.user);
+        sinon.stub(Cecilia.Entities, "Teacher").returns(this.teacher);
 
-        var requestedId = 2;
-        var promise = Cecilia.request("user:entity", requestedId); 
-        expect(Cecilia.Entities.User).to.have.been.calledWith({id: requestedId}).once;
+        var username = 'blah';
+        var promise = Cecilia.request("teacher:entity", username); 
+        expect(Cecilia.Entities.Teacher).to.have.been.calledWith({username: username}).once;
 
-        $.when(promise).done(function(fetchedUser){
-          expect(self.user.fetch).to.have.been.called.once;
-          expect(fetchedUser).to.equal(self.user);
+        $.when(promise).done(function(fetchedTeacher){
+          expect(self.teacher.fetch).to.have.been.called.once;
+          expect(fetchedTeacher).to.equal(self.teacher);
           done();
         });
         
-        delete this.user;
-        Cecilia.Entities.User.restore(); 
+        delete this.teacher;
+        Cecilia.Entities.Teacher.restore(); 
       });
     });
   });
@@ -51,7 +51,7 @@ describe("Users entitity", function(){
       });
     });
 
-    describe.only("user:entities:teachers:all request", function(){
+    describe("user:entities:teachers:all request", function(){
       it("should fetch all teachers", function(done){
         this.teachers = new Cecilia.Entities.CompleteTeacherCollection();
         var teacher = new Cecilia.Entities.Teacher();

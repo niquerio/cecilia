@@ -13,8 +13,8 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
           case "classes":
             Cecilia.trigger('activity:list');
             break;
-          case "classes":
-            Cecilia.trigger('activity:list:old');
+          case "all_classes":
+            Cecilia.trigger('activity:list:all');
             break;
           case "teachers":
             Cecilia.trigger('user:teachers:list');

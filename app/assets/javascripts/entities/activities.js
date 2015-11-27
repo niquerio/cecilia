@@ -8,6 +8,23 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       }
     },
   });
+  Entities.CompleteActivityCollection = Backbone.Collection.extend({
+    url: '/api/activities',
+    model: Entities.Activity,
+    comparator: function(a, b){
+      var aYear = a.get("year");  
+      var bYear =  b.get("year");
+      if (aYear === bYear){
+        var aTitle = a.get('title');
+        var bTitle = b.get('title');
+        if( aTitle == bTitle) {return 0;}
+        if( aTitle < bTitle) {return -1} else{ return 1; } }
+      else{
+        if(aYear < bYear) { return -1; }
+        else{ return 1; }
+      }
+    },
+  });
   Entities.ActivityCollection = Backbone.Collection.extend({
     url: function(){
       return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
@@ -57,43 +74,39 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   var API = {
     getActivities: function(){
       var activities = new Entities.ActivityCollection();
-      var defer = $.Deferred();
-      activities.fetch({
-        success: function(data){
-          defer.resolve(data)
-        }
-      });
-      var promise = defer.promise();
-      return promise;
+      return this._getPromise(activities);
     },
 
+    getAllActivities: function(){
+      var activities = new Entities.CompleteActivityCollection();
+      return this._getPromise(activities);
+    },
     getActivity: function(activityId){
       var activity = new Entities.Activity({id: activityId});
-      var defer = $.Deferred();
-      activity.fetch({
-        success: function(data){
-          defer.resolve(data)
-        }
-      });
-      var promise = defer.promise();
-      return promise;
+      return this._getPromise(activity);
     },
     getSchedule: function(){
       var schedule = new Entities.ScheduleDayCollection();
+      return this._getPromise(schedule);
+    },
+
+    _getPromise: function(item){
       var defer = $.Deferred();
-      schedule.fetch({
+      item.fetch({
         success: function(data){
           defer.resolve(data)
         }
       });
-      var promise = defer.promise();
-      return promise;
+      return defer.promise();
     },
   }
 
 
   Cecilia.reqres.setHandler("activity:entities",function(){
     return API.getActivities();
+  });
+  Cecilia.reqres.setHandler("activity:entities:all",function(){
+    return API.getAllActivities();
   });
   Cecilia.reqres.setHandler("activity:entity",function(id){
     return API.getActivity(id);

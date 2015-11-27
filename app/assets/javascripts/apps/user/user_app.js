@@ -5,6 +5,7 @@ Cecilia.module("UserApp", function(UserApp, Cecilia, Backbone, Marionette, $, _)
       "teachers" : "listTeachers",
       "staff" : "listStaff",
       "all_teachers" : "listAllTeachers",
+      "teachers/:username" : "showTeacher",
     }
   });
 
@@ -18,8 +19,15 @@ Cecilia.module("UserApp", function(UserApp, Cecilia, Backbone, Marionette, $, _)
     listStaff: function(){
       UserApp.ListStaff.Controller.listStaff();
     },
+    showTeacher: function(username){
+      UserApp.Show.Controller.showTeacher(username);
+    },
   };
 
+  Cecilia.on("teacher:show", function(username){
+    Cecilia.navigate('teachers/'+ username)
+    UserApp._API.showTeacher(username);
+  });
   Cecilia.on("user:teachers:list", function(){
     Cecilia.navigate('teachers')
     UserApp._API.listTeachers();

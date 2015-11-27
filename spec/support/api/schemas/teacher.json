@@ -1,0 +1,31 @@
+{
+  "title": "Teacher Schema",
+  "type": "object",
+  "items": {
+    "title": "Teacher",
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "sca_first_name": { "type": "string" },
+      "sca_last_name": { "type": "string" },
+      "modern_first_name": { "type": "string" },
+      "modern_last_name": { "type": "string" },
+      "bio": { "type": "string" },
+      "activities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "number" },
+            "year": { "type": "string" },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "difficulty": { "type": "integer" },
+            "activity_type": { "type": "string" },
+            "activity_subtype": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

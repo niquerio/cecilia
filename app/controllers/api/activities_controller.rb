@@ -5,6 +5,10 @@ module Api
       @teachers = Teacher.all
       
     end
+    def index_all
+      @activities = Activity.all
+      @teachers = Teacher.all
+    end
     def schedule
       @event = Event.find(params[:event_id])
       activities_list = Activity.where(event_id: params[:event_id]).order(:start_time, :classroom_id).to_a

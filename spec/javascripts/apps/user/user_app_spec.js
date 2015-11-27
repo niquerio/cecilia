@@ -1,4 +1,4 @@
-describe("UserApp", function(){
+describe.only("UserApp", function(){
   it("instantiates a router when started", sinon.test(function(){
     this.stub(Cecilia.UserApp, "Router");
 
@@ -9,6 +9,18 @@ describe("UserApp", function(){
   }));
 
   describe("API", function(){
+    describe("showTeacher",function(){
+      it("executes UserApp.Show.Controller.showTeacher", function(){
+        sinon.stub(Cecilia, "navigate");
+        sinon.stub(Cecilia.UserApp.Show.Controller, "showTeacher");
+
+        Cecilia.UserApp._API.showTeacher('blah');
+        expect(Cecilia.UserApp.Show.Controller.showTeacher).to.have.been.calledWith('blah').once;
+
+        Cecilia.navigate.restore();
+        Cecilia.UserApp.Show.Controller.showTeacher.restore();
+      });
+    });
     describe("listTeachers",function(){
       it("executes UserApp.ListTeachers.Controller.listTeachers", function(){
         sinon.stub(Cecilia, "navigate");
@@ -48,6 +60,18 @@ describe("UserApp", function(){
   });
 
   describe("routing", function(){
+    it("executes the API's showTeacher", sinon.test(function(){
+      this.stub(Cecilia.UserApp._API, "showTeacher");
+      Cecilia.UserApp.start();
+      Backbone.history.start();
+
+      Cecilia.navigate("teachers/blah", {trigger:true});
+      expect(Cecilia.UserApp._API.showTeacher).to.have.been.calledWith('blah').once;
+
+      Cecilia.UserApp.stop();
+      Backbone.history.navigate("");
+      Backbone.history.stop();
+    }));
     it("executes the API's listTeachers", sinon.test(function(){
       this.stub(Cecilia.UserApp._API, "listTeachers");
       Cecilia.UserApp.start();
@@ -86,6 +110,33 @@ describe("UserApp", function(){
     }));
   });
   describe("triggers", function(){
+    describe("'teacher:show'", function(){
+      it("navigates to teacher page", sinon.test(function(){
+        Cecilia.UserApp.start();
+        this.stub(Cecilia, "navigate");
+        this.stub(Cecilia.UserApp._API, "showTeacher");
+        
+
+        Cecilia.trigger("teacher:show", 'blah');
+        expect(Cecilia.navigate).to.have.been.called.once;
+
+
+        Cecilia.UserApp.stop();
+      }));
+      it("executes the API's showTeacher", function(){
+        sinon.stub(Cecilia, "navigate");
+        sinon.stub(Cecilia.UserApp._API, "showTeacher");
+        Cecilia.UserApp.start();
+      
+        Cecilia.trigger("teacher:show", 'blah');
+        expect(Cecilia.UserApp._API.showTeacher).to.have.been.calledWith('blah').once;
+
+        Cecilia.UserApp.stop();
+        Cecilia.navigate.restore();
+        Cecilia.UserApp._API.showTeacher.restore();
+      });
+
+    });
     describe("'user:teachers:list'", function(){
       it("navigates to teacher list", sinon.test(function(){
         Cecilia.UserApp.start();

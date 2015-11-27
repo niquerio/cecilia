@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get 'events/:event_id/staff' => 'staff#index'
     get 'events/:event_id/teachers' => 'teachers#index'
     get '/teachers' => 'teachers#index_all'
+    get '/teachers/:username' => 'teachers#show'
+    get '/activities' => 'activities#index_all'
     #get '/activities/:id' => 'activities#show'
   end
 

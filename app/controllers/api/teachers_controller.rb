@@ -8,5 +8,8 @@ module Api
     def index_all
       @users = User.joins(:teachers).distinct      
     end
+    def show
+      @user = User.find_by(username: params[:username])
+    end
   end
 end

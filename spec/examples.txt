@@ -1,10 +1,12 @@
 example_id                                                | status | run_time        |
 --------------------------------------------------------- | ------ | --------------- |
-./spec/controllers/api/activity_controller_spec.rb[1:1:1] | passed | 0.02237 seconds |
-./spec/controllers/api/activity_controller_spec.rb[1:2:1] | passed | 0.03151 seconds |
-./spec/requests/api/activities_spec.rb[1:1]               | passed | 0.03174 seconds |
-./spec/requests/api/pages_spec.rb[1:1]                    | passed | 0.01743 seconds |
-./spec/requests/api/schedule_spec.rb[1:1]                 | passed | 0.03548 seconds |
-./spec/requests/api/staff_spec.rb[1:1]                    | passed | 0.05868 seconds |
-./spec/requests/api/teachers_spec.rb[1:1]                 | passed | 0.07055 seconds |
-./spec/requests/api/teachers_spec.rb[2:1]                 | passed | 0.02743 seconds |
+./spec/controllers/api/activity_controller_spec.rb[1:1:1] | passed | 0.04536 seconds |
+./spec/controllers/api/activity_controller_spec.rb[1:2:1] | passed | 0.03497 seconds |
+./spec/requests/api/activities_spec.rb[1:1]               | passed | 0.0403 seconds  |
+./spec/requests/api/activities_spec.rb[2:1]               | passed | 0.03234 seconds |
+./spec/requests/api/pages_spec.rb[1:1]                    | passed | 0.03334 seconds |
+./spec/requests/api/schedule_spec.rb[1:1]                 | passed | 0.0387 seconds  |
+./spec/requests/api/staff_spec.rb[1:1]                    | passed | 0.03771 seconds |
+./spec/requests/api/teacher_spec.rb[1:1]                  | passed | 0.08814 seconds |
+./spec/requests/api/teachers_spec.rb[1:1]                 | passed | 0.05727 seconds |
+./spec/requests/api/teachers_spec.rb[2:1]                 | passed | 0.03702 seconds |

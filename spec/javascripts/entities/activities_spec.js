@@ -75,5 +75,29 @@ describe("Activity entitity", function(){
         Cecilia.Entities.ScheduleDayCollection.restore(); 
       });
     });
+    describe("activity:entities:all request", function(){
+      it("should fetch complete list of classes", function(done){
+        this.activities = new Cecilia.Entities.CompleteActivityCollection();
+        var activity = new Cecilia.Entities.Activity();
+        this.activityArray = [activity];
+        var self = this;
+        sinon.stub(this.activities, "fetch", function(options){
+          return options.success(self.activityArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "CompleteActivityCollection").returns(this.activities);
+
+        var promise = Cecilia.request("activity:entities:all"); 
+
+        $.when(promise).done(function(fetchedActivities){
+          expect(self.activities.fetch).to.have.been.called.once;
+          expect(fetchedActivities).to.equal(self.activityArray);
+          done();
+        });
+        
+        delete this.activities;
+        delete this.activitiesArray;
+        Cecilia.Entities.CompleteActivityCollection.restore(); 
+      });
+    });
   });
 });
