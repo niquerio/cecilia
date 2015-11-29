@@ -10,6 +10,10 @@ Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backb
           view.on("show", function(){
             this.$el.modal();
           });
+          view.on("childview:teacher:show", function(args){
+            Cecilia.trigger("teacher:show", args.model.get('username'));
+            this.$el.modal('hide');
+          });
           Cecilia.regions.dialog.show(view);
         });
         Cecilia.regions.main.show(scheduleView);

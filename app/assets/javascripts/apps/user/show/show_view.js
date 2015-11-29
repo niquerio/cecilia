@@ -1,4 +1,9 @@
 Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, _){
+  Show.Activity = Marionette.ItemView.extend({
+    tagName: "tr",
+    template: "user/show_activity",
+  });
+
   Show.Teacher = Marionette.CompositeView.extend({
     template: "user/show_teacher",
     initialize: function(){
@@ -6,9 +11,5 @@ Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
     },
     childView: Show.Activity,
     childViewContainer: "tbody",
-  });
-  Show.Activity = Marionette.ItemView.extend({
-    template: "activity/show_activity",
-    tagname: "tr",
   });
 });

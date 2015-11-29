@@ -20,8 +20,8 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         if( aTitle == bTitle) {return 0;}
         if( aTitle < bTitle) {return -1} else{ return 1; } }
       else{
-        if(aYear < bYear) { return -1; }
-        else{ return 1; }
+        if(aYear < bYear) { return 1; }
+        else{ return -1; }
       }
     },
   });

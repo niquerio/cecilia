@@ -1,6 +1,6 @@
 Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backbone, Marionette, $, _){
   ShowSchedule.Teacher = Marionette.ItemView.extend({
-    template: "activity/teacher",
+    template: "activity/show_schedule_teacher",
     tagName: "span",
   });
   ShowSchedule.Activity = Marionette.CompositeView.extend({

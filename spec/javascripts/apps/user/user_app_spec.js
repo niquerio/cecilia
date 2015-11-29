@@ -1,4 +1,4 @@
-describe.only("UserApp", function(){
+describe("UserApp", function(){
   it("instantiates a router when started", sinon.test(function(){
     this.stub(Cecilia.UserApp, "Router");
 

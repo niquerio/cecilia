@@ -10,6 +10,9 @@ Cecilia.module("UserApp.ListTeachers", function(ListTeachers, Cecilia, Backbone,
     tagName: "li",
     childView: ListTeachers.Activity,
     childViewContainer: "ul",
+    triggers: {
+      "click a" : "teacher:show",
+    },
     initialize: function(){
       this.collection = this.model.get('activities');
     },

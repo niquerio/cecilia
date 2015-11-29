@@ -5,6 +5,9 @@ Cecilia.module("ActivityApp.ListAll", function(ListAll, Cecilia, Backbone, Mario
       $.when(fetchingActivities).done(function(activities){
         var activitiesView = new ListAll.Activities({collection:activities});
 
+        activitiesView.on("childview:childview:teacher:show", function(parentArgs, childArgs){
+          Cecilia.trigger("teacher:show", childArgs.model.get('username'));
+        });
         Cecilia.regions.main.show(activitiesView);
       });
     },

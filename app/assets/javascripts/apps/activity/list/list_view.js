@@ -2,6 +2,9 @@ Cecilia.module("ActivityApp.List", function(List, Cecilia, Backbone, Marionette,
   List.Teacher = Marionette.ItemView.extend({
     template: "activity/teacher",
     tagName: "span",
+    triggers: {
+      "click" : "teacher:show",
+    },
   });
   List.Activity = Marionette.CompositeView.extend({
     template: "activity/list_item",
