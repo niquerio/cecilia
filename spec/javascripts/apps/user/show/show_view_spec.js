@@ -1,4 +1,4 @@
-describe.only("UserApp.Show Views", function(){
+describe("UserApp.Show Views", function(){
   it("displays the Name and other info about person", function(done){
     this.fixture = fixture.set("<div id='fixture'></div>")
     var model = new Cecilia.Entities.Teacher({ 
