@@ -15,7 +15,7 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       this.collection = this.model.get('children')
       if(this.collection.length){
         this.template = "menu/dropdown"
-        this.className = "dropdown"
+        this.$el.addClass('dropdown')
       }else{
         this.template = "menu/single_top_level"
         this.triggers = {
@@ -31,7 +31,7 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
   tagname: 'nav',
   childViewContainer: ".navbar-nav",
   childView: List.TopLevel,
-  className: "navbar navbar-default",
+  className: "navbar transparent navbar-default",
 
   });
 });
