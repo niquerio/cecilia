@@ -5,7 +5,7 @@ RSpec.describe "GET /api/events/:event_id/teachers" do
     start_time = DateTime.now
     end_time = DateTime.now + 1.hour
     event = create(:event)
-    user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
+    user = create(:user, username: 'mundy', title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
     classroom = create(:classroom, event_id: event.id)
     activity = create(:activity, activity_type: ActivityType.find(1), activity_subtype: ActivitySubtype.find(1), 
                   title: "It's a class", description: "This is the description for this class", difficulty: Difficulty.find(1), 
@@ -24,7 +24,7 @@ RSpec.describe "GET /api/teachers" do
     start_time = DateTime.now
     end_time = DateTime.now + 1.hour
     event = create(:event)
-    user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
+    user = create(:user, username:'mundy', title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
     activity = create(:activity, event_id: event.id)
 
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)

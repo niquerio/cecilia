@@ -21,6 +21,7 @@ Cecilia.RegionContainer = Marionette.LayoutView.extend({
   el: "#app-container",
 
   regions: {
+    mobile: "#mobile-nav-region",
     header: "#header-region",
     main: "#main-region",
     dialog: "#dialog-region"

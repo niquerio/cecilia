@@ -3,6 +3,7 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
     listMenu: function(){
       var links = Cecilia.request("menu:entities");
       var menu = new List.Menu({collection: links});
+      var mobile_nav = new List.MobileNav({collection:links});
       
       var childViewNavigate = function(args){
         var url = args.model.get('url');
@@ -36,6 +37,13 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       menu.on("childview:navigate", function(args){
         childViewNavigate(args);
       });
+      mobile_nav.on("childview:childview:navigate", function(parentArgs, childArgs){
+        childViewNavigate(childArgs);
+      });
+      mobile_nav.on("childview:navigate", function(args){
+        childViewNavigate(args);
+      });
+      Cecilia.regions.mobile.show(mobile_nav);
       Cecilia.regions.header.show(menu);
     },
   };

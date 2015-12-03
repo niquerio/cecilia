@@ -28,10 +28,16 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
 
  List.Menu = Marionette.CompositeView.extend({
   template: 'menu/menu',
-  tagname: 'nav',
+  tagname: 'div',
   childViewContainer: ".navbar-nav",
   childView: List.TopLevel,
   className: "navbar transparent navbar-default",
 
+  });
+  List.MobileNav = Marionette.CompositeView.extend({
+    template: "menu/menu_mobile",
+    className: "container-fluid",
+    childViewContainer: "ul",
+    childView: List.TopLevel,
   });
 });

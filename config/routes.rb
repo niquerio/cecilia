@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get '/teachers' => 'teachers#index_all'
     get '/teachers/:username' => 'teachers#show'
     get '/activities' => 'activities#index_all'
-    #get '/activities/:id' => 'activities#show'
+    get '/activities/:id' => 'activities#show'
   end
 
   # Example of regular route:

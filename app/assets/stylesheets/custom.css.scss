@@ -1,6 +1,24 @@
+$gray-base: #030302;
+$table-border-color: #A29377;
+$table-bg-hover: #fff2da;
+$modal-content-bg: #e8dcc6;
+$modal-content-border-color: $table-border-color;
+$modal-header-border-color:  $table-border-color;
+$font-family-serif: 'IM Fell English';
+$font-family-sans-serif: $font-family-serif;
+$font-family-base: $font-family-serif;
+$font-size-h6: 14px !default;
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "cecilia";
+
+#cecilia-title{
+  h1 {  font-size: 36px; line-height:20%; }
+  h2 {  font-size: 20px; line-height:100%; }
+  h3 {   font-size: 18px; line-height:100%; }
+}
 
 $level-1: #1B9E77;
 $level-2: #A6761D;
@@ -58,4 +76,69 @@ ul {
     cursor: pointer;
 
   }
+}
+
+$bgDefault      : transparent;
+$bgHighlight    : transparent;
+$dropDownBg     : #e8dcc6;
+$colDefault     : #bf281d;
+$colHighlight   : #7c0500;
+$dropDown       : true;
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus { 
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $dropDownBg;
+          > li > a {
+            color: $colDefault;
+            &:hover,  &:focus {
+              color: $colHighlight;
+              background-color: $bgHighlight; }}
+          .divider {
+            background-color: $bgHighlight;}}}
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
 }

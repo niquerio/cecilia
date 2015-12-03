@@ -14,18 +14,35 @@ describe("ActivityApp.ShowSchedule.Controller", function(){
   });
   describe("events", function(){
     describe("childview:childview:childview:showClass", function(){
-      it.only("displays the activity in dialog region", sinon.test(function(){
+      it("does not displays the activity in dialog region when model doesn't have a title", sinon.test(function(){
         Cecilia._configureRegions();
         this.stub(Cecilia.regions.dialog, "show");
         var controller = Cecilia.ActivityApp.ShowSchedule.Controller;
         var activityView = _.extend({}, Backbone.Events);
-        this.stub(Cecilia.ActivityApp.Show, "Activity").returns(activityView);
+        this.stub(Cecilia.ActivityApp.Show, "ActivityModal").returns(activityView);
         var scheduleView = _.extend({}, Backbone.Events);
         this.stub(Cecilia, "trigger");
         this.stub(controller, "_configureModal");
+        var model = new Cecilia.Entities.Activity();
 
         controller._configureSchedule.call(scheduleView);
-        scheduleView.trigger("childview:childview:childview:showClass", undefined, undefined, {model: {}});
+        scheduleView.trigger("childview:childview:childview:showClass", undefined, undefined, {model: model});
+
+        expect(Cecilia.regions.dialog.show).not.to.have.been.calledWith(activityView).once;
+      }));
+      it("displays the activity in dialog region when model has a title", sinon.test(function(){
+        Cecilia._configureRegions();
+        this.stub(Cecilia.regions.dialog, "show");
+        var controller = Cecilia.ActivityApp.ShowSchedule.Controller;
+        var activityView = _.extend({}, Backbone.Events);
+        this.stub(Cecilia.ActivityApp.Show, "ActivityModal").returns(activityView);
+        var scheduleView = _.extend({}, Backbone.Events);
+        this.stub(Cecilia, "trigger");
+        this.stub(controller, "_configureModal");
+        var model = new Cecilia.Entities.Activity({title: 'Blah'});
+
+        controller._configureSchedule.call(scheduleView);
+        scheduleView.trigger("childview:childview:childview:showClass", undefined, undefined, {model: model});
 
         expect(Cecilia.regions.dialog.show).to.have.been.calledWith(activityView).once;
       }));

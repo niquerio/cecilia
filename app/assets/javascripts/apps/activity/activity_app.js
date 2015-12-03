@@ -5,6 +5,7 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
       "classes" : "listActivities",
       "class_schedule" : "showActivitiesSchedule",
       "all_classes" : "listAllActivities",
+      "activities/:id" : "showActivity",
     }
   });
 
@@ -17,6 +18,9 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
     },
     showActivitiesSchedule: function(){
       ActivityApp.ShowSchedule.Controller.showActivitiesSchedule();
+    },
+    showActivity: function(id){
+      ActivityApp.Show.Controller.showActivity(id);
     },
   };
 
@@ -31,6 +35,10 @@ Cecilia.module("ActivityApp", function(ActivityApp, Cecilia, Backbone, Marionett
   Cecilia.on("activity:showSchedule", function(){
     Cecilia.navigate('class_schedule')
     ActivityApp._API.showActivitiesSchedule();
+  });
+  Cecilia.on("activity:show", function(id){
+    Cecilia.navigate('activities/'+id)
+    ActivityApp._API.showActivity(id);
   });
 
   ActivityApp.on("start", function(){

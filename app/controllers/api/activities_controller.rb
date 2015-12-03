@@ -9,6 +9,10 @@ module Api
       @activities = Activity.all
       @teachers = Teacher.all
     end
+    def show
+      @activity = Activity.find(params[:id])
+      @teachers = Teacher.where(activity_id: params[:id]);
+    end
     def schedule
       @event = Event.find(params[:event_id])
       activities_list = Activity.where(event_id: params[:event_id]).order(:start_time, :classroom_id).to_a
