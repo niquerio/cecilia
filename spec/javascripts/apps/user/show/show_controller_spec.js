@@ -12,5 +12,10 @@ describe("UserApp.Show.Controller", function(){
       expect(Cecilia.regions.main.show).to.have.been.calledWith(view).once;
       
     }));
+    describe("events", function(){
+      describe("childview:childview:activity:show", function(){
+        xit("triggers 'activity:show' with proper id" ,sinon.test(function(){}));
+      });
+    });
   });
 });

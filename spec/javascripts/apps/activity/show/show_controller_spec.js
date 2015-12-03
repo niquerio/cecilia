@@ -12,25 +12,25 @@ describe("ActivityApp.Show.Controller", function(){
       expect(Cecilia.regions.main.show).to.have.been.calledWith(view).once;
       
     }));
-  });
-  describe("events", function(){
-    describe("childview:childview:teacher:show", function(){
-      it("triggers 'teacher:show' with proper username", sinon.test(function(){
-        Cecilia._configureRegions();
-        var controller = Cecilia.ActivityApp.Show.Controller;
-        this.stub(Cecilia.regions.main, "show");
-        
-        var model = new Cecilia.Entities.Teacher({username: 'blah'});
-        this.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
-        var view = _.extend({}, Backbone.Events);
-        this.stub(Cecilia.ActivityApp.Show, "Activity").returns(view);
-        this.stub(Cecilia, "trigger");
-        controller.showActivity('2');
-        var args = {model: model};
-        view.trigger("childview:teacher:show", args);
-        expect(Cecilia.trigger).to.have.been.calledWith("teacher:show", model.get('username')).once;
-        
-      }));
+    describe("events", function(){
+      describe("childview:childview:teacher:show", function(){
+        it("triggers 'teacher:show' with proper username", sinon.test(function(){
+          Cecilia._configureRegions();
+          var controller = Cecilia.ActivityApp.Show.Controller;
+          this.stub(Cecilia.regions.main, "show");
+          
+          var model = new Cecilia.Entities.Teacher({username: 'blah'});
+          this.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
+          var view = _.extend({}, Backbone.Events);
+          this.stub(Cecilia.ActivityApp.Show, "Activity").returns(view);
+          this.stub(Cecilia, "trigger");
+          controller.showActivity('2');
+          var args = {model: model};
+          view.trigger("childview:teacher:show", args);
+          expect(Cecilia.trigger).to.have.been.calledWith("teacher:show", model.get('username')).once;
+          
+        }));
+      });
     });
   });
 });

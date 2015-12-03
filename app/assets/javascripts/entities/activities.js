@@ -83,7 +83,14 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
     getActivity: function(activityId){
       var activity = new Entities.Activity({id: activityId});
-      return this._getPromise(activity);
+      var defer = $.Deferred();
+      activity.fetch({
+        success: function(data){
+          data.initialize();
+          defer.resolve(data)
+        }
+      });
+      return defer.promise();
     },
     getSchedule: function(){
       var schedule = new Entities.ScheduleDayCollection();

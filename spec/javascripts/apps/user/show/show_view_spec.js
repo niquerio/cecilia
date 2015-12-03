@@ -31,4 +31,8 @@ describe("UserApp.Show Views", function(){
 
     view.render();
   });
+  describe("triggers", function(){
+    xit("triggers 'activity:show' when activity row is clicked", function(){
+    });
+  });
 });

@@ -1,4 +1,10 @@
-<h4><a class="activity-title" href="#activities/<%= id %>"><%= title %></a> <small>(<span class="teachers"></span>)</h4></small>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><%= title %><br> <small><span class="teachers"></span></h4></small>
+    </div>
+    <div class="modal-body">
 <h4><span class="label  label-level-<%=difficulty%>">Difficulty: <%= difficulty %></span> 
 <span class="label label-default">
 <% if (activity_type != "n/a"){ %>
@@ -23,3 +29,6 @@ icon-playing<% } %>"></i>
 </ul>
 
 <div class="description h6"><%= description %></div>
+</div>
+</div>
+</div>

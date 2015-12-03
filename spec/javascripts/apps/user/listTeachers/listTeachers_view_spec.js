@@ -20,5 +20,6 @@ describe("UserApp.ListTeachers.Teacher", function(){
 
       view.render();
     });
+    xit("triggers 'activity:show' when activity link is clicked", function(){});
   });
 });

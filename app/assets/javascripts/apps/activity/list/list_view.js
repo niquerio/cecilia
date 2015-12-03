@@ -12,6 +12,9 @@ Cecilia.module("ActivityApp.List", function(List, Cecilia, Backbone, Marionette,
     className: "activity_list_item",
     childView: List.Teacher,
     childViewContainer: ".teachers",
+    triggers: {
+      "click .activity-title" : "activity:show",
+    },
     initialize: function(){
       this.collection = this.model.get('teachers');
     },

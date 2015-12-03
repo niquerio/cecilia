@@ -6,9 +6,8 @@ Cecilia.module("ActivityApp.Show", function(Show, Cecilia, Backbone, Marionette,
       "click" : "teacher:show",
     },
   });
-  Show.ActivityModal = Marionette.CompositeView.extend({
+  Show.Activity = Marionette.CompositeView.extend({
     template: "activity/show_item",
-    className: "modal fade",
     childView: Show.Teacher,
     childViewContainer: ".teachers",
     initialize: function(){
@@ -19,16 +18,17 @@ Cecilia.module("ActivityApp.Show", function(Show, Cecilia, Backbone, Marionette,
       this.$('.teachers').children().last().html(last_entry.replace(/,\s*$/,''));
     },
   });
-  Show.Activity = Marionette.CompositeView.extend({
-    template: "activity/show_item",
+  Show.ActivityModal = Marionette.CompositeView.extend({
+    template: "activity/show_modal",
+    className: "modal fade",
     childView: Show.Teacher,
     childViewContainer: ".teachers",
     initialize: function(){
       this.collection = this.model.get('teachers');
     },
     onRender: function(){
-    //  var last_entry = this.$('.teachers').children().last().html();
-    //  this.$('.teachers').children().last().html(last_entry.replace(/,\s*$/,''));
+      var last_entry = this.$('.teachers').children().last().html();
+      this.$('.teachers').children().last().html(last_entry.replace(/,\s*$/,''));
     },
   });
 });
