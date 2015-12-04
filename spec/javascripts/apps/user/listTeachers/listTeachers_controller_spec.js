@@ -1,40 +1,54 @@
 describe("UserApp.listTeachers.Controller", function(){
   describe("listTeachers",function(){
-    it("displays the teacher list in the main region", sinon.test(function(){
-      var controller = Cecilia.UserApp.ListTeachers.Controller;
-      this.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
-      var view = _.extend({}, Backbone.Events);
-      this.stub(Cecilia.UserApp.ListTeachers, "Teachers").returns(view);
+    var self = this;
+    var setup = function(){
       Cecilia._configureRegions();
-      this.stub(Cecilia.regions.main, "show");
+      self.controller = Cecilia.UserApp.ListTeachers.Controller;
+      self.view = _.extend({}, Backbone.Events);
+      sinon.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
+      sinon.stub(Cecilia.UserApp.ListTeachers, "Teachers").returns(self.view);
+      sinon.stub(Cecilia.regions.main, "show");
+    };
+    var cleanup = function(){
+      delete self.controller
+      delete self.view
+      Cecilia.request.restore();
+      Cecilia.UserApp.ListTeachers.Teachers.restore();
+      Cecilia.regions.main.show.restore();
+    };
+    it("displays the teacher list in the main region", sinon.test(function(){
+      setup();
 
-      controller.listTeachers();
-      expect(Cecilia.regions.main.show).to.have.been.calledWith(view).once;
-      
+      self.controller.listTeachers();
+      expect(Cecilia.regions.main.show).to.have.been.calledWith(self.view).once;
+
+      cleanup(); 
     }));
     describe("events", function(){
       describe("childview:teacher:show", function(){
         it("triggers 'teacher:show' with proper username", sinon.test(function(){
-          Cecilia._configureRegions();
-          var controller = Cecilia.UserApp.ListTeachers.Controller;
-          this.stub(Cecilia.regions.main, "show");
-          
-          var model = new Cecilia.Entities.Teacher({username: 'blah'});
-          this.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
-          var view = new Cecilia.UserApp.ListTeachers.Teachers({
-            collection: new Cecilia.Entities.TeacherCollection()
-          });
-          this.stub(Cecilia.UserApp.ListTeachers, "Teachers").returns(view);
+          setup();
           this.stub(Cecilia, "trigger");
-          controller.listTeachers();
-          var args = {model: model};
-          view.trigger("childview:teacher:show", args);
+          var model = new Cecilia.Entities.Teacher({username: 'blah'});
+
+          self.controller.listTeachers();
+          self.view.trigger("childview:teacher:show", {model:model});
           expect(Cecilia.trigger).to.have.been.calledWith("teacher:show", model.get('username')).once;
-          
+
+          cleanup(); 
         }));
       });
       describe("childview:childview:activity:show", function(){
-        xit("triggers 'activity:show' with proper id" ,sinon.test(function(){}));
+        it("triggers 'activity:show' with proper id" ,sinon.test(function(){
+          setup();
+          this.stub(Cecilia, "trigger");
+          var model = new Cecilia.Entities.Activity({id: '3'});
+
+          self.controller.listTeachers();
+          self.view.trigger("childview:childview:activity:show", undefined, {model:model});
+          expect(Cecilia.trigger).to.have.been.calledWith("activity:show", model.get('id')).once;
+          cleanup();
+        }));
       });
     });
   });

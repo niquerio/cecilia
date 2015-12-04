@@ -8,6 +8,10 @@ Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backb
           Cecilia.trigger("teacher:show", args.model.get('username'));
           this.$el.modal('hide');
         });
+        this.on("activity:show", function(args){
+          Cecilia.trigger("activity:show", args.model.get('id'));
+          this.$el.modal('hide');
+        });
     },
     _configureSchedule: function(){
       this.on("childview:childview:childview:showClass", function(childViewDay, childViewRows, childViewActivity){

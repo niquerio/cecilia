@@ -2,6 +2,9 @@ Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
   Show.Activity = Marionette.ItemView.extend({
     tagName: "tr",
     template: "user/show_activity",
+    triggers: {
+      "click a" : "activity:show",
+    },
   });
 
   Show.Teacher = Marionette.CompositeView.extend({

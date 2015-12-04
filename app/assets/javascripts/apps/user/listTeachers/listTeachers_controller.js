@@ -8,6 +8,9 @@ Cecilia.module("UserApp.ListTeachers", function(ListTeachers, Cecilia, Backbone,
         teachersView.on("childview:teacher:show", function(args){
           Cecilia.trigger("teacher:show", args.model.get('username'));
         });
+        teachersView.on("childview:childview:activity:show", function(parentArgs, childArgs){
+          Cecilia.trigger("activity:show", childArgs.model.get('id'));
+        });
         Cecilia.regions.main.show(teachersView);
       });
     },

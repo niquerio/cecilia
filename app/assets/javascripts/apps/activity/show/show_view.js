@@ -23,6 +23,9 @@ Cecilia.module("ActivityApp.Show", function(Show, Cecilia, Backbone, Marionette,
     className: "modal fade",
     childView: Show.Teacher,
     childViewContainer: ".teachers",
+    triggers: {
+      "click a" : "activity:show",
+    },
     initialize: function(){
       this.collection = this.model.get('teachers');
     },

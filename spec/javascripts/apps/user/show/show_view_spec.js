@@ -31,8 +31,30 @@ describe("UserApp.Show Views", function(){
 
     view.render();
   });
+});
+describe("UserApp.Show.Activity", function(){
   describe("triggers", function(){
-    xit("triggers 'activity:show' when activity row is clicked", function(){
+    it("triggers 'activity:show' when activity title link is clicked", function(){
+      this.fixture = fixture.set("<div id='fixture'></div>")
+      var model = new Cecilia.Entities.Activity({
+        id: 2,
+        year: '2015',
+        title: 'Class Title',
+        difficulty: 2,
+        activity_type: 'Lecture',
+        activity_subtype: 'Vocal and Instrumental',
+      });
+
+      var view = new Cecilia.UserApp.Show.Activity({
+        el: '#fixture',
+        model: model,
+      });
+      sinon.spy(view, "trigger");
+      view.once("render", function(){
+        $('#fixture').find("a").click();
+        expect(view.trigger).to.have.been.calledWith("activity:show").once;
+      });
+      view.render();
     });
   });
 });

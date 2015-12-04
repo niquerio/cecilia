@@ -1,4 +1,4 @@
-describe("UserApp.Show.Activity", function(){
+describe("ActivityApp.Show.Activity", function(){
   it("displays the info about activity", function(done){
     this.fixture = fixture.set("<div id='fixture'></div>")
     var model = new Cecilia.Entities.Activity({ 
@@ -51,6 +51,43 @@ describe("ActivityApp.Show.Teacher", function(){
       view.once("render", function(){
         $('#fixture').find("a").click();
         expect(view.trigger).to.have.been.calledWith("teacher:show").once;
+      }); 
+
+      view.render();
+    });
+  });
+});
+describe("ActivityApp.Show.ActivityModal", function(){
+  describe("Triggers", function(){
+    it("triggers 'activity:show' when title is clicked", function(){
+      this.fixture = fixture.set("<div id='fixture'></div>")
+      var model = new Cecilia.Entities.Activity({ 
+        id: 2,
+        title: 'Class Title',
+        description: 'Class Description',
+        difficulty: 2,
+        activity_type: 'Lecture',
+        activity_subtype: 'Vocal and Instrumental',
+        start_time: "2013-05-18T19:00:00.000-04:00",
+        end_time: "2013-05-18T20:00:00.000-04:00",
+        classroom: "Youth Room",
+        teachers: [
+          {
+            title: 'Lord', 
+            sca_first_name: 'Mundungus', 
+            sca_last_name: 'Smith', 
+            username: 'mundy', 
+          }
+        ]
+      });
+      var view = new Cecilia.ActivityApp.Show.ActivityModal({
+        el: '#fixture',
+        model: model, 
+      });
+      sinon.spy(view, "trigger");
+      view.once("render", function(){
+        $('#fixture').find("a").click();
+        expect(view.trigger).to.have.been.calledWith("activity:show").once;
       }); 
 
       view.render();
