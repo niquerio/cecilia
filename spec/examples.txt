@@ -1,13 +1,19 @@
-example_id                                                | status | run_time        |
---------------------------------------------------------- | ------ | --------------- |
-./spec/controllers/api/activity_controller_spec.rb[1:1:1] | passed | 0.0242 seconds  |
-./spec/controllers/api/activity_controller_spec.rb[1:2:1] | passed | 0.06887 seconds |
-./spec/requests/api/activities_spec.rb[1:1]               | passed | 0.02912 seconds |
-./spec/requests/api/activities_spec.rb[2:1]               | passed | 0.03834 seconds |
-./spec/requests/api/activity_spec.rb[1:1]                 | passed | 0.03325 seconds |
-./spec/requests/api/pages_spec.rb[1:1]                    | passed | 0.01776 seconds |
-./spec/requests/api/schedule_spec.rb[1:1]                 | passed | 0.03697 seconds |
-./spec/requests/api/staff_spec.rb[1:1]                    | passed | 0.0554 seconds  |
-./spec/requests/api/teacher_spec.rb[1:1]                  | passed | 0.04463 seconds |
-./spec/requests/api/teachers_spec.rb[1:1]                 | passed | 0.03491 seconds |
-./spec/requests/api/teachers_spec.rb[2:1]                 | passed | 0.03185 seconds |
+example_id                                                        | status | run_time        |
+----------------------------------------------------------------- | ------ | --------------- |
+./spec/controllers/api/activity_controller_spec.rb[1:1:1]         | passed | 0.0312 seconds  |
+./spec/controllers/api/activity_controller_spec.rb[1:2:1]         | passed | 0.04095 seconds |
+./spec/controllers/api/admin/classrooms_contorller_spec.rb[1:1:1] | passed | 0.0126 seconds  |
+./spec/controllers/api/admin/classrooms_contorller_spec.rb[2:1:1] | passed | 0.02749 seconds |
+./spec/controllers/api/admin/classrooms_contorller_spec.rb[3:1:1] | passed | 0.01932 seconds |
+./spec/requests/api/activities_spec.rb[1:1]                       | passed | 0.08399 seconds |
+./spec/requests/api/activities_spec.rb[2:1]                       | passed | 0.04191 seconds |
+./spec/requests/api/activity_spec.rb[1:1]                         | passed | 0.0382 seconds  |
+./spec/requests/api/admin/classrooms_spec.rb[1:1]                 | passed | 0.0407 seconds  |
+./spec/requests/api/admin/classrooms_spec.rb[2:1]                 | passed | 0.02016 seconds |
+./spec/requests/api/admin/classrooms_spec.rb[3:1]                 | passed | 0.02461 seconds |
+./spec/requests/api/pages_spec.rb[1:1]                            | passed | 0.02031 seconds |
+./spec/requests/api/schedule_spec.rb[1:1]                         | passed | 0.04229 seconds |
+./spec/requests/api/staff_spec.rb[1:1]                            | passed | 0.0341 seconds  |
+./spec/requests/api/teacher_spec.rb[1:1]                          | passed | 0.07663 seconds |
+./spec/requests/api/teachers_spec.rb[1:1]                         | passed | 0.03812 seconds |
+./spec/requests/api/teachers_spec.rb[2:1]                         | passed | 0.04015 seconds |

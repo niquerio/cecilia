@@ -28,4 +28,24 @@ FactoryGirl.define do
 
   factory :staff_member do
   end
+
+  factory :difficulty do
+    level 1
+    description 'Class is appropriate for nonmusicians'
+  end
+  factory :title do
+    name 'THL'
+  end
+  factory :activity_type do
+    name 'Lecture'
+    description 'In this class the teacher will lecture to the students' 
+  end
+  factory :activity_subtype do
+    name 'Vocal'
+    description 'This class is primarily for vocalists'
+  end
+  factory :staff_role do
+    name 'Event Steward'
+    description 'Person in charge of running the event'
+  end
 end

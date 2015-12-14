@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     get '/teachers/:username' => 'teachers#show'
     get '/activities' => 'activities#index_all'
     get '/activities/:id' => 'activities#show'
+    namespace :admin, defaults: { format: 'json'} do
+      get 'events/:event_id/classrooms' => 'classrooms#index'
+      post 'classrooms' => 'classrooms#create'
+      put 'classrooms/:id' => 'classrooms#update'
+    end
   end
 
   devise_for :users

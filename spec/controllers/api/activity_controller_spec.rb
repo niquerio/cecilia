@@ -3,14 +3,21 @@ require "rails_helper"
 RSpec.describe Api::ActivitiesController, "#schedule" do
   context "when class is multihour" do
     it "does not output td for class in second hour" do
+      event = create(:event)
       start_time = DateTime.now
       end_time = start_time + 2.hours
-      event = create(:event)
       user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
       classroom = create(:classroom, event_id: event.id)
-      activity = create(:activity, activity_type: ActivityType.find(1), activity_subtype: ActivitySubtype.find(1), 
-                    title: "It's a class", description: "This is the description for this class", difficulty: Difficulty.find(1), 
-                    event_id: event.id, classroom_id: classroom.id, start_time: start_time, end_time: end_time) 
+      activity = create(:activity, 
+        activity_type: ActivityType.first, 
+        activity_subtype: ActivitySubtype.first, 
+        title: "It's a class", 
+        description: "This is the description for this class", 
+        difficulty: Difficulty.first, 
+        event_id: event.id, 
+        classroom_id: classroom.id, 
+        start_time: start_time, 
+        end_time: end_time) 
 
       teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
       
@@ -25,19 +32,33 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
   end
   context "when there is no class for a timeslot" do
     it "outputs a td with no title" do
+      event = create(:event)
       start_time = DateTime.now
       end_time = start_time + 1.hour
-      event = create(:event)
-      user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
+      user = create(:user, title: Title.first, sca_first_name: "Mundungus", sca_last_name: "Smith")
       classroom = create(:classroom, event_id: event.id)
       classroom2 = create(:classroom, event_id: event.id, name: "Empty Classroom")
-      activity = create(:activity, activity_type: ActivityType.find(1), activity_subtype: ActivitySubtype.find(1), 
-                    title: "It's a class", description: "This is the description for this class", difficulty: Difficulty.find(1), 
-                    event_id: event.id, classroom_id: classroom.id, start_time: start_time, end_time: end_time) 
+      activity = create(:activity, 
+        activity_type: ActivityType.first, 
+        activity_subtype: ActivitySubtype.first, 
+        title: "It's a class", 
+        description: "This is the description for this class", 
+        difficulty: Difficulty.first, 
+        event_id: event.id, 
+        classroom_id: classroom.id, 
+        start_time: start_time, 
+        end_time: end_time) 
 
-      activity2 = create(:activity, activity_type: ActivityType.find(1), activity_subtype: ActivitySubtype.find(1), 
-                    title: "It's a class", description: "This is the description for this class", difficulty: Difficulty.find(1), 
-                    event_id: event.id, classroom_id: classroom2.id, start_time: start_time + 1.hour, end_time: end_time + 1.hour) 
+      activity2 = create(:activity, 
+        activity_type: ActivityType.first, 
+        activity_subtype: ActivitySubtype.first, 
+        title: "It's a class", 
+        description: "This is the description for this class", 
+        difficulty: Difficulty.first, 
+        event_id: event.id, 
+        classroom_id: classroom2.id, 
+        start_time: start_time + 1.hour, 
+        end_time: end_time + 1.hour) 
 
       teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
       teacher2 = create(:teacher, user_id: user.id, activity_id: activity2.id)

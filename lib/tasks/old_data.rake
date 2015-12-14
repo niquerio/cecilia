@@ -40,44 +40,48 @@ namespace :old_data do
     }
   end
 
+  desc "Migrate Home"
+  task :home => :environment do
+    makePage('', 'home','home')
+  end
   desc "Migrate FAQ"
   task :faq => :environment do
-    makePage('F.A.Q.','faq')
+    makePage('F.A.Q.', 'faq','faq')
   end
 
   desc "Migrate Directions"
   task :directions => :environment do
-    makePage('Directions', 'directions')
+    makePage('Directions', 'directions', 'directions')
   end
 
   desc "Migrate Food"
   task :food => :environment do
-    makePage('Taverns', 'food')
+    makePage('Taverns', 'taverns', 'food')
   end
 
   desc "Migrate Concerts"
   task :concerts => :environment do
-    makePage('Concerts', 'concerts')
+    makePage('Concerts', 'concert', 'concerts')
   end
 
   desc "Migrate Evening Activities"
   task :evening_activities => :environment do
-    makePage('Evening Activities', 'evening_activities')
+    makePage('Evening Activities', 'evening_activities', 'evening_activities')
   end
 
   desc "Migrate Fees"
   task :fees => :environment do
-    makePage('Fees', 'fees')
+    makePage('Fees', 'fees', 'fees')
   end
 
   desc "Migrate Master Schedule"
   task :master => :environment do
-    makePage('Master Schedule', 'master')
+    makePage('Master Schedule', 'master', 'master')
   end
 
   desc "Migrate Lodging"
   task :lodging => :environment do
-    makePage('Lodging', 'lodging')
+    makePage('Lodging', 'lodging', 'lodging')
   end
 
   desc "Migrate Staff"
@@ -117,17 +121,16 @@ namespace :old_data do
       
     }
   end
-  desc "Add Slugs to Pages"
-  task :page_slugs => :environment do
-    Page.where(title: "F.A.Q.").update_all(slug: 'faq')
-    Page.where(title: "Directions").update_all(slug: 'directions')
-    Page.where(title: "Taverns").update_all(slug: 'taverns')
-    Page.where(title: "Concerts").update_all(slug: 'concert')
-    Page.where(title: "Evening Activities").update_all(slug: 'evening_activities')
-    Page.where(title: "Fees").update_all(slug: 'fees')
-    Page.where(title: "Master Schedule").update_all(slug: 'master')
-    Page.where(title: "Lodging").update_all(slug: 'lodging')
+
+  desc "reset db and reload seed"
+  task :db_reset => :environment do
+    Rake::Task['db:reset'].invoke 
+    Rake::Task['db:migrate'].invoke 
+    Rake::Task['db:seed'].invoke 
   end
+
+  task :all => [:db_reset, :users, :events, :classrooms, :home, :faq, :directions, :food, :concerts, :evening_activities,
+      :fees, :master, :lodging, :staff, :classes ]
 
   def readFile (filename)
     path = Rails.root.join('lib','tasks',"#{filename}.tsv")
@@ -138,10 +141,11 @@ namespace :old_data do
     end
   end
 
-  def makePage (title, filename)
+  def makePage (title, slug, filename)
     readFile(filename){ |fields| 
       Page.create do |p| 
         p.title = title
+        p.slug = slug
         p.event_id = Event.where(start_date: DateTime.parse(fields[0])).first.id
         p.body = fields[1]
       end

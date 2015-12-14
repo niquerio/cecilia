@@ -8,6 +8,7 @@
 
 Difficulty.delete_all
 Difficulty.create([ 
+  {level: 0, description: 'Class is appropriate for nonmusicians'},
   {level: 1, description: 'Class is appropriate for nonmusicians'},
   {level: 2, description: 'Class is geared toward those who have studied music for less than a year, or who make music only occasionally.'},
   {level: 3, description: 'Concepts/skills in this class are aimed at musicians who are comfortable with their instruments.'},
@@ -24,13 +25,15 @@ ActivityType.delete_all
 ActivityType.create([
  {name: 'Lecture',description: 'In this class the teacher will lecture to the students'},
  {name: 'Playing',description: 'In this class the students will be encouraged to play or sing music'},
+ {name: '(n/a)', description: ''}
 ])
 
 ActivitySubtype.delete_all
 ActivitySubtype.create([
  {name: 'Vocal', description: 'This class is primarily for vocalists'},
  {name: 'Instrumental', description: 'This class is primarily for instrumentalists'},
- {name: 'Vocal & Instrumental', description: 'This class is suitable for both vocalists and instrumentalists'},
+ {name: 'Vocal and Instrumental', description: 'This class is suitable for both vocalists and instrumentalists'},
+ {name: '(none)', description: 'This class is suitable for all people'}
 ])
 
 StaffRole.delete_all

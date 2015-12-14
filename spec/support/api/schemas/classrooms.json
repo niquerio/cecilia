@@ -1,0 +1,12 @@
+{
+  "title": "Classrooms Schema",
+  "type": "array",
+  "items": {
+    "title": "Classroom",
+    "type": "object",
+    "properties": {
+      "id": { "type": "number" },
+      "name": { "type": "string" }
+    }
+  }
+}

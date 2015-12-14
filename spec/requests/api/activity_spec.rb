@@ -2,15 +2,36 @@ require "rails_helper"
 
 RSpec.describe "GET /api/activities/:id" do
   it "returns user info" do
-    event = create(:event)
-    user = create(:user, username: "mundy", title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith", modern_first_name: "John", modern_last_name: "Doe", bio: "I teach classes")
-    classroom = create(:classroom, name:'Nursery'); 
-    activity = create(:activity, title: 'Title', start_time: DateTime.now, end_time: DateTime.now + 1.hour, description: 'Description', event_id: event.id, classroom: classroom, difficulty: Difficulty.find_by(level: 3), activity_type: ActivityType.first, activity_subtype: ActivitySubtype.first)
-    teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
+    items = generate_activity
 
-    get "/api/activities/#{teacher.id}"
+    get "/api/activities/#{items[:teacher].id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("activity")
   end
+end
+def generate_activity
+  event = create(:event)
+  start_time = DateTime.now
+  end_time = DateTime.now + 1.hour
+  title = create(:title)
+  activity_type = create(:activity_type)
+  activity_subtype = create(:activity_subtype)
+  difficulty = create(:difficulty)
+  user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
+  classroom = create(:classroom, event_id: event.id)
+  activity = create(:activity, 
+    activity_type: activity_type, 
+    activity_subtype: activity_subtype, 
+    title: "It's a class", 
+    description: "This is the description for this class", 
+    difficulty: difficulty, 
+    event_id: event.id, 
+    classroom_id: classroom.id, 
+    start_time: start_time, 
+    end_time: end_time) 
+
+  teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
+
+  return {event: event ,teacher: teacher, activity: activity, user: user}
 end

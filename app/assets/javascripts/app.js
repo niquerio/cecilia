@@ -5,7 +5,7 @@ Marionette.Renderer.render = function(template, data){
 var Cecilia = new Marionette.Application();
 
 Cecilia.Constants = {
-  current_event_id: 19,
+  current_event_id: 4,
 };
 
 Cecilia.navigate = function(route,  options){
@@ -42,6 +42,7 @@ Cecilia.on("start", function(){
   Cecilia.module("MenuApp").start();
   Cecilia.module("ActivityApp").start();
   Cecilia.module("UserApp").start();
+  Cecilia.module("AdminClassroomApp").start();
   if(Backbone.history){
     Backbone.history.start();
 
