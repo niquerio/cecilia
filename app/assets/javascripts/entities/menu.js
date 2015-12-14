@@ -14,7 +14,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     return Entities.menuItems !== undefined;
   };
   Entities._initializeMenuItems = function(){
-    return new Entities.MenuItemCollection([
+    var menu = new Entities.MenuItemCollection([
       { name: 'Home',   url: 'home'}, 
       { name: 'Logistics',  url: 'logistics', children: [
         { name: 'Directions',  url: 'directions'}, 
@@ -40,6 +40,17 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         
       ] }, 
     ]);
+
+    if(Cecilia.currentUser != null){
+      menu.add({
+        name: 'Admin', url: 'admin', children: [
+          {name: 'Manage Classrooms', url: 'admin/classrooms'},
+          {name: 'Manage Pages', url: 'admin/pages'},
+          {name: 'Manage Events', url: 'admin/pages'},
+        ],
+      });
+    }
+    return menu;
   };
 
   var API = {

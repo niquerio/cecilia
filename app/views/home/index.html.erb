@@ -11,7 +11,7 @@
     <h1>St. Cecilia at the Tower V</h1>
     <h2>April 30-May 1, 2016</h2></center>
      </div>
-    <div style="margin-left:120px; margin-top:90px; display: block !important" class="visible-sm-* visible-xs-*" id="header-region"  ></div>
+    <div style="margin-left:90px; margin-top:90px; display: block !important"  id="header-region"  ></div>
   </div>
   
   
@@ -36,5 +36,10 @@
       <div id="dialog-region"></div>
     </div>
     <script type="text/javascript">
+      <% if signed_in? -%>
+      Cecilia.currentUser = new Cecilia.Entities.Teacher(<%= current_user.to_json.html_safe %>);
+      <% else -%>
+      Cecilia.currentUser = null;
+      <% end -%>
       Cecilia.start();
     </script>
