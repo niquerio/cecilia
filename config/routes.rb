@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :admin, defaults: { format: 'json'} do
       get 'events/:event_id/classrooms' => 'classrooms#index'
       post 'classrooms' => 'classrooms#create'
+      get 'classrooms/:id' => 'classrooms#show'
       put 'classrooms/:id' => 'classrooms#update'
     end
   end

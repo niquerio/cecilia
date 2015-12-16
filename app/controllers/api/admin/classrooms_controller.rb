@@ -5,6 +5,9 @@ module Api
       def index
         @classrooms = Classroom.where(event_id: params[:event_id])  
       end
+      def show
+        @classroom = Classroom.find(params[:id])
+      end
       def create
         classroom = Classroom.new(classroom_params)
         classroom.event_id = params[:event_id]

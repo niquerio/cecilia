@@ -36,7 +36,24 @@ RSpec.describe "POST /api/admin/classrooms/" do
     sign_out
   end
 end
-RSpec.describe "PUT /api/admin/classrooms/:id" do
+RSpec.describe "GET /api/admin/classrooms/:id" do
+  include_context "api request authentication helper methods"
+  include_context "api request global before and after hooks"
+
+  it "updates classroom name for given id" do
+    event = create(:event)
+    user = create(:user)
+    classroom = create(:classroom, event_id: event.id)
+    
+    sign_in(user)
+    get "/api/admin/classrooms/#{classroom.id}"
+    
+    expect(response.status).to eq 200
+    expect(response).to match_response_schema("classroom")
+    sign_out
+  end
+end
+RSpec.describe "put /api/admin/classrooms/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 

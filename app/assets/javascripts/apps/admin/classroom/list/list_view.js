@@ -3,6 +3,7 @@ Cecilia.module("AdminClassroomApp.List", function(List, Cecilia, Backbone, Mario
     template: "admin/classroom/list_item",
     tagName: "tr",
     triggers: {
+      "click a.js-edit": "classroom:edit"
     },
   });
   List.Classrooms = Marionette.CompositeView.extend({

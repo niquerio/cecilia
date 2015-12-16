@@ -1,0 +1,8 @@
+{
+  "title": "Classroom",
+  "type": "object",
+  "properties": {
+    "id": { "type": "number" },
+    "name": { "type": "string" }
+  }
+}
