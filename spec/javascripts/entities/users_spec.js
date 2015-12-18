@@ -26,6 +26,30 @@ describe("Users entitity", function(){
     });
   });
   describe("Collection", function(){
+    describe("user:entities request", function(){
+      it("should fetch users", function(done){
+        this.users = new Cecilia.Entities.UserCollection();
+        var user = new Cecilia.Entities.User();
+        this.userArray = [user];
+        var self = this;
+        sinon.stub(this.users, "fetch", function(options){
+          return options.success(self.userArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "UserCollection").returns(this.users);
+
+        var promise = Cecilia.request("user:entities"); 
+
+        $.when(promise).done(function(fetchedUsers){
+          expect(self.users.fetch).to.have.been.called.once;
+          expect(fetchedUsers).to.equal(self.userArray);
+          done();
+        });
+        
+        delete this.users;
+        delete this.userArray;
+        Cecilia.Entities.UserCollection.restore(); 
+      });
+    });
     describe("user:entities:teachers request", function(){
       it("should fetch teachers", function(done){
         this.teachers = new Cecilia.Entities.TeacherCollection();

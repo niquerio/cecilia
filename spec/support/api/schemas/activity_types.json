@@ -1,0 +1,13 @@
+{
+  "title": "Activity Types Schema",
+  "type": "array",
+  "items": {
+    "title": "Activity Type",
+    "type": "object",
+    "properties": {
+      "id": { "type": "id" },
+      "name": { "type": "string" },
+      "description": { "type": "string" }
+    }
+  }
+}

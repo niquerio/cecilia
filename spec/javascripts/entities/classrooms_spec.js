@@ -1,5 +1,28 @@
 describe("Classroom entitity", function(){
   describe("Model", function(){
+    describe("Validations", function(){
+      var self = this;
+      var validation_setup = function(){
+        self.classroom = new Cecilia.Entities.Classroom({
+          name: "Classroom"
+        }); 
+      }
+      var validation_cleanup = function(){
+        delete self.classroom;
+      }
+      it("accepts models with valid data", function(){
+        validation_setup();
+        expect(self.classroom.isValid()).to.be.true;
+        validation_cleanup();
+      });
+
+      it("refuses blank name", function(){
+        validation_setup();
+        self.classroom.set("name", "");
+        expect(self.classroom.isValid()).to.be.false;
+        validation_cleanup();
+      });
+    });
     describe("classroom:entity request", function(){
       it("should call classroom with id", function(done){
         //setup

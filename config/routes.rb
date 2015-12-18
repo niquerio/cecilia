@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get '/teachers/:username' => 'teachers#show'
     get '/activities' => 'activities#index_all'
     get '/activities/:id' => 'activities#show'
+    resources :users, only: [:index]
+    resources :activity_types, only: [:index]
+    resources :activity_subtypes, only: [:index]
     namespace :admin, defaults: { format: 'json'} do
       get 'events/:event_id/classrooms' => 'classrooms#index'
       post 'classrooms' => 'classrooms#create'

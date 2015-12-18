@@ -1,4 +1,14 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
+  Entities.User = Backbone.Model.extend({ });
+  Entities.UserCollection = Backbone.Collection.extend({
+    model: Entities.User,
+    url: 'api/users',
+    comparator: function(user) {
+      return user.get("sca_first_name") + " " + user.get("sca_last_name");
+    },
+  });
+
+  
   Entities.Teacher = Backbone.Model.extend({
     urlRoot: '/api/teachers',
     url: function(){ return this.urlRoot + '/' + this.get('username') }, 
@@ -37,6 +47,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
 
   var API = {
+    getUsers: function(){
+      var users = new Entities.UserCollection();
+      return this._getPromise(users)
+    },
     getTeachers: function(){
       var teachers = new Entities.TeacherCollection();
       return this._getPromise(teachers)
@@ -71,6 +85,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   };
 
+  Cecilia.reqres.setHandler("user:entities",function(){
+    return API.getUsers();
+  });
   Cecilia.reqres.setHandler("teacher:entity",function(username){
     return API.getTeacher(username);
   });

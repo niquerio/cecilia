@@ -1,5 +1,39 @@
 describe("Activity entitity", function(){
   describe("Model", function(){
+    describe("Validations", function(){
+      var self = this;
+      var validation_setup = function(){
+        self.activity = new Cecilia.Entities.Activity({
+          title: "Activity Title",
+          description: "Activity Description",
+          difficulty_id: 1,
+          activity_type_id: 1,
+          activity_subtype_id: 1,
+          user_id: 1,
+        }); 
+      }
+      var validation_cleanup = function(){
+        delete self.activity;
+      }
+      it("accepts models with valid data", function(){
+        validation_setup();
+        expect(self.activity.isValid()).to.be.true;
+        validation_cleanup();
+      });
+
+      it("refuses blank title", function(){
+        validation_setup();
+        self.activity.set("title", "");
+        expect(self.activity.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses blank user_id", function(){
+        validation_setup();
+        self.activity.set("user_id", "");
+        expect(self.activity.isValid()).to.be.false;
+        validation_cleanup();
+      });
+    });
     describe("activity:entity request", function(){
       it("should call Activity with id", function(done){
         //setup

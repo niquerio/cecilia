@@ -1,0 +1,15 @@
+{
+  "title": "Users Schema",
+  "type": "array",
+  "items": {
+    "title": "User",
+    "type": "object",
+    "properties": {
+      "id": { "type": "id" },
+      "title": { "type": "string" },
+      "sca_first_name": { "type": "string" },
+      "sca_last_name": { "type": "string" },
+      "username": { "type": "string" }
+    }
+  }
+}
