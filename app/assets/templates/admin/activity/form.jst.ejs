@@ -1,0 +1,37 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><%= modal_title %></h4></small>
+    </div>
+    <div class="modal-body">
+      <form>
+      <div class="control-group">
+        <label for="activity-title" class="control-label">Class Title:</label> 
+        <input class="form-control" id="activity-title" name="title" type="text" value="<%- title %>"/>
+      </div>
+      <div class="control-group">
+
+        <label for="activity-description" class="control-label">Class Description:</label> 
+        <input class="form-control" id="activity-description" name="description" type="text" value="<%- description %>"/>
+      </div>
+      <div class="control-group">
+        <label for="activity-activity_type" class="control-label">Activity Type:</label> 
+        <select class="form-control" id="activity-activity_type" name="activity_type""/>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="activity-activity_subtype" class="control-label">Activity Subtype:</label> 
+        <select class="form-control" id="activity-activity_subtype" name="activity_subtype""/>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="activity-users" class="control-label">Teachers:</label> 
+        <select class="form-control" id="activity-users" name="users""/>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary js-submit">Save</button>
+      </form>
+    </div> 
+  </div> 
+</div>

@@ -1,0 +1,11 @@
+<td><%=title%></td>
+<td><% if(description.length>75) { description = description.substring(0,75).concat('...'); } %> <%=description%></td>
+<td><%=difficulty%></td>
+<td><%=activity_type%></td>
+<td><%=activity_subtype%></td>
+<td>
+        <button class="btn btn-default btn-small js-edit">
+          <i class="glyphicon glyphicon-pencil"></i>
+          Edit
+        </button>
+</td>

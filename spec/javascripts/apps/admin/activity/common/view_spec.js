@@ -1,18 +1,86 @@
-xdescribe("AdminActivityApp.Common.Views.Form", function(){
-  it("", function(){
-  });
-  describe("",function(){
-  });
+describe("AdminActivityApp.Common.Views.Form", function(){
   it("triggers 'form:submit' with the form data when the submit button is clicked", function(done){
+      this.fixture = fixture.set("<div id='fixture'></div>")
+      var modelData = {
+        'title': 'Activity Title',
+        'description': 'Activity Description',
+        'activity_type': null,
+        'activity_subtype': null,
+        'users': null,
+      }
+      var view = new Cecilia.AdminActivityApp.Common.Views.Form({
+        el: '#fixture',
+        model: new Cecilia.Entities.Activity(modelData), 
+      });
+
+      var submitSpy = sinon.spy();
+      view.on("form:submit", submitSpy);
+      view.once("render", function(){
+        expect(submitSpy.called).to.be.false;
+        modelData.title = "New Activity Title";
+
+        $("#activity-title").val(modelData.title);
+        view.ui.submitButton.click();
+        expect(submitSpy.calledOnce).to.be.true;
+        expect(submitSpy.firstCall.args[0]).to.deep.equal(modelData);
+        done();
+      });
+
+      view.render();
   });
   describe("error display",function(){
+    var self = this;
     var error_setup = function(){
+      self.fixture = fixture.set("<div id='fixture'></div>")
+      self.view = new Cecilia.AdminActivityApp.Common.Views.Form({
+        el: '#fixture',
+        model: new Cecilia.Entities.Activity(), 
+      });
+      self.getErrorText = function(attribute){ 
+        return  self.view.$el.find("#activity-" + attribute).next(".error").text(); 
+      }
     };
     var error_cleanup = function(){
+      self.fixture = null
+      self.view = null
+      self.getErrorText = null;
     };
     it("displays form errors on 'form:data:invalid' event", function(done){ 
+      error_setup();
+      self.view.once("render", function(){
+        expect(self.getErrorText("title")).to.equal('');
+        this.triggerMethod("form:data:invalid", {
+          title: "title error message",
+          users: "users error message"
+        });
+
+        expect(self.getErrorText("title")).to.equal("title error message");
+        expect(self.getErrorText("users")).to.equal("users error message");
+        done();
+      }); 
+      self.view.render();
+      error_cleanup();
     });
     it("clears the displayed errors before displaying new error messages", function(done){
+      error_setup();
+      self.view.once("render", function(){
+        this.triggerMethod("form:data:invalid", {
+          title: "title error message",
+          users: "users error message"
+        });
+
+        expect(self.getErrorText("title")).to.equal("title error message");
+        expect(self.getErrorText("users")).to.equal("users error message");
+
+        this.triggerMethod("form:data:invalid", {
+          title: "new title error message",
+        });
+        expect(self.getErrorText("title")).to.equal("new title error message");
+        expect(self.getErrorText("users")).to.equal("");
+        done();
+      }); 
+      self.view.render();
+      error_cleanup();
     });
   });
 });

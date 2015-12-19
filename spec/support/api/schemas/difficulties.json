@@ -1,0 +1,13 @@
+{
+  "title": "Difficulties Schema",
+  "type": "array",
+  "items": {
+    "title": "Difficulty",
+    "type": "object",
+    "properties": {
+      "id": { "type": "number" },
+      "level": { "type": "number" },
+      "description": { "type": "string" }
+    }
+  }
+}

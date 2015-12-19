@@ -44,6 +44,7 @@ Cecilia.on("start", function(){
   Cecilia.module("UserApp").start();
   if(Cecilia.currentUser != null){
     Cecilia.module("AdminClassroomApp").start();
+    Cecilia.module("AdminActivityApp").start();
   }
   if(Backbone.history){
     Backbone.history.start();

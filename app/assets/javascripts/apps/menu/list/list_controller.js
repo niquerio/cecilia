@@ -11,6 +11,9 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
           case "admin/classrooms":
             Cecilia.trigger('admin:classroom:list');
             break;
+          case "admin/activities":
+            Cecilia.trigger('admin:activity:list');
+            break;
           case "class_schedule":
             Cecilia.trigger('activity:showSchedule');
             break;

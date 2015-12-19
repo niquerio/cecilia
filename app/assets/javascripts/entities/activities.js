@@ -7,6 +7,21 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         this.set('teachers', new Entities.TeacherCollection(teachers));
       }
     },
+    defaults: {
+      title: null,
+      description: "",
+      activity_type: "",
+      activity_subtype: "",
+    },
+    validate: function(attrs, options){
+      var errors = {}
+      if(! attrs.title){
+        errors.name = "can't be blank";
+      }
+      if(! _.isEmpty(errors)){
+        return errors;
+      }
+    },
   });
   Entities.CompleteActivityCollection = Backbone.Collection.extend({
     url: '/api/activities',

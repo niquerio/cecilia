@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :activity_types, only: [:index]
     resources :activity_subtypes, only: [:index]
+    resources :difficulties, only: [:index]
     namespace :admin, defaults: { format: 'json'} do
       get 'events/:event_id/classrooms' => 'classrooms#index'
       post 'classrooms' => 'classrooms#create'

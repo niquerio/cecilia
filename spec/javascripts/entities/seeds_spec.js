@@ -54,3 +54,31 @@ describe("Activity Subtypes entitity", function(){
     });
   });
 });
+describe("Difficulties entitity", function(){
+  describe("Collection", function(){
+    describe("difficulty:entities request", function(){
+      it("should fetch difficulties", function(done){
+        this.difficulties = new Cecilia.Entities.DifficultyCollection();
+        var difficulty = new Cecilia.Entities.Difficulty();
+        this.difficultyArray = [difficulty];
+        var self = this;
+        sinon.stub(this.difficulties, "fetch", function(options){
+          return options.success(self.difficultyArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "DifficultyCollection").returns(this.difficulties);
+
+        var promise = Cecilia.request("difficulty:entities"); 
+
+        $.when(promise).done(function(fetchedDifficulties){
+          expect(self.difficulties.fetch).to.have.been.called.once;
+          expect(fetchedDifficulties).to.equal(self.difficultyArray);
+          done();
+        });
+        
+        delete this.difficulties;
+        delete this.difficultyArray;
+        Cecilia.Entities.DifficultyCollection.restore(); 
+      });
+    });
+  });
+});

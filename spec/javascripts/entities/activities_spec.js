@@ -27,12 +27,6 @@ describe("Activity entitity", function(){
         expect(self.activity.isValid()).to.be.false;
         validation_cleanup();
       });
-      it("refuses blank user_id", function(){
-        validation_setup();
-        self.activity.set("user_id", "");
-        expect(self.activity.isValid()).to.be.false;
-        validation_cleanup();
-      });
     });
     describe("activity:entity request", function(){
       it("should call Activity with id", function(done){
