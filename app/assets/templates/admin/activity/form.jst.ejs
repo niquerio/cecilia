@@ -15,7 +15,7 @@
         <select multiple class="form-control" id="activity-users" name="users">
 <%
 users.each(function(user){
-%><option <% if(teachers.findWhere({'username':user.get('username')})){ %> selected <%} %> value="<%= user.get('id')%>"><%=user.get('title')%> <%=user.get('sca_first_name')%> <%=user.get('sca_last_name')%></option>
+%><option <% if(teachers && teachers.findWhere({'username':user.get('username')})){ %> selected <%} %> value="<%= user.get('id')%>"><%=user.get('title')%> <%=user.get('sca_first_name')%> <%=user.get('sca_last_name')%></option>
 <%  }); %>
         </select>
       </div>

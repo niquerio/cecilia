@@ -12,6 +12,8 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       description: "",
       activity_type: "",
       activity_subtype: "",
+      difficulty: "",
+      teachers: null,
     },
     validate: function(attrs, options){
       var errors = {}
