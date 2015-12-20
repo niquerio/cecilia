@@ -11,23 +11,43 @@
         <input class="form-control" id="activity-title" name="title" type="text" value="<%- title %>"/>
       </div>
       <div class="control-group">
-
-        <label for="activity-description" class="control-label">Class Description:</label> 
-        <input class="form-control" id="activity-description" name="description" type="text" value="<%- description %>"/>
+        <label for="activity-users" class="control-label">Teachers:</label> 
+        <select multiple class="form-control" id="activity-users" name="users">
+<%
+users.each(function(user){
+%><option <% if(teachers.findWhere({'username':user.get('username')})){ %> selected <%} %> value="<%= user.get('id')%>"><%=user.get('title')%> <%=user.get('sca_first_name')%> <%=user.get('sca_last_name')%></option>
+<%  }); %>
+        </select>
       </div>
       <div class="control-group">
+
+        <label for="activity-description" class="control-label">Class Description:</label> 
+        <textarea class="form-control" rows="4" id="activity-description" name="description" type="text" ><%= description %></textarea>
+      </div>
+      <div class="control-group">
+        <label for="activity-difficulty" class="control-label">Activity Type:</label> 
+        <select class="form-control" id="activity-difficulty" name="difficulty">
+<%
+difficulties.each(function(diff){
+%><option <% if(diff.get('level') == difficulty){ %> selected <%} %> value="<%= diff.get('id')%>"><%=diff.get('level')%> (<%=diff.get('description')%>)</option>
+<%  }); %>
+        </select>
+      <div class="control-group">
         <label for="activity-activity_type" class="control-label">Activity Type:</label> 
-        <select class="form-control" id="activity-activity_type" name="activity_type""/>
+        <select class="form-control" id="activity-activity_type" name="activity_type">
+<%
+activity_types.each(function(act_type){
+%><option <% if(act_type.get('name') == activity_type){ %> selected <%} %> value="<%= act_type.get('id')%>"><%=act_type.get('name')%></option>
+<%  }); %>
         </select>
       </div>
       <div class="control-group">
         <label for="activity-activity_subtype" class="control-label">Activity Subtype:</label> 
-        <select class="form-control" id="activity-activity_subtype" name="activity_subtype""/>
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="activity-users" class="control-label">Teachers:</label> 
-        <select class="form-control" id="activity-users" name="users""/>
+        <select class="form-control" id="activity-activity_subtype" name="activity_subtype">
+<%
+activity_subtypes.each(function(act_subtype){
+%><option <% if(act_subtype.get('name') == activity_subtype){ %> selected <%} %> value="<%= act_subtype.get('id')%>"><%=act_subtype.get('name')%></option>
+<%  }); %>
         </select>
       </div>
       <button type="submit" class="btn btn-primary js-submit">Save</button>

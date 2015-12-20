@@ -29,6 +29,7 @@ gem 'marionette-rails'
 gem 'bootstrap-sass'
 gem 'momentjs-rails'
 gem 'fontello_rails_converter'
+gem 'select2-rails'
 
 gem 'i18n'
 # Use ActiveModel has_secure_password

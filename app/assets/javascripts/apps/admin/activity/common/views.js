@@ -17,6 +17,10 @@ Cecilia.module("AdminActivityApp.Common.Views", function(Views, Cecilia, Backbon
       var data = Backbone.Syphon.serialize(this);
       this.trigger("form:submit", data);
     },
+
+    onRender: function(){
+      this.$el.find('#activity-users').select2({theme: "bootstrap"});
+    },
     
     onFormDataInvalid: function(errors){
       var $view = this.$el

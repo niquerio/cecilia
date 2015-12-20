@@ -20,6 +20,7 @@
 //= require backbone-support
 //= require backbone.marionette
 //= require moment
+//= require select2
 //= require_tree ../../../vendor/assets/javascripts/
 //
 //= require app
