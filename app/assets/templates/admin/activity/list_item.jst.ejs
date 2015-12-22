@@ -1,4 +1,9 @@
 <td><%=title%></td>
+<td>
+<% teachers.each(function(teacher){ %>
+<%= teacher.get('title') %> <%= teacher.get('sca_first_name') %> <%= teacher.get('sca_last_name') %> 
+<% });%>
+</td>
 <td><% if(description.length>75) { description = description.substring(0,75).concat('...'); } %> <%=description%></td>
 <td><%=difficulty%></td>
 <td><%=activity_type%></td>

@@ -26,7 +26,7 @@ users.each(function(user){
       </div>
       <div class="control-group">
         <label for="activity-difficulty" class="control-label">Activity Type:</label> 
-        <select class="form-control" id="activity-difficulty" name="difficulty">
+        <select class="form-control" id="activity-difficulty" name="difficulty_id">
 <%
 difficulties.each(function(diff){
 %><option <% if(diff.get('level') == difficulty){ %> selected <%} %> value="<%= diff.get('id')%>"><%=diff.get('level')%> (<%=diff.get('description')%>)</option>
@@ -34,7 +34,7 @@ difficulties.each(function(diff){
         </select>
       <div class="control-group">
         <label for="activity-activity_type" class="control-label">Activity Type:</label> 
-        <select class="form-control" id="activity-activity_type" name="activity_type">
+        <select class="form-control" id="activity-activity_type" name="activity_type_id">
 <%
 activity_types.each(function(act_type){
 %><option <% if(act_type.get('name') == activity_type){ %> selected <%} %> value="<%= act_type.get('id')%>"><%=act_type.get('name')%></option>
@@ -43,7 +43,7 @@ activity_types.each(function(act_type){
       </div>
       <div class="control-group">
         <label for="activity-activity_subtype" class="control-label">Activity Subtype:</label> 
-        <select class="form-control" id="activity-activity_subtype" name="activity_subtype">
+        <select class="form-control" id="activity-activity_subtype" name="activity_subtype_id">
 <%
 activity_subtypes.each(function(act_subtype){
 %><option <% if(act_subtype.get('name') == activity_subtype){ %> selected <%} %> value="<%= act_subtype.get('id')%>"><%=act_subtype.get('name')%></option>

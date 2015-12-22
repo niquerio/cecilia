@@ -1,7 +1,7 @@
 Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marionette, $, _){
   List.Controller = {
     listActivities: function(){
-      var fetchingActivities = Cecilia.request("activity:entities");
+      var fetchingActivities = Cecilia.request("admin:activity:entities");
       $.when(fetchingActivities).done(function(activities){
         var activitiesView = new List.Activities({collection:activities});
         activitiesView.on("activity:new", function(){
@@ -11,10 +11,8 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
           var fetchingActivityTypes = Cecilia.request("activity_type:entities");
           var fetchingActivitySubtypes = Cecilia.request("activity_subtype:entities");
           $.when(fetchingUsers, fetchingDifficulties, fetchingActivityTypes, fetchingActivitySubtypes).done(function(users, difficulties, activity_types, activity_subtypes){
-            var newActivity = new Cecilia.Entities.Activity({
+            var newActivity = new Cecilia.Entities.AdminActivity({
               event_id: Cecilia.Constants.current_event_id,
-              title: "",
-              id: null,
             });
             var view = new List.NewModal({
               model: newActivity,
@@ -29,7 +27,11 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
               },
             })
 
+            //self.listenTo(newActivity, "sync", function(){
+            //  newActivity.initialize();
+            //});
             self.listenTo(view, "activity:created", function(newActivity){
+              newActivity.initialize();
               activities.add(newActivity);
             });
 
@@ -57,6 +59,9 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
               },
             });
 
+            self.listenTo(args.model, "sync", function(){
+              args.model.initialize();
+            });
             self.listenTo(view, "activity:updated", function(){
               args.view.render();
             });

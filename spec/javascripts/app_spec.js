@@ -5,6 +5,7 @@ describe("App", function(){
     sinon.stub(Cecilia.ActivityApp, "start");
     sinon.stub(Cecilia.UserApp, "start");
     sinon.stub(Cecilia.AdminClassroomApp, "start");
+    sinon.stub(Cecilia.AdminActivityApp, "start");
     sinon.stub(Backbone.history, "start");
   };
   var cleanup = function(){
@@ -13,6 +14,7 @@ describe("App", function(){
     Cecilia.ActivityApp.start.restore();
     Cecilia.UserApp.start.restore();
     Cecilia.AdminClassroomApp.start.restore();
+    Cecilia.AdminActivityApp.start.restore();
     Backbone.history.start.restore(); 
   }
   it("starts admin apps when user is logged in", function(){

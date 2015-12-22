@@ -5,12 +5,22 @@ describe("AdminActivityApp.Common.Views.Form", function(){
         'title': 'Activity Title',
         'description': 'Activity Description',
         'activity_type': null,
+        'difficulty': null,
         'activity_subtype': null,
-        'users': null,
+        'users': null
       }
       var view = new Cecilia.AdminActivityApp.Common.Views.Form({
         el: '#fixture',
         model: new Cecilia.Entities.Activity(modelData), 
+        templateHelpers: function(){
+          return {
+            'modal_title': '',
+            'difficulties': new Backbone.Collection(),
+            'activity_types': new Backbone.Collection(),
+            'activity_subtypes': new Backbone.Collection(),
+            'users': new Backbone.Collection(),
+          }
+        }
       });
 
       var submitSpy = sinon.spy();
@@ -35,9 +45,18 @@ describe("AdminActivityApp.Common.Views.Form", function(){
       self.view = new Cecilia.AdminActivityApp.Common.Views.Form({
         el: '#fixture',
         model: new Cecilia.Entities.Activity(), 
+        templateHelpers: function(){
+          return {
+            'modal_title': '',
+            'difficulties': new Backbone.Collection(),
+            'activity_types': new Backbone.Collection(),
+            'activity_subtypes': new Backbone.Collection(),
+            'users': new Backbone.Collection(),
+          }
+        }
       });
       self.getErrorText = function(attribute){ 
-        return  self.view.$el.find("#activity-" + attribute).next(".error").text(); 
+        return  self.view.$el.find("#activity-" + attribute).parent().find(".error").text(); 
       }
     };
     var error_cleanup = function(){

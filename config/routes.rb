@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       post 'classrooms' => 'classrooms#create'
       get 'classrooms/:id' => 'classrooms#show'
       put 'classrooms/:id' => 'classrooms#update'
+      get 'events/:event_id/activities' => 'activities#index'
+      resources :activities, only: [:create, :update, :destroy, :show]
     end
   end
 

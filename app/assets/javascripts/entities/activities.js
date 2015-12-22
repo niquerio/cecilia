@@ -1,4 +1,43 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
+  Entities.AdminActivity = Backbone.Model.extend({
+    urlRoot: '/api/admin/activities', 
+    initialize: function(){
+      var self = this;
+      this._create_teacher_collection();
+    },
+    _create_teacher_collection: function(){
+      if(this.get('teachers')){
+        var teachers = this.get('teachers');
+        this.set('teachers', new Entities.TeacherCollection(teachers));
+      }
+    },
+    defaults: {
+      id: null,
+      title: "",
+      description: "",
+      activity_type: "",
+      activity_subtype: "",
+      difficulty: "",
+      teachers: null,
+      users: null,
+    },
+    validate: function(attrs, options){
+      var errors = {}
+      if(! attrs.title){
+        errors.name = "can't be blank";
+      }
+      if(! _.isEmpty(errors)){
+        return errors;
+      }
+    },
+  });
+  Entities.AdminActivityCollection = Backbone.Collection.extend({
+    url: function(){
+      return '/api/admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
+    },
+    model: Entities.AdminActivity,
+    comparator: 'title',
+  });
   Entities.Activity = Backbone.Model.extend({
     urlRoot: '/api/activities', 
     initialize: function(){
@@ -98,6 +137,21 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       var activities = new Entities.CompleteActivityCollection();
       return this._getPromise(activities);
     },
+    getAdminActivities: function(){
+      var activities = new Entities.AdminActivityCollection();
+      return this._getPromise(activities);
+    },
+    getAdminActivity: function(activityId){
+      var activity = new Entities.AdminActivity({id: activityId});
+      var defer = $.Deferred();
+      activity.fetch({
+        success: function(data){
+          data.initialize();
+          defer.resolve(data)
+        }
+      });
+      return defer.promise();
+    },
     getActivity: function(activityId){
       var activity = new Entities.Activity({id: activityId});
       var defer = $.Deferred();
@@ -126,6 +180,12 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   }
 
 
+  Cecilia.reqres.setHandler("admin:activity:entity",function(id){
+    return API.getAdminActivity(id);
+  });
+  Cecilia.reqres.setHandler("admin:activity:entities",function(){
+    return API.getAdminActivities();
+  });
   Cecilia.reqres.setHandler("activity:entities",function(){
     return API.getActivities();
   });

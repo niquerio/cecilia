@@ -4,7 +4,7 @@ describe("AdminActivityApp.List.Controller", function(){
     var setup = function(){
       self.controller = Cecilia.AdminActivityApp.List.Controller;
       self.view = _.extend({}, Backbone.Events);
-      sinon.stub(Cecilia, "request").withArgs("activity:entities").returns({});
+      sinon.stub(Cecilia, "request").withArgs("admin:activity:entities").returns({});
       sinon.stub(Cecilia.AdminActivityApp.List, "Activities").returns(self.view);
       Cecilia._configureRegions();
       sinon.stub(Cecilia.regions.main, "show");
@@ -58,7 +58,7 @@ describe("AdminActivityApp.List.Controller", function(){
             
             var collection = new Backbone.Collection();
             this.stub(collection, "add");
-            this.stub(Cecilia, "request").withArgs("activity:entities").returns(collection);
+            this.stub(Cecilia, "request").withArgs("admin:activity:entities").returns(collection);
 
             controller.listActivities();
             view.trigger("activity:new");

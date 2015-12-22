@@ -17,6 +17,15 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
 
   var processFormSubmit = function(data, triggerName){
     if(this.model.save(data)){
+      var tplHelpers = this.options.templateHelpers();
+      this.model.set('difficulty', tplHelpers.difficulties.get(data.difficulty_id).get('level'))
+      this.model.set('activity_type', tplHelpers.activity_types.get(data.activity_type_id).get('name'))
+      this.model.set('activity_subtype', tplHelpers.activity_subtypes.get(data.activity_subtype_id).get('name'))
+      this.model.attributes.teachers.reset();
+      for(var i = 0; i < data.users.length; i++){
+        this.model.attributes.teachers.add(tplHelpers.users.get(data.users[i]));
+      }
+      this.model.trigger("change:teachers")
       this.$el.modal('hide');
       this.trigger(triggerName, this.model);
     }

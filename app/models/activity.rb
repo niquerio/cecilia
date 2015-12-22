@@ -5,7 +5,7 @@ class Activity < ActiveRecord::Base
   belongs_to :classroom
   belongs_to :activity_type
   belongs_to :activity_subtype
-  has_many :teachers
+  has_many :teachers, dependent: :destroy
   has_many :users, through: :teachers
 
   validates :title, presence: true
