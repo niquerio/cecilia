@@ -24,7 +24,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     validate: function(attrs, options){
       var errors = {}
       if(! attrs.title){
-        errors.name = "can't be blank";
+        errors.title = "can't be blank";
+      }
+      if(_.isEmpty(attrs.users)){
+        errors.users = "must have teacher";
       }
       if(! _.isEmpty(errors)){
         return errors;

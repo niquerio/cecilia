@@ -4,9 +4,9 @@ describe("AdminActivityApp.Common.Views.Form", function(){
       var modelData = {
         'title': 'Activity Title',
         'description': 'Activity Description',
-        'activity_type': null,
-        'difficulty': null,
-        'activity_subtype': null,
+        'activity_type_id': null,
+        'difficulty_id': null,
+        'activity_subtype_id': null,
         'users': null
       }
       var view = new Cecilia.AdminActivityApp.Common.Views.Form({

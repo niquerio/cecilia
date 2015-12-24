@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
   factory :page do
     slug "page_slug"
   end
@@ -10,7 +14,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email "example@example.com"
+    email {generate :email}
     password Devise.friendly_token.first(8)  
     username "example"
   end
@@ -24,6 +28,8 @@ FactoryGirl.define do
   end
 
   factory :teacher do
+    user
+    activity
   end
 
   factory :staff_member do

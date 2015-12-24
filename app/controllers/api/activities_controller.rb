@@ -15,7 +15,7 @@ module Api
     end
     def schedule
       @event = Event.find(params[:event_id])
-      activities_list = Activity.where(event_id: params[:event_id]).order(:start_time, :classroom_id).to_a
+      activities_list = Activity.where(event_id: params[:event_id]).where.not(start_time: nil).order(:start_time, :classroom_id).to_a
       @teachers = Teacher.all
       @start_times = []
       @activities =  []

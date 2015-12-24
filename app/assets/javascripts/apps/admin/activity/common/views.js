@@ -30,15 +30,16 @@ Cecilia.module("AdminActivityApp.Common.Views", function(Views, Cecilia, Backbon
         $form.find(".help-inline.error").each(function(){
           $(this).remove();
         });
-        $form.find(".control-group.error").each(function(){
+        $form.find(".form-group.error").each(function(){
           $(this).removeClass("error");
+          $(this).removeClass("text-danger");
         });
       }
 
       var markErrors = function(value, key){
         var $controlGroup = $view.find("#activity-" + key).parent();
         var $errorEl = $("<span>", {class: "help-inline error", text: value });
-        $controlGroup.append($errorEl).addClass("error");
+        $controlGroup.append($errorEl).addClass("error text-danger");
       }
 
       clearFormErrors();

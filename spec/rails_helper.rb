@@ -71,4 +71,12 @@ RSpec.configure do |config|
   #Devise
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :request
+
+end
+  #Shoulda Matchers
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

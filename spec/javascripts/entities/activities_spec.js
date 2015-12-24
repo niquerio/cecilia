@@ -9,6 +9,7 @@ describe("Admin Activity Entity", function(){
           difficulty_id: 1,
           activity_type_id: 1,
           activity_subtype_id: 1,
+          users: [2],
         }); 
       }
       var validation_cleanup = function(){
@@ -23,6 +24,12 @@ describe("Admin Activity Entity", function(){
       it("refuses blank title", function(){
         validation_setup();
         self.activity.set("title", "");
+        expect(self.activity.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses empty users array", function(){
+        validation_setup();
+        self.activity.set("users", []);
         expect(self.activity.isValid()).to.be.false;
         validation_cleanup();
       });

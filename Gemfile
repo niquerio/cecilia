@@ -46,7 +46,6 @@ group :development, :test do
   gem 'byebug'
   gem "factory_girl_rails"
   gem "rspec-rails"
-  gem "shoulda-matchers"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -58,6 +57,7 @@ end
 
 group :test do
   gem "database_cleaner"
+  gem "shoulda-matchers"
   gem "json-schema"
   gem 'simplecov', :require => false
 end

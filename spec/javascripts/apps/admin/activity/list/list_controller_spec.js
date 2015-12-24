@@ -4,7 +4,7 @@ describe("AdminActivityApp.List.Controller", function(){
     var setup = function(){
       self.controller = Cecilia.AdminActivityApp.List.Controller;
       self.view = _.extend({}, Backbone.Events);
-      sinon.stub(Cecilia, "request").withArgs("admin:activity:entities").returns({});
+      self.request = sinon.stub(Cecilia, "request").withArgs("admin:activity:entities").returns({});
       sinon.stub(Cecilia.AdminActivityApp.List, "Activities").returns(self.view);
       Cecilia._configureRegions();
       sinon.stub(Cecilia.regions.main, "show");
@@ -16,6 +16,7 @@ describe("AdminActivityApp.List.Controller", function(){
      Cecilia.request.restore();
      Cecilia.AdminActivityApp.List.Activities.restore();
      Cecilia.regions.main.show.restore();
+     delete self.request;
     };
     it("displays the activities list in the main region", function(){
       setup();
@@ -71,12 +72,17 @@ describe("AdminActivityApp.List.Controller", function(){
       });
       describe("childview:activity:edit", function(){
         var activity_edit_setup = function(){
-          self.editModel = {save: sinon.stub() }; 
+          self.editModel = _.extend({save: sinon.stub(), initialize: sinon.stub() },Backbone.Events); 
           self.editView = _.extend({model: self.editModel}, Backbone.Events);
           sinon.stub(Cecilia.AdminActivityApp.List, "EditModal").returns(self.editView);
           sinon.stub(Cecilia.regions.dialog, "show");
+          self.request.withArgs("user:entities").returns({});
+          self.request.withArgs("difficulty:entities").returns({});
+          self.request.withArgs("activity_type:entities").returns({});
+          self.request.withArgs("activity_subtype:entities").returns({});
         }
         var activity_edit_cleanup = function(){
+          //Cecilia.request restored in setup
           Cecilia.AdminActivityApp.List.EditModal.restore();
           Cecilia.regions.dialog.show.restore();
           delete self.editModel
@@ -106,6 +112,47 @@ describe("AdminActivityApp.List.Controller", function(){
             expect(childView.render).to.have.been.called.once;
 
             activity_edit_cleanup();
+            cleanup();
+          }));
+        });
+      });
+      describe("childview:activity:delete", function(){
+        var activity_delete_setup = function(){
+          self.model = new Backbone.Model;
+          self.confirmView = _.extend({},Backbone.Events);
+          sinon.stub(Cecilia.AdminActivityApp.List, "ConfirmModal").returns(self.confirmView);
+          sinon.stub(Cecilia.regions.dialog, "show");
+        }
+        var activity_delete_cleanup = function(){
+          Cecilia.AdminActivityApp.List.ConfirmModal.restore();
+          Cecilia.regions.dialog.show.restore();
+          delete self.confirmView
+          delete self.model;
+        }
+        it("shows 'do you really mean to delete this' in dialog region", function(){
+          setup();
+          activity_delete_setup();
+
+          self.controller.listActivities();
+          self.view.trigger("childview:activity:delete", null, {model: self.model});
+          expect(Cecilia.regions.dialog.show).to.have.been.calledWith(self.confirmView).once; 
+
+          activity_delete_cleanup();
+          cleanup();
+        });
+        describe("confirmation for delete", function(){
+          it("removes activity from activity collections", sinon.test(function(){
+            setup();
+            activity_delete_setup();
+            this.stub(self.model, "destroy")
+
+
+            self.controller.listActivities();
+            self.view.trigger("childview:activity:delete", null,{model: self.model});
+            self.confirmView.trigger("confirm:delete")
+            expect(self.model.destroy).to.have.been.calledWith().once; 
+
+            activity_delete_cleanup();
             cleanup();
           }));
         });

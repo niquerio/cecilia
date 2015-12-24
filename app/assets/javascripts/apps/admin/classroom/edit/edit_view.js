@@ -2,7 +2,7 @@ Cecilia.module("AdminClassroomApp.Edit", function(Edit, Cecilia, Backbone, Mario
   Edit.Classroom = Cecilia.AdminClassroomApp.Common.Views.Form.extend({
     className: "modal fade",
     templateHelpers: function(){
-      return { title: "Edit Classroom", }
+      return { title: "Edit Classroom", button_text: "Update"}
     },
   });
 });
