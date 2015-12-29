@@ -17,10 +17,18 @@ FactoryGirl.define do
     email {generate :email}
     password Devise.friendly_token.first(8)  
     username "example"
+    title
+    sca_first_name "Mundungus"
+    sca_last_name "Jones"
   end
 
   factory :activity do
     title "The Best Class"
+    activity_type
+    activity_subtype
+    difficulty
+    event
+    after(:build){ |activity| activity.teachers << FactoryGirl.create(:teacher, activity: activity) }
   end
 
   factory :classroom do

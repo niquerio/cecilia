@@ -4,7 +4,7 @@ RSpec.describe "GET /api/activities/:id" do
   it "returns user info" do
     items = generate_activity
 
-    get "/api/activities/#{items[:teacher].id}"
+    get "/api/activities/#{items[:activity].id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("activity")

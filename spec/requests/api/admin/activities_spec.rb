@@ -62,21 +62,15 @@ RSpec.describe "POST /api/admin/activities/" do
   include_context "api request global before and after hooks"
 
   it "creates a new activity for a given event" do
-    event = create(:event)
-    title = create(:title)
-    user = create(:user, title_id: title.id)
-    difficulty = create(:difficulty)
-    activity_type = create(:activity_type)
-    activity_subtype = create(:activity_subtype)
-    activity_params = attributes_for(:activity)
-
-    activity_params[:event_id] = event.id
-    activity_params[:difficulty_id] = difficulty.id
-    activity_params[:activity_type_id] = activity_type.id
-    activity_params[:activity_subtype_id] = activity_subtype.id
-    activity_params[:users] = []
-    activity_params[:users][0] = user.id
-    
+    user = create(:user)
+    activity = build(:activity)
+    activity_params = {
+      event_id: activity.event.id,
+      difficulty_id: activity.difficulty.id,
+      activity_type_id: activity.activity_type.id,
+      activity_subtype_id: activity.activity_subtype.id,
+      users: [activity.teachers.first.user.id]
+    }
     sign_in(user)
     post "/api/admin/activities", activity_params
     

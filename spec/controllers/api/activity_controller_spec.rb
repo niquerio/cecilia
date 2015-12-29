@@ -6,14 +6,15 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
       event = create(:event)
       start_time = DateTime.now
       end_time = start_time + 2.hours
-      user = create(:user, title: Title.find_by(name: "Lord"), sca_first_name: "Mundungus", sca_last_name: "Smith")
+      title = create(:title)
+      user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
       classroom = create(:classroom, event_id: event.id)
       activity = create(:activity, 
-        activity_type: ActivityType.first, 
-        activity_subtype: ActivitySubtype.first, 
+#        activity_type: ActivityType.first, 
+#        activity_subtype: ActivitySubtype.first, 
         title: "It's a class", 
         description: "This is the description for this class", 
-        difficulty: Difficulty.first, 
+#        difficulty: Difficulty.first, 
         event_id: event.id, 
         classroom_id: classroom.id, 
         start_time: start_time, 
@@ -35,26 +36,27 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
       event = create(:event)
       start_time = DateTime.now
       end_time = start_time + 1.hour
-      user = create(:user, title: Title.first, sca_first_name: "Mundungus", sca_last_name: "Smith")
+      title = create(:title)
+      user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
       classroom = create(:classroom, event_id: event.id)
       classroom2 = create(:classroom, event_id: event.id, name: "Empty Classroom")
       activity = create(:activity, 
-        activity_type: ActivityType.first, 
-        activity_subtype: ActivitySubtype.first, 
+     #   activity_type: ActivityType.first, 
+     #   activity_subtype: ActivitySubtype.first, 
         title: "It's a class", 
         description: "This is the description for this class", 
-        difficulty: Difficulty.first, 
+     #   difficulty: Difficulty.first, 
         event_id: event.id, 
         classroom_id: classroom.id, 
         start_time: start_time, 
         end_time: end_time) 
 
       activity2 = create(:activity, 
-        activity_type: ActivityType.first, 
-        activity_subtype: ActivitySubtype.first, 
+     #   activity_type: ActivityType.first, 
+     #   activity_subtype: ActivitySubtype.first, 
         title: "It's a class", 
         description: "This is the description for this class", 
-        difficulty: Difficulty.first, 
+     #   difficulty: Difficulty.first, 
         event_id: event.id, 
         classroom_id: classroom2.id, 
         start_time: start_time + 1.hour, 

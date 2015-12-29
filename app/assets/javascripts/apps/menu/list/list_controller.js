@@ -39,12 +39,15 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       };
       menu.on("childview:childview:navigate", function(parentArgs, childArgs){
         childViewNavigate(childArgs);
+        parentArgs.$el.removeClass('open')
       });
       menu.on("childview:navigate", function(args){
         childViewNavigate(args);
       });
+
       mobile_nav.on("childview:childview:navigate", function(parentArgs, childArgs){
         childViewNavigate(childArgs);
+        parentArgs.$el.removeClass('open')
       });
       mobile_nav.on("childview:navigate", function(args){
         childViewNavigate(args);

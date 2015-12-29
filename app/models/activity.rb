@@ -1,6 +1,5 @@
 class Activity < ActiveRecord::Base
   belongs_to :difficulty
-  belongs_to :category
   belongs_to :event
   belongs_to :classroom
   belongs_to :activity_type
@@ -8,5 +7,5 @@ class Activity < ActiveRecord::Base
   has_many :teachers, dependent: :destroy
   has_many :users, through: :teachers
 
-  validates :title, presence: true
+  validates  :event, :title, :difficulty, :activity_type, :activity_subtype, :teachers, presence: true
 end
