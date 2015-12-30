@@ -12,6 +12,7 @@ Procfile
 /test/tmp/
 /test/version_tmp/
 /tmp/
+/log/
 
 #Ignore Spring Files
 /spring/*.pid
