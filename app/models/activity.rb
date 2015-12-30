@@ -7,5 +7,5 @@ class Activity < ActiveRecord::Base
   has_many :teachers, dependent: :destroy
   has_many :users, through: :teachers
 
-  validates  :event, :title, :difficulty, :activity_type, :activity_subtype, :teachers, presence: true
+  validates  :event, :title, :difficulty, :activity_type, :activity_subtype, presence: true
 end

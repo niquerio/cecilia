@@ -1,12 +1,12 @@
 module Api
   class ActivitiesController < ApplicationController
     def index
-      @activities = Activity.where(event_id: params[:event_id])  
+      @activities = Activity.where('event_id = ? AND classroom_id IS NOT NULL', params[:event_id])  
       @teachers = Teacher.all
       
     end
     def index_all
-      @activities = Activity.all
+      @activities = Activity.where('classroom_id IS NOT NULL')
       @teachers = Teacher.all
     end
     def show

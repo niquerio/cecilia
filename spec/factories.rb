@@ -3,14 +3,16 @@ FactoryGirl.define do
     "person#{n}@example.com"
   end
 
-  factory :page do
-    slug "page_slug"
-  end
 
   factory :event do
     title "St. Cecilia XLL"
     start_date DateTime.now
     end_date DateTime.tomorrow
+  end
+
+  factory :page do
+    slug "page_slug"
+    event
   end
 
   factory :user do

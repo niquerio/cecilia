@@ -1,3 +1,6 @@
 class Page < ActiveRecord::Base
-  validates :slug, presence: true
+  belongs_to :event
+
+  validates :event, presence: true
+  validates :slug, presence: true, uniqueness: true
 end

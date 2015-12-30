@@ -65,6 +65,7 @@ RSpec.describe "POST /api/admin/activities/" do
     user = create(:user)
     activity = build(:activity)
     activity_params = {
+      title: activity.title,
       event_id: activity.event.id,
       difficulty_id: activity.difficulty.id,
       activity_type_id: activity.activity_type.id,
@@ -76,10 +77,10 @@ RSpec.describe "POST /api/admin/activities/" do
     
     expect(response.status).to eq 201
     expect(Activity.last.title).to eq activity_params[:title]
-    expect(Activity.last.difficulty_id).to eq difficulty.id
-    expect(Activity.last.activity_type_id).to eq activity_type.id
-    expect(Activity.last.activity_subtype_id).to eq activity_subtype.id
-    expect(Activity.last.event_id).to eq event.id
+    expect(Activity.last.difficulty_id).to eq activity.difficulty.id
+    expect(Activity.last.activity_type_id).to eq activity.activity_type.id
+    expect(Activity.last.activity_subtype_id).to eq activity.activity_subtype.id
+    expect(Activity.last.event_id).to eq activity.event.id
     expect(Teacher.last.activity).to eq Activity.last
     expect(Teacher.last.user).to eq User.last
     sign_out

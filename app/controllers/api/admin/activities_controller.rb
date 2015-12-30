@@ -27,14 +27,14 @@ module Api
         @activity = Activity.new(act_params)
         @activity.event_id = params[:event_id]
 
-        users.each{ |user_id| 
-          teacher = Teacher.new(activity: @activity, user_id: user_id)
-          if(!teacher.save)
-            render json: {errors: teacher.errors.full_messages},
-            status: :unprocessable_entity
-          end
-        }
         if @activity.save
+          users.each{ |user_id| 
+            teacher = Teacher.new(activity: @activity, user_id: user_id)
+            if(!teacher.save)
+              render json: {errors: teacher.errors.full_messages},
+              status: :unprocessable_entity
+            end
+          }
           @teachers = Teacher.where(activity: @activity)
           render :show, status: :created
         else

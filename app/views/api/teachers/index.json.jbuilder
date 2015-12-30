@@ -4,7 +4,7 @@ json.array! (@users) do |user|
   json.sca_last_name user.sca_last_name
   json.username user.username
   json.activities do
-    json.array! (user.activities.where(event_id: @event.id)) do |activity|
+    json.array! (user.activities.where('event_id = ? AND classroom_id IS NOT NULL', @event.id)) do |activity|
       json.id activity.id
       json.title activity.title
       json.description activity.description
