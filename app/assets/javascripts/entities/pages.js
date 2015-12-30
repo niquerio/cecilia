@@ -6,38 +6,48 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         
     },
   });
-  Entities.PageCollection = Backbone.Collection.extend({
-    model: Entities.Page,
+  Entities.AdminPage = Backbone.Model.extend({
+    urlRoot: '/api/admin/pages'
   });
-
-  var initializePages = function(){
-    Entities.pages = new Entities.PageCollection([
-      { title: 'FAQ', body: "It's an FAQ!!", id: 1, slug: 'faq' }, 
-      { title: 'Directions', body: "Here's how to get to the place.", id: 2, slug: 'directions' }, 
-      { title: 'Home', body: "Come Play Music With us", id: 3, slug: 'home' }, 
-      { title: 'Master Schedule', body: "The Whole Schedule", id: 4, slug: 'master_schedule' }, 
-    ]);
-  };
+  Entities.AdminPageCollection = Backbone.Collection.extend({
+    model: Entities.AdminPage,
+    url: function(){
+      return '/api/admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/pages'
+    },
+  });
 
   var API = {
 
     getPage: function(slug){
       var page = new Entities.Page({slug: slug});
-      var defer = $.Deferred();
-      page.fetch({
-        success: function(data){
-          defer.resolve(data);
-        },
-        error: function(data){
-          defer.resolve('blah');
-        }
-      });
-      var promise = defer.promise();
-      return promise;
+      return this._getPromise(page);
     },  
      
+    getAdminPage: function(id){
+      var page = new Entities.AdminPage({id: id});
+      return this._getPromise(page);
+    },  
+    getAdminPages: function(){
+      var pages = new Entities.AdminPageCollection();
+      return this._getPromise(pages);
+    },  
+    _getPromise: function(item){
+      var defer = $.Deferred();
+      item.fetch({
+        success: function(data){
+          defer.resolve(data)
+        }
+      });
+      return defer.promise();
+    },
   };
 
+  Cecilia.reqres.setHandler("admin:page:entities",function(){
+    return API.getAdminPages();
+  });
+  Cecilia.reqres.setHandler("admin:page:entity",function(id){
+    return API.getAdminPage(id);
+  });
   Cecilia.reqres.setHandler("page:entity",function(slug){
     return API.getPage(slug);
   });

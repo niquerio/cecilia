@@ -62,11 +62,12 @@ describe("MenuApp.List.Controller", function(){
       it("triggers page:show by default when view triggers 'childview:childview:navigate'", function(){
         setup();
         setup_triggers();
+        var parentArgs = {$el : {removeClass: function(){} }}
         var menuItem = {model: new Backbone.Model({url: 'blah'})};
 
         self.controller.listMenu();
         expect(Cecilia.trigger).to.not.have.been.called;
-        self.menuView.trigger("childview:childview:navigate", undefined, menuItem);
+        self.menuView.trigger("childview:childview:navigate", parentArgs, menuItem);
         expect(Cecilia.trigger).to.have.been.calledWith('page:show');
 
         cleanup_triggers();

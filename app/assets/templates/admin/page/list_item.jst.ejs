@@ -1,0 +1,9 @@
+<td><%=title%></td>
+<td><%=slug%></td>
+<td><% if(body && body.length>75) { body = body.substring(0,75).concat('...'); } %> <%-body%></td>
+<td>
+        <button class="btn btn-default btn-small js-edit">
+          <i class="glyphicon glyphicon-pencil"></i>
+          Edit
+        </button>
+</td>
