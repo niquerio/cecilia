@@ -31,7 +31,6 @@ describe("AdminActivityApp", function(){
       Backbone.history.navigate("");
       Backbone.history.stop();
     }
-    xit("routes to common view if not logged in")
     it("executes the API's listActivities", sinon.test(function(){
       this.stub(Cecilia.AdminActivityApp._API, "listActivities");
       routing_setup();

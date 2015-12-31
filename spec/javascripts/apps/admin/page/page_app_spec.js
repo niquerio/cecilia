@@ -32,7 +32,6 @@ describe("AdminPageApp", function(){
       Backbone.history.navigate("");
       Backbone.history.stop();
     }
-    xit("routes to common view if not logged in")
     it("executes the API's listPages", sinon.test(function(){
       this.stub(Cecilia.AdminPageApp._API, "listPages");
       routing_setup();

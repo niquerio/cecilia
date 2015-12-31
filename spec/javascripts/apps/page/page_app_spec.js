@@ -67,30 +67,34 @@ describe("PageApp", function(){
   });
   
   describe("triggers", function(){
+    var trigger_setup = function(){
+        //Cecilia.PageApp.start();
+        sinon.stub(Cecilia, "navigate");
+    }
+    var trigger_cleanup = function(){
+        Cecilia.navigate.restore();
+        //Cecilia.PageApp.stop();
+    }
     describe("'page:show'", function(){
       it("navigates to page's slug", sinon.test(function(){
-        Cecilia.PageApp.start();
-        this.stub(Cecilia, "navigate");
+        trigger_setup();
         this.stub(Cecilia.PageApp._API, "showPage");
-        
 
         Cecilia.trigger("page:show", 'slug');
         expect(Cecilia.navigate).to.have.been.calledWith("slug").once;
 
-
-        Cecilia.PageApp.stop();
+        trigger_cleanup();
       }));
       it("executes the API's showPage", function(){
-        Cecilia.PageApp.start();
-        sinon.stub(Cecilia, "navigate");
+        trigger_setup();
+  
         sinon.stub(Cecilia.PageApp._API, "showPage");
 
         Cecilia.trigger("page:show", 'slug');
         expect(Cecilia.PageApp._API.showPage).to.have.been.called.once;
        
-        Cecilia.PageApp.stop();
-        Cecilia.navigate.restore(); 
         Cecilia.PageApp._API.showPage.restore(); 
+        trigger_cleanup();
       });
     });
   });

@@ -1,5 +1,4 @@
 describe("Common.Views.Loading", function(){
-  it("displays a spinner in the '#spinner' node");
 
   describe("serializeData", function(){
     it("serializes default options properly", function(){

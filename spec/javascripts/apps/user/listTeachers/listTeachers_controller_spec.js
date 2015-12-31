@@ -7,15 +7,25 @@ describe("UserApp.listTeachers.Controller", function(){
       self.view = _.extend({}, Backbone.Events);
       sinon.stub(Cecilia, "request").withArgs("user:entities:teachers").returns({});
       sinon.stub(Cecilia.UserApp.ListTeachers, "Teachers").returns(self.view);
+      self.loadingView = _.extend({}, Backbone.Events);
+      sinon.stub(Cecilia.Common.Views, "Loading").returns(self.loadingView);
       sinon.stub(Cecilia.regions.main, "show");
     };
     var cleanup = function(){
       delete self.controller
       delete self.view
+      delete self.loadingView;
+      Cecilia.Common.Views.Loading.restore();
       Cecilia.request.restore();
       Cecilia.UserApp.ListTeachers.Teachers.restore();
       Cecilia.regions.main.show.restore();
     };
+    it("displays loading view in the main region", sinon.test(function(){
+      setup();
+      self.controller.listTeachers();
+      expect(Cecilia.regions.main.show).to.have.been.calledWith(self.loadingView).once;
+      cleanup();
+    }));
     it("displays the teacher list in the main region", sinon.test(function(){
       setup();
 

@@ -32,7 +32,6 @@ describe("AdminClassroomApp", function(){
       Backbone.history.navigate("");
       Backbone.history.stop();
     }
-    xit("routes to common view if not logged in")
     it("executes the API's listClassrooms", sinon.test(function(){
       this.stub(Cecilia.AdminClassroomApp._API, "listClassrooms");
       routing_setup();

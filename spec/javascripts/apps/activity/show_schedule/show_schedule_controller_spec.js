@@ -4,6 +4,8 @@ describe("ActivityApp.ShowSchedule.Controller", function(){
     var setup = function(){
       Cecilia._configureRegions();
       self.controller = Cecilia.ActivityApp.ShowSchedule.Controller;
+      self.loadingView = _.extend({}, Backbone.Events);
+      sinon.stub(Cecilia.Common.Views, "Loading").returns(self.loadingView);
       self.view = _.extend({}, Backbone.Events);
       sinon.stub(Cecilia, "request").withArgs("activity:entities:schedule").returns({});
       sinon.stub(Cecilia.ActivityApp.ShowSchedule, "Activities").returns(self.view);
@@ -12,10 +14,18 @@ describe("ActivityApp.ShowSchedule.Controller", function(){
     var cleanup = function(){
       delete self.controller;
       delete self.view;
+      delete self.loadingView;
+      Cecilia.Common.Views.Loading.restore();
       Cecilia.request.restore();
       Cecilia.ActivityApp.ShowSchedule.Activities.restore();
       Cecilia.regions.main.show.restore();
     }
+    it("displays loading view in the main region", sinon.test(function(){
+      setup();
+      self.controller.showActivitiesSchedule();
+      expect(Cecilia.regions.main.show).to.have.been.calledWith(self.loadingView).once;
+      cleanup();
+    }));
     it("displays the activities schedule in the main region", sinon.test(function(){
       setup();
 

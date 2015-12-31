@@ -20,6 +20,7 @@ $font-size-h6: 14px !default;
   h3 {   font-size: 18px; line-height:100%; }
 }
 
+$level-0: black;
 $level-1: #1B9E77;
 $level-2: #A6761D;
 $level-3: #E7298A;
@@ -37,6 +38,9 @@ ul {
   margin-bottom: 3em;
 }
 
+.label-level-0{
+  background-color: $level-0;
+}
 .label-level-1{
   background-color: $level-1;
 }

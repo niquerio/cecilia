@@ -8,14 +8,25 @@ describe("ActivityApp.ListAll.Controller", function(){
       sinon.stub(Cecilia, "request").withArgs("activity:entities:all").returns({});
       sinon.stub(Cecilia.ActivityApp.ListAll, "Activities").returns(self.view);
       sinon.stub(Cecilia.regions.main, "show");
+
+      self.loadingView = _.extend({}, Backbone.Events);
+      sinon.stub(Cecilia.Common.Views, "Loading").returns(self.loadingView);
     };
     var cleanup = function(){
       delete self.controller;
       delete self.view;
+      delete self.loadingView;
+      Cecilia.Common.Views.Loading.restore();
       Cecilia.request.restore();
       Cecilia.ActivityApp.ListAll.Activities.restore();
       Cecilia.regions.main.show.restore();
     };
+    it("displays loading view in the main region", sinon.test(function(){
+      setup();
+      self.controller.listAllActivities();
+      expect(Cecilia.regions.main.show).to.have.been.calledWith(self.loadingView).once;
+      cleanup();
+    }));
     it("displays the complete activity list in the main region", sinon.test(function(){
       setup();
 
