@@ -47,6 +47,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
           {name: 'Manage Classrooms', url: 'admin/classrooms'},
           {name: 'Manage Activities', url: 'admin/activities'},
           {name: 'Manage Pages', url: 'admin/pages'},
+          {name: 'Logout', url: 'logout'},
         ],
       });
     }

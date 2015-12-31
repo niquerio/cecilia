@@ -35,6 +35,15 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
           case "staff":
             Cecilia.trigger('user:staff:list');
             break;
+          case "logout":
+            $.ajax({
+                url: 'users/sign_out',
+                type: 'DELETE',
+                success: function(result) {
+                  window.location.replace("./");
+                },
+            });
+            break;
           default:
             Cecilia.trigger('page:show', url);
             break;
