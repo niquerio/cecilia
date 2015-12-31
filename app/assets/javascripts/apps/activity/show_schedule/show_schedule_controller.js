@@ -23,6 +23,8 @@ Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backb
       });
     },
     showActivitiesSchedule: function(){
+      var loadingView = new Cecilia.Common.Views.Loading();
+      Cecilia.regions.main.show(loadingView);
       var fetchingSchedule = Cecilia.request("activity:entities:schedule");
       $.when(fetchingSchedule).done(function(activities){
         var scheduleView = new ShowSchedule.Activities({collection:activities});

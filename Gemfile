@@ -34,6 +34,8 @@ gem "font-awesome-rails"
 source 'https://rails-assets.org' do
   gem 'rails-assets-simplemde'
   gem 'rails-assets-marked'
+  gem 'rails-assets-datatables'
+  gem 'rails-assets-spin'
 end
 
 gem 'i18n'

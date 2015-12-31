@@ -1,6 +1,8 @@
 Cecilia.module("ActivityApp.ListAll", function(ListAll, Cecilia, Backbone, Marionette, $, _){
   ListAll.Controller = {
     listAllActivities: function(){
+      var loadingView = new Cecilia.Common.Views.Loading();
+      Cecilia.regions.main.show(loadingView);
       var fetchingActivities = Cecilia.request("activity:entities:all");
       $.when(fetchingActivities).done(function(activities){
         var activitiesView = new ListAll.Activities({collection:activities});

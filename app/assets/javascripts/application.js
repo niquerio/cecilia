@@ -23,6 +23,8 @@
 //= require select2
 //= require simplemde
 //= require marked
+//= require datatables
+//= require spin
 //= require_tree ../../../vendor/assets/javascripts/
 //
 //= require app

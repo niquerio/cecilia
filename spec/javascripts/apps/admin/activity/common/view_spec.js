@@ -25,7 +25,7 @@ describe("AdminActivityApp.Common.Views.Form", function(){
 
       var submitSpy = sinon.spy();
       view.on("form:submit", submitSpy);
-      view.once("render", function(){
+      view.once("attach", function(){
         expect(submitSpy.called).to.be.false;
         modelData.title = "New Activity Title";
 
@@ -37,6 +37,8 @@ describe("AdminActivityApp.Common.Views.Form", function(){
       });
 
       view.render();
+      view.onAttach();
+      view.trigger('attach');
   });
   describe("error display",function(){
     var self = this;

@@ -1,6 +1,8 @@
 Cecilia.module("UserApp.ListAllTeachers", function(ListAllTeachers, Cecilia, Backbone, Marionette, $, _){
   ListAllTeachers.Controller = {
     listAllTeachers: function(){
+      var loadingView = new Cecilia.Common.Views.Loading();
+      Cecilia.regions.main.show(loadingView);
       var fetchingTeachers = Cecilia.request("user:entities:teachers:all");
       $.when(fetchingTeachers).done(function(teachers){
         var teachersView = new ListAllTeachers.Teachers({collection:teachers});

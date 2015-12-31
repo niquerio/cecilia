@@ -16,12 +16,13 @@ Cecilia.module("AdminActivityApp.Common.Views", function(Views, Cecilia, Backbon
       e.preventDefault();
       var data = Backbone.Syphon.serialize(this);
       data['description'] = this.simplemde.value();
-      console.log(data)
       this.trigger("form:submit", data);
     },
 
     onRender: function(){
       this.$el.find('#activity-users').select2({theme: "bootstrap"});
+    },
+    onAttach: function(){
       this.simplemde = new SimpleMDE({ 
         element: this.$el.find('#activity-description')[0],
       });
