@@ -36,6 +36,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       item.fetch({
         success: function(data){
           defer.resolve(data)
+        },
+        error: function(){
+          defer.resolve();
         }
       });
       return defer.promise();

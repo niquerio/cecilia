@@ -5,7 +5,7 @@ json.modern_first_name @user.modern_first_name
 json.modern_last_name @user.modern_last_name
 json.bio @user.bio
 json.activities do
-  json.array! (@user.activities) do |activity|
+  json.array! (@user.activities.where('classroom_id IS NOT NULL')) do |activity|
     json.id activity.id
     json.year activity.start_time.strftime('%Y')
     json.title activity.title

@@ -151,7 +151,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         success: function(data){
           data.initialize();
           defer.resolve(data)
-        }
+        },
+        error: function(){
+          defer.resolve();
+        },
       });
       return defer.promise();
     },
@@ -162,7 +165,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         success: function(data){
           data.initialize();
           defer.resolve(data)
-        }
+        },
+        error: function(){
+          defer.resolve();
+        },
       });
       return defer.promise();
     },
@@ -176,7 +182,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       item.fetch({
         success: function(data){
           defer.resolve(data)
-        }
+        },
+        error: function(){
+          defer.resolve();
+        },
       });
       return defer.promise();
     },

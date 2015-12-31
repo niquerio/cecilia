@@ -3,7 +3,12 @@ Cecilia.module("AdminPageApp.Edit", function(Edit, Cecilia, Backbone, Marionette
     editPage: function(id){
       var fetchingPage = Cecilia.request("admin:page:entity", id);
       $.when(fetchingPage).done(function(page){
-        var pageView = new Edit.Page({model:page});
+        var pageView;
+        if(page != undefined){
+          pageView = new Edit.Page({model:page});
+        }else{
+          pageView = new Cecilia.Common.Views.Missing()
+        }
 
         pageView.on("page:updated",function(){
           Cecilia.trigger("page:show", page.get('slug'));

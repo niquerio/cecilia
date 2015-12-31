@@ -13,4 +13,13 @@ Cecilia.module("Common.Views", function(Views, Cecilia, Backbone, Marionette, $,
       this.$el.find('#spinner').spin('show')
     },
   });
+  Views.Missing = Marionette.ItemView.extend({
+    template: 'common/missing',
+    message: "This Page Doesn't Exist!",
+    templateHelpers: function(){
+      return{
+        message: Marionette.getOption(this, "message"),
+      }
+    },
+  });
 });

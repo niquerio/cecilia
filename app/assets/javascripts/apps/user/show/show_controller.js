@@ -5,7 +5,12 @@ Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
       Cecilia.regions.main.show(loadingView);
       var fetchingTeacher = Cecilia.request("teacher:entity", username);
       $.when(fetchingTeacher).done(function(teacher){
-        var teacherView = new Show.Teacher({model:teacher});
+        var teacherView;
+        if(teacher != undefined){ 
+          teacherView = new Show.Teacher({model:teacher});
+        }else{
+          teacherView = new Cecilia.Common.Views.Missing({message: "This Teacher Doesn't Exist!"})
+        }
 
         teacherView.on("childview:activity:show", function(args){
           Cecilia.trigger("activity:show", args.model.get('id'));
