@@ -11,8 +11,10 @@ Cecilia.module("AdminPageApp.Common.Views", function(Views, Cecilia, Backbone, M
 
     submitClicked: function(e){
       e.preventDefault();
-      var data = Backbone.Syphon.serialize(this);
-      this.trigger("form:submit", data);
+      this.trigger("form:submit", {body: this.simplemde.value()});
+    },
+    onAttach: function(){
+      this.simplemde = new SimpleMDE({ element: this.$el.find('#page-body')[0]});
     },
     
     onFormDataInvalid: function(errors){

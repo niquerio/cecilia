@@ -78,6 +78,7 @@ module Api
         params.permit(
           :event_id,
           :title, 
+          :description, 
           :difficulty_id, 
           :activity_type_id, 
           :activity_subtype_id, 

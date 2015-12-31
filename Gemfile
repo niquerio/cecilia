@@ -30,6 +30,11 @@ gem 'bootstrap-sass'
 gem 'momentjs-rails'
 gem 'fontello_rails_converter'
 gem 'select2-rails'
+gem "font-awesome-rails"
+source 'https://rails-assets.org' do
+  gem 'rails-assets-simplemde'
+  gem 'rails-assets-marked'
+end
 
 gem 'i18n'
 # Use ActiveModel has_secure_password

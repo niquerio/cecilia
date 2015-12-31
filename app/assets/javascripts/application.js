@@ -21,6 +21,8 @@
 //= require backbone.marionette
 //= require moment
 //= require select2
+//= require simplemde
+//= require marked
 //= require_tree ../../../vendor/assets/javascripts/
 //
 //= require app
