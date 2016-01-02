@@ -29,9 +29,10 @@ Cecilia.module("ActivityApp.ListAll", function(ListAll, Cecilia, Backbone, Mario
     childView: ListAll.Activity,
     childViewContainer: "tbody",
     onRender: function(){
-      this.$('.table').DataTable({
-        "order": [[0, "desc"]],
-      });
+        this.$('.table').DataTable({
+            "order": [[0, "desc"]],
+            "pageLength": 25,
+        });
     },
   });
 });

@@ -14,13 +14,6 @@ div.hr {
     display: none;
 }
 
-main div {
-}
-
-.flex-center {
-    display: flex;
-    justify-content: center;
-}
 
 .transparent {
   background: rgba(0,0,0,0.0);
