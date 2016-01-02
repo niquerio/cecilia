@@ -39,7 +39,9 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
             Cecilia.regions.dialog.show(view);
             });
         });
-        
+        activitiesView.on("childview:activity:show", function(parentArgs, args){
+          Cecilia.trigger("activity:show",args.model.get('id'));
+        }); 
         activitiesView.on("childview:activity:edit", function(parentArgs, args){
           var self = this;
           var fetchingUsers = Cecilia.request("user:entities");

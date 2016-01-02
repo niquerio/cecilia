@@ -13,6 +13,9 @@ Cecilia.module("ActivityApp.List", function(List, Cecilia, Backbone, Marionette,
         activitiesView.on("childview:activity:show", function(args){
           Cecilia.trigger("activity:show", args.model.get('id'));
         });
+        activitiesView.on("childview:activity:edit", function(args){
+          Cecilia.trigger("admin:activity:edit", args.model.get('id'));
+        });
         Cecilia.regions.main.show(activitiesView);
       });
     },

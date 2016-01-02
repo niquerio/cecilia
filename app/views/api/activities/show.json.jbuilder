@@ -5,6 +5,8 @@ json.start_time @activity.start_time
 json.end_time @activity.end_time
 if(@activity.classroom)
   json.classroom @activity.classroom.name
+else
+  json.classroom nil
 end
 json.difficulty @activity.difficulty.level
 json.activity_type @activity.activity_type.name

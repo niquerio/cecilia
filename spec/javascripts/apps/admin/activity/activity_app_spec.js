@@ -20,6 +20,18 @@ describe("AdminActivityApp", function(){
         Cecilia.navigate.restore();
       });
     });
+    describe("editActivity",function(){
+      it("executes AdminActivitiesApp.Edit.Controller.editActivity", function(){
+        sinon.stub(Cecilia, "navigate");
+        sinon.stub(Cecilia.AdminActivityApp.Edit.Controller, "editActivity");
+
+        Cecilia.AdminActivityApp._API.editActivity(3);
+        expect(Cecilia.AdminActivityApp.Edit.Controller.editActivity).to.have.been.calledWith(3).once;
+
+        Cecilia.AdminActivityApp.Edit.Controller.editActivity.restore();
+        Cecilia.navigate.restore();
+      });
+    });
   });
   describe("routing",function(){
     var routing_setup = function(){
@@ -31,6 +43,15 @@ describe("AdminActivityApp", function(){
       Backbone.history.navigate("");
       Backbone.history.stop();
     }
+    it("executes the API's editActivity", sinon.test(function(){
+      this.stub(Cecilia.AdminActivityApp._API, "editActivity");
+      routing_setup();
+
+      Cecilia.navigate("activities/3/edit", {trigger:true});
+      expect(Cecilia.AdminActivityApp._API.editActivity).to.have.been.calledWith('3').once;
+
+      routing_cleanup();
+    }));
     it("executes the API's listActivities", sinon.test(function(){
       this.stub(Cecilia.AdminActivityApp._API, "listActivities");
       routing_setup();
@@ -52,7 +73,19 @@ describe("AdminActivityApp", function(){
         Cecilia.AdminActivityApp.stop();
     
     }
-    describe("'activity:list'",function(){
+    describe("'admin:activity:edit'",function(){
+      it("navigates to edit activity page", sinon.test(function(){
+        trigger_setup();
+        this.stub(Cecilia.AdminActivityApp._API, "editActivity");
+        
+
+        Cecilia.trigger("admin:activity:edit",3);
+        expect(Cecilia.navigate).to.have.been.calledWith('activities/3/edit').once;
+
+        trigger_cleanup();
+      }));
+    });
+    describe("'admin:activity:list'",function(){
       it("navigates to activity list", sinon.test(function(){
         trigger_setup();
         this.stub(Cecilia.AdminActivityApp._API, "listActivities");

@@ -70,6 +70,30 @@ describe("AdminActivityApp.List.Controller", function(){
           }));
         });
       });
+      describe("childview:activity:show", function(){
+        var activity_show_setup = function(){
+          self.request.withArgs("user:entities").returns({});
+          self.request.withArgs("difficulty:entities").returns({});
+          self.request.withArgs("activity_type:entities").returns({});
+          self.request.withArgs("activity_subtype:entities").returns({});
+          self.showModel = new Cecilia.Entities.Activity({id: 2});
+          sinon.stub(Cecilia, "trigger")
+        };
+        var activity_show_cleanup = function(){
+          //Cecilia.request restored in setup
+          Cecilia.trigger.restore();
+        };
+        it("triggers 'activity:show' with proper id", function(){
+          setup();
+          activity_show_setup();
+          self.controller.listActivities();
+          self.view.trigger("childview:activity:show", null, {model: self.showModel});
+          expect(Cecilia.trigger).to.have.been.calledWith("activity:show", self.showModel.get('id')).conce;
+        
+          activity_show_cleanup();
+          cleanup();
+        });
+      });
       describe("childview:activity:edit", function(){
         var activity_edit_setup = function(){
           self.editModel = _.extend({save: sinon.stub(), initialize: sinon.stub() },Backbone.Events); 

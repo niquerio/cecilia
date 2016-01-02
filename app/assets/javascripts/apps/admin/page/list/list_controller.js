@@ -8,6 +8,9 @@ Cecilia.module("AdminPageApp.List", function(List, Cecilia, Backbone, Marionette
         pagesView.on("childview:page:edit", function(parentArgs, args){
           Cecilia.trigger("admin:page:edit",args.model.get('id'));
         });
+        pagesView.on("childview:page:show", function(parentArgs, args){
+          Cecilia.trigger("page:show",args.model.get('slug'));
+        });
 
         Cecilia.regions.main.show(pagesView);
       });

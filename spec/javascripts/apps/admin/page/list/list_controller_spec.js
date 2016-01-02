@@ -27,6 +27,19 @@ describe("AdminPageApp.List.Controller", function(){
       
     }));
     describe("events", function(){
+      describe("childview:classroom:show", function(){
+
+        it("triggers 'page:show' with proper slug", function(){
+          setup();
+          sinon.stub(Cecilia, "trigger")
+          var showModel = new Cecilia.Entities.Page({slug: 'blah'});
+          self.controller.listPages();
+          self.view.trigger("childview:page:show", null, {model: showModel});
+          expect(Cecilia.trigger).to.have.been.calledWith("page:show", showModel.get('slug')).conce;
+          Cecilia.trigger.restore();
+          cleanup();
+        });
+      });
       describe("childview:classrom:edit", function(){
         it("triggers admin:page:edit with proper id", function(){
           setup();

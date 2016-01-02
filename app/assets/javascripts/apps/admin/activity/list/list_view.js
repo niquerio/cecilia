@@ -3,6 +3,7 @@ Cecilia.module("AdminActivityApp.List", function(List, Cecilia, Backbone, Marion
     template: "admin/activity/list_item",
     tagName: "tr",
     triggers: {
+      "click button.js-show": "activity:show",
       "click button.js-edit": "activity:edit",
       "click button.js-delete": "activity:delete"
     },

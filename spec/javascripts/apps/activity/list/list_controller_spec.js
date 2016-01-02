@@ -56,6 +56,20 @@ describe("ActivityApp.List.Controller", function(){
           cleanup();
         }));
       });
+      describe("childview:activity:edit", function(){
+        it("triggers 'admin:activity:edit' with proper id" ,sinon.test(function(){
+          setup(); 
+          this.stub(Cecilia, "trigger");
+          var model = new Cecilia.Entities.Activity({id: '3'});
+
+          self.controller.listActivities();
+          self.view.trigger("childview:activity:edit", {model: model});
+
+          expect(Cecilia.trigger).to.have.been.calledWith("admin:activity:edit", model.get('id')).once;
+
+          cleanup();
+        }));
+      });
       describe("childview:activity:show", function(){
         it("triggers 'activity:show' with proper id" ,sinon.test(function(){
           setup(); 

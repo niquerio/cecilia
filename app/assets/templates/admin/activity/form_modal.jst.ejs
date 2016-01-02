@@ -1,0 +1,62 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><%= modal_title %></h4></small>
+    </div>
+    <div class="modal-body">
+      <form>
+      <div class="form-group">
+        <label for="activity-title" class="control-label">Class Title:</label> 
+        <input class="form-control" id="activity-title" name="title" type="text" value="<%- title %>"/>
+      </div>
+      <div class="form-group">
+        <label for="activity-users" class="control-label">Teachers:</label> 
+        <select multiple class="form-control" id="activity-users" name="users">
+<%
+users.each(function(user){
+%><option <% if(teachers && teachers.findWhere({'username':user.get('username')})){ %> selected <%} %> value="<%= user.get('id')%>"><%=user.get('title')%> <%=user.get('sca_first_name')%> <%=user.get('sca_last_name')%></option>
+<%  }); %>
+        </select>
+      </div>
+      <div class="form-group">
+
+        <label for="activity-description" class="control-label">Class Description:</label> 
+        <textarea class="form-control" rows="4" id="activity-description" name="description" type="text" ><%= description %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="activity-difficulty" class="control-label">Activity Type:</label> 
+        <select class="form-control" id="activity-difficulty" name="difficulty_id">
+<%
+difficulties.each(function(diff){
+%><option <% if(diff.get('level') == difficulty){ %> selected <%} %> value="<%= diff.get('id')%>"><%=diff.get('level')%> (<%=diff.get('description')%>)</option>
+<%  }); %>
+        </select>
+      <div class="form-group">
+        <label for="activity-activity_type" class="control-label">Activity Type:</label> 
+        <select class="form-control" id="activity-activity_type" name="activity_type_id">
+<%
+activity_types.each(function(act_type){
+%><option <% if(act_type.get('name') == activity_type){ %> selected <%} %> value="<%= act_type.get('id')%>"><%=act_type.get('name')%></option>
+<%  }); %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="activity-activity_subtype" class="control-label">Activity Subtype:</label> 
+        <select class="form-control" id="activity-activity_subtype" name="activity_subtype_id">
+<%
+activity_subtypes.each(function(act_subtype){
+%><option <% if(act_subtype.get('name') == activity_subtype){ %> selected <%} %> value="<%= act_subtype.get('id')%>"><%=act_subtype.get('name')%></option>
+<%  }); %>
+        </select>
+      </div>
+</div>
+<div class="modal-footer">
+      <button type="submit" class="btn btn-primary js-submit">
+      <% if(typeof button_text !== 'undefined'){ %><%=button_text%> <%} else{ %>Save<%}%>
+      </button>
+</div>
+      </form>
+    </div> 
+  </div> 
+</div>

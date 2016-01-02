@@ -3,7 +3,8 @@ Cecilia.module("AdminPageApp.List", function(List, Cecilia, Backbone, Marionette
     template: "admin/page/list_item",
     tagName: "tr",
     triggers: {
-      "click button.js-edit": "page:edit"
+      "click button.js-edit": "page:edit",
+      "click a.js-show": "page:show"
     },
   });
   List.Pages = Marionette.CompositeView.extend({
