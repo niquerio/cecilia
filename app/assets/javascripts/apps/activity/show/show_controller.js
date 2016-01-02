@@ -12,6 +12,9 @@ Cecilia.module("ActivityApp.Show", function(Show, Cecilia, Backbone, Marionette,
           activityView = new Cecilia.Common.Views.Missing({message: "This Activity Doesn't Exist!"})
         }
 
+        activityView.on("activity:edit", function(args){
+          Cecilia.trigger("admin:activity:edit", args.model.get('id'));
+        });
         activityView.on("childview:teacher:show", function(args){
           Cecilia.trigger("teacher:show", args.model.get('username'));
         });

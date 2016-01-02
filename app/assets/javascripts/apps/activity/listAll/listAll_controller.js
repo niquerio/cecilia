@@ -10,6 +10,9 @@ Cecilia.module("ActivityApp.ListAll", function(ListAll, Cecilia, Backbone, Mario
         activitiesView.on("childview:childview:teacher:show", function(parentArgs, childArgs){
           Cecilia.trigger("teacher:show", childArgs.model.get('username'));
         });
+        activitiesView.on("childview:activity:edit", function(args){
+          Cecilia.trigger("admin:activity:edit", args.model.get('id'));
+        });
         activitiesView.on("childview:activity:show", function(args){
           Cecilia.trigger("activity:show", args.model.get('id'));
         });

@@ -14,6 +14,7 @@ Cecilia.module("ActivityApp.ListAll", function(ListAll, Cecilia, Backbone, Mario
     childViewContainer: ".teachers",
     triggers: {
       "click a" : "activity:show",
+      "click button.js-edit" : "activity:edit",
     },
     initialize: function(){
       this.collection = this.model.get('teachers');

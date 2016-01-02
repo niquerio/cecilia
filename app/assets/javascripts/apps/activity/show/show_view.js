@@ -10,6 +10,9 @@ Cecilia.module("ActivityApp.Show", function(Show, Cecilia, Backbone, Marionette,
     template: "activity/show_item",
     childView: Show.Teacher,
     childViewContainer: ".teachers",
+    triggers: {
+      "click button.js-edit" : "activity:edit",
+    },
     initialize: function(){
       this.collection = this.model.get('teachers');
     },

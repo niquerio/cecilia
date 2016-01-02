@@ -48,6 +48,18 @@ describe("UserApp.listTeachers.Controller", function(){
           cleanup(); 
         }));
       });
+      describe("childview:childview:activity:edit", function(){
+        it("triggers 'admin:activity:edit' with proper id" ,sinon.test(function(){
+          setup();
+          this.stub(Cecilia, "trigger");
+          var model = new Cecilia.Entities.Activity({id: '3'});
+
+          self.controller.listTeachers();
+          self.view.trigger("childview:childview:activity:edit", undefined, {model:model});
+          expect(Cecilia.trigger).to.have.been.calledWith("admin:activity:edit", model.get('id')).once;
+          cleanup();
+        }));
+      });
       describe("childview:childview:activity:show", function(){
         it("triggers 'activity:show' with proper id" ,sinon.test(function(){
           setup();

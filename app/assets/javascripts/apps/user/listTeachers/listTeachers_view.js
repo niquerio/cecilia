@@ -6,6 +6,7 @@ Cecilia.module("UserApp.ListTeachers", function(ListTeachers, Cecilia, Backbone,
     className: "activity_list_item",
     triggers: {
       "click a" : "activity:show",
+      "click button.js-edit" : "activity:edit",
     },
   });
   ListTeachers.Teacher = Marionette.CompositeView.extend({

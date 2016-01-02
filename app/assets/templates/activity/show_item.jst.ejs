@@ -1,4 +1,8 @@
-<h1><%= title %><br> <small><span class="teachers"></span></small></h1>
+<h1>
+<% if(Cecilia.currentUser != undefined){ %>
+<button type="button" class="btn btn-primary js-edit btn-xs"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+<%} %>
+<%= title %><br> <small><span class="teachers"></span></small></h1>
 <h4><span class="label  label-level-<%=difficulty%>">Difficulty: <%= difficulty %></span> 
 <span class="label label-default">
 <% if (activity_type != "n/a"){ %>

@@ -42,7 +42,23 @@ describe("ActivityApp.Show.Controller", function(){
       
     }));
     describe("events", function(){
-      describe("childview:childview:teacher:show", function(){
+      describe("activity:edit", function(){
+        it("triggers 'admin:activity:edit' with proper id", sinon.test(function(){
+          Cecilia._configureRegions();
+          var controller = Cecilia.ActivityApp.Show.Controller;
+          this.stub(Cecilia.regions.main, "show");
+          var model = new Cecilia.Entities.Activity({id:3});
+          this.stub(Cecilia,"request").withArgs("activity:entity", 3).returns(model);
+          var view = _.extend({}, Backbone.Events);
+          this.stub(Cecilia.ActivityApp.Show, "Activity").returns(view);
+          this.stub(Cecilia, "trigger");
+          
+          controller.showActivity(3);
+          view.trigger("activity:edit",{model: model});
+          expect(Cecilia.trigger).to.have.been.calledWith("admin:activity:edit",model.get('id')).once; 
+        }));
+      });
+      describe("childview:teacher:show", function(){
         it("triggers 'teacher:show' with proper username", sinon.test(function(){
           Cecilia._configureRegions();
           var controller = Cecilia.ActivityApp.Show.Controller;
