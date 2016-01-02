@@ -12,6 +12,10 @@ Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backb
           Cecilia.trigger("activity:show", args.model.get('id'));
           this.$el.modal('hide');
         });
+        this.on("activity:edit", function(args){
+          Cecilia.trigger("admin:activity:edit", args.model.get('id'));
+          this.$el.modal('hide');
+        });
     },
     _configureSchedule: function(){
       this.on("childview:childview:childview:showClass", function(childViewDay, childViewRows, childViewActivity){

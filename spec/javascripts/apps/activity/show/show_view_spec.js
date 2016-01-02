@@ -100,39 +100,78 @@ describe("ActivityApp.Show.Teacher", function(){
   });
 });
 describe("ActivityApp.Show.ActivityModal", function(){
+  var self = this;
+  var modal_setup = function(){
+    self.fixture = fixture.set("<div id='fixture'></div>")
+    self.model = new Cecilia.Entities.Activity({ 
+      id: 2,
+      title: 'Class Title',
+      description: 'Class Description',
+      difficulty: 2,
+      activity_type: 'Lecture',
+      activity_subtype: 'Vocal and Instrumental',
+      start_time: "2013-05-18T19:00:00.000-04:00",
+      end_time: "2013-05-18T20:00:00.000-04:00",
+      classroom: "Youth Room",
+      teachers: [
+        {
+          title: 'Lord', 
+          sca_first_name: 'Mundungus', 
+          sca_last_name: 'Smith', 
+          username: 'mundy', 
+        }
+      ]
+    });
+    self.view = new Cecilia.ActivityApp.Show.ActivityModal({
+      el: '#fixture',
+      model: self.model, 
+    });
+  }
+  var modal_cleanup = function(){
+    delete self.fixture
+    delete self.model
+    delete self.view
+  }
+  describe("Edit Activity Button", function(){
+    it("is shown when user is logged in", function(){
+      modal_setup();
+      Cecilia.currentUser = new Cecilia.Entities.Teacher(); 
+      self.view.render();
+      expect(self.view.$el.find('.js-edit').text()).to.equal(' Edit');
+      Cecilia.currentUser = null;
+      modal_cleanup();
+    });
+    it("is not shown when user is not logged in", function(){
+      modal_setup();
+      self.view.render();
+      expect(self.view.$el.find('.js-edit').text()).to.equal('');
+      modal_cleanup();
+    });
+  });
   describe("Triggers", function(){
-    it("triggers 'activity:show' when title is clicked", function(){
-      this.fixture = fixture.set("<div id='fixture'></div>")
-      var model = new Cecilia.Entities.Activity({ 
-        id: 2,
-        title: 'Class Title',
-        description: 'Class Description',
-        difficulty: 2,
-        activity_type: 'Lecture',
-        activity_subtype: 'Vocal and Instrumental',
-        start_time: "2013-05-18T19:00:00.000-04:00",
-        end_time: "2013-05-18T20:00:00.000-04:00",
-        classroom: "Youth Room",
-        teachers: [
-          {
-            title: 'Lord', 
-            sca_first_name: 'Mundungus', 
-            sca_last_name: 'Smith', 
-            username: 'mundy', 
-          }
-        ]
-      });
-      var view = new Cecilia.ActivityApp.Show.ActivityModal({
-        el: '#fixture',
-        model: model, 
-      });
-      sinon.spy(view, "trigger");
-      view.once("render", function(){
-        $('#fixture').find("a").click();
-        expect(view.trigger).to.have.been.calledWith("activity:show").once;
+    it("triggers 'activity:edit' when edit button is clicked", function(){
+      modal_setup();
+      sinon.spy(self.view, "trigger");
+      Cecilia.currentUser = new Cecilia.Entities.Teacher(); 
+      self.view.once("render", function(){
+        $('#fixture').find(".js-edit").click();
+        expect(self.view.trigger).to.have.been.calledWith("activity:edit").once;
       }); 
 
-      view.render();
+      self.view.render();
+      Cecilia.currentUser = null;
+      modal_cleanup();
+    });
+    it("triggers 'activity:show' when title is clicked", function(){
+      modal_setup();
+      sinon.spy(self.view, "trigger");
+      self.view.once("render", function(){
+        $('#fixture').find("a").click();
+        expect(self.view.trigger).to.have.been.calledWith("activity:show").once;
+      }); 
+
+      self.view.render();
+      modal_cleanup();
     });
   });
 });

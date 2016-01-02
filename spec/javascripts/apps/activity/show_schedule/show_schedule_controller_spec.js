@@ -114,6 +114,19 @@ describe("ActivityApp.ShowSchedule.Controller", function(){
               events_cleanup();
             }));
           });
+          describe("activity:edit", function(){
+            it("triggers 'admin:activity:edit' with proper id", sinon.test(function(){ 
+              events_setup();
+              this.stub(self.activityView.$el, "modal");
+              var model = new Cecilia.Entities.Activity({id: '3'});
+
+              self.controller._configureModal.call(self.activityView);
+              self.activityView.trigger("activity:edit", {model: model});
+              expect(Cecilia.trigger).to.have.been.calledWith("admin:activity:edit", model.get('id')).once;
+
+              events_cleanup();
+            }));
+          });
         });
       });
     });

@@ -2,7 +2,11 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4><a href="#activities/<%=id%>"><%= title %></a><br> <small><span class="teachers"></span></h4></small>
+<h4>
+<% if(Cecilia.currentUser != undefined){ %>
+<button type="button" class="btn btn-primary js-edit btn-xs"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+<%} %>
+      <a href="#activities/<%=id%>"><%= title %></a><br> <small><span class="teachers"></span></h4></small>
     </div>
     <div class="modal-body">
 <h4><span class="label  label-level-<%=difficulty%>">Difficulty: <%= difficulty %></span> 

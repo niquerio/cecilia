@@ -1,4 +1,4 @@
-      <h4><%= modal_title %></h4></small>
+      <h1><%= modal_title %></h2>
       <form>
       <div class="form-group">
         <label for="activity-title" class="control-label">Class Title:</label> 
@@ -19,15 +19,16 @@ users.each(function(user){
         <textarea class="form-control" rows="4" id="activity-description" name="description" type="text" ><%= description %></textarea>
       </div>
       <div class="form-group">
-        <label for="activity-difficulty" class="control-label">Activity Type:</label> 
+        <label for="activity-difficulty" class="control-label">Difficulty:</label> 
         <select class="form-control" id="activity-difficulty" name="difficulty_id">
 <%
 difficulties.each(function(diff){
 %><option <% if(diff.get('level') == difficulty){ %> selected <%} %> value="<%= diff.get('id')%>"><%=diff.get('level')%> (<%=diff.get('description')%>)</option>
 <%  }); %>
         </select>
+      </div>
       <div class="form-group">
-        <label for="activity-activity_type" class="control-label">Activity Type:</label> 
+        <label for="activity-activity_type" class="control-label">Teaching Style:</label> 
         <select class="form-control" id="activity-activity_type" name="activity_type_id">
 <%
 activity_types.each(function(act_type){
@@ -36,7 +37,7 @@ activity_types.each(function(act_type){
         </select>
       </div>
       <div class="form-group">
-        <label for="activity-activity_subtype" class="control-label">Activity Subtype:</label> 
+        <label for="activity-activity_subtype" class="control-label">Category:</label> 
         <select class="form-control" id="activity-activity_subtype" name="activity_subtype_id">
 <%
 activity_subtypes.each(function(act_subtype){
