@@ -82,6 +82,7 @@ module Api
           :difficulty_id, 
           :activity_type_id, 
           :activity_subtype_id, 
+          :duration, 
           :users => [])
       end
     end

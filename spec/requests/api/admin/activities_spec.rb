@@ -33,7 +33,7 @@ RSpec.describe "GET /api/admin/activities/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
-  it "updates classroom name for given id" do
+  it "updates activity name for given id" do
     event = create(:event)
     title = create(:title)
     user = create(:user, title_id: title.id, sca_first_name: "Mundungus", sca_last_name: "Smith")
@@ -70,6 +70,7 @@ RSpec.describe "POST /api/admin/activities/" do
       difficulty_id: activity.difficulty.id,
       activity_type_id: activity.activity_type.id,
       activity_subtype_id: activity.activity_subtype.id,
+      duration: 60,
       users: [activity.teachers.first.user.id]
     }
     sign_in(user)

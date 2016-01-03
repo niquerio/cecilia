@@ -21,6 +21,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         { name: 'Staff',  url: 'staff'}, 
         { name: 'Taverns',  url: 'taverns'}, 
         { name: 'Fees',  url: 'fees'}, 
+        { name: 'Lodging',  url: 'lodging'}, 
         
       ] }, 
       { name: 'Schedule',  url: 'schedule', children: [
@@ -31,8 +32,8 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         { name: 'FAQ',  url: 'faq'}, 
         { name: 'Classes',  url: 'classes'}, 
         { name: 'Teachers',  url: 'teachers'}, 
+        { name: 'Salon',  url: 'salon'}, 
         { name: 'Concert',  url: 'concert'}, 
-        { name: 'Evening Activities',  url: 'evening_activities'}, 
       ] }, 
       { name: 'Archives',  url: 'archives', children: [
         { name: 'All Classes',  url: 'all_classes'}, 

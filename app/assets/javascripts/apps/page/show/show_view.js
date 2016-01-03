@@ -7,5 +7,8 @@ Cecilia.module("PageApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
     triggers: {
       "click button.js-edit": "page:edit"
     },
+    onRender: function(){
+      this.$el.find('table').addClass('table table-hover');
+    }
   });
 });

@@ -5,7 +5,6 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
     it "does not output td for class in second hour" do
       event = create(:event)
       start_time = DateTime.now
-      end_time = start_time + 2.hours
       title = create(:title)
       user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
       classroom = create(:classroom, event_id: event.id)
@@ -18,7 +17,7 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
         event_id: event.id, 
         classroom_id: classroom.id, 
         start_time: start_time, 
-        end_time: end_time) 
+        duration: 120) 
 
       teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
       
@@ -49,7 +48,7 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
         event_id: event.id, 
         classroom_id: classroom.id, 
         start_time: start_time, 
-        end_time: end_time) 
+        duration: 60) 
 
       activity2 = create(:activity, 
      #   activity_type: ActivityType.first, 
@@ -60,7 +59,8 @@ RSpec.describe Api::ActivitiesController, "#schedule" do
         event_id: event.id, 
         classroom_id: classroom2.id, 
         start_time: start_time + 1.hour, 
-        end_time: end_time + 1.hour) 
+        duration: 60)
+        #end_time: end_time + 1.hour) 
 
       teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
       teacher2 = create(:teacher, user_id: user.id, activity_id: activity2.id)

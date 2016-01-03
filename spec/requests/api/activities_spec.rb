@@ -25,7 +25,6 @@ end
 def generate_activity
   event = create(:event)
   start_time = DateTime.now
-  end_time = DateTime.now + 1.hour
   title = create(:title)
   activity_type = create(:activity_type)
   activity_subtype = create(:activity_subtype)
@@ -41,7 +40,7 @@ def generate_activity
     event_id: event.id, 
     classroom_id: classroom.id, 
     start_time: start_time, 
-    end_time: end_time) 
+    duration: 60) 
 
   teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
 

@@ -25,6 +25,13 @@ users.each(function(user){
         <textarea class="form-control" rows="4" id="activity-description" name="description" type="text" ><%= description %></textarea>
       </div>
       <div class="form-group">
+        <label for="activity-duration" class="control-label">Duration: </label> 
+        <select class="form-control" id="activity-duration" name="duration">
+          <option value=60 <% if(duration == 60){ %> selected <% } %>>1 hour</option>
+          <option value=120<% if(duration == 120){ %> selected <% } %>>2 hours</option>
+        </select>
+</div>
+      <div class="form-group">
         <label for="activity-difficulty" class="control-label">Difficulty: </label> 
         <select class="form-control" id="activity-difficulty" name="difficulty_id">
 <%

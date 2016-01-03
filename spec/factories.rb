@@ -26,6 +26,7 @@ FactoryGirl.define do
 
   factory :activity do
     title "The Best Class"
+    duration 60
     activity_type
     activity_subtype
     difficulty

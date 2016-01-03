@@ -9,6 +9,7 @@ end
 if(@activity.end_time)
   json.end_time @activity.end_time
 end
+json.duration @activity.duration
 if(@activity.classroom)
   json.classroom_id @activity.classroom.id
   json.classroom @activity.classroom.name

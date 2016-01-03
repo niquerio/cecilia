@@ -2,4 +2,4 @@
 <button type="button" class="btn btn-primary js-edit"><i class="glyphicon glyphicon-pencil"></i> Edit Page</button>
 <% }%>
 <h1><%- title %></h1>
-<%= marked(body) %>
+<%if(body){ %><%= marked(body) %><%} %>

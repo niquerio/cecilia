@@ -47,7 +47,7 @@ module Api
                 classroom_current_activities[classroom] = nil
               end
             else
-              activities_in_timeslot.push(Activity.new(classroom_id: classroom, start_time: start, end_time: start+1.hour, event_id: @event.id))
+              activities_in_timeslot.push(Activity.new(classroom_id: classroom, start_time: start, duration: 60, event_id: @event.id))
             end
                 
           end
