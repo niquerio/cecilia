@@ -61,7 +61,7 @@ namespace :old_data do
 
   desc "Migrate Concerts"
   task :concerts => :environment do
-    makePage('Concerts', 'concert', 'old_data/concerts/concerts')
+    makePage('Concert', 'concert', 'old_data/concerts/concerts')
   end
 
   desc "Migrate Evening Activities"
