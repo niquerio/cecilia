@@ -60,7 +60,7 @@ Cecilia.module("ActivityApp.ShowSchedule", function(ShowSchedule, Cecilia, Backb
   ShowSchedule.Activities = Marionette.CompositeView.extend({
     template: "activity/show_schedule",
     childView: ShowSchedule.ActivitiesDay,
-    childViewContainer: "div",
+    childViewContainer: ".schedule",
     
   });
     

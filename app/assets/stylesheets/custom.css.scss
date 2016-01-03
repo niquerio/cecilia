@@ -35,7 +35,12 @@ $level-5: #D95F02;
 .wrapper{
   width: 880px;
 }
-
+#legend{
+  li{
+    margin: .5em 0px;
+    line-height: 1.5em;
+  }
+}
 ul {
     list-style-type: none;
 }

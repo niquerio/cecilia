@@ -9,6 +9,7 @@ else
   json.classroom nil
 end
 json.difficulty @activity.difficulty.level
+json.difficulty_description @activity.difficulty.description
 json.activity_type @activity.activity_type.name
 json.activity_subtype @activity.activity_subtype.name
 json.teachers do

@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-primary js-edit btn-xs"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
 <%} %>
 <a class="activity-title" href="#activities/<%= id %>"><%= title %></a> <small>(<span class="teachers"></span>)</h4></small>
-<h4><span class="label  label-level-<%=difficulty%>">Difficulty: <%= difficulty %></span> 
+<h4><span class="label  label-level-<%=difficulty%>" title="<%=difficulty_description%>">Difficulty: <%= difficulty %></span> 
 <span class="label label-default">
 <% if (activity_type != "n/a"){ %>
 <i class="glyphicon 

@@ -4,6 +4,7 @@
   "items": {
     "title": "Activity",
     "type": "object",
+    "required": ["id","title","start_time","end_time","difficulty","difficulty_description","activity_type","activity_subtype","teachers"],
     "properties": {
       "id": { "type": "number" },
       "title": { "type": "string" },
@@ -12,6 +13,7 @@
       "end_time": { "type": "string" },
       "classroom": { "type": "string" },
       "difficulty": { "type": "integer" },
+      "difficulty_description": { "type": "string" },
       "activity_type": { "type": "string" },
       "activity_subtype": { "type": "string" },
       "teachers": {

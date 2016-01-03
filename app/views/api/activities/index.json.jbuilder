@@ -6,6 +6,7 @@ json.array! (@activities) do |activity|
   json.end_time activity.end_time
   json.classroom activity.classroom.name
   json.difficulty activity.difficulty.level
+  json.difficulty_description activity.difficulty.description
   json.activity_type activity.activity_type.name
   json.activity_subtype activity.activity_subtype.name
   json.teachers do
