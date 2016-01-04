@@ -7,6 +7,7 @@ describe("AdminActivityApp.Common.Views.Form", function(){
         'activity_type_id': null,
         'difficulty_id': null,
         'activity_subtype_id': null,
+        'duration': '60',
         'users': null
       }
       var view = new Cecilia.AdminActivityApp.Common.Views.Form({
@@ -46,7 +47,7 @@ describe("AdminActivityApp.Common.Views.Form", function(){
       self.fixture = fixture.set("<div id='fixture'></div>")
       self.view = new Cecilia.AdminActivityApp.Common.Views.Form({
         el: '#fixture',
-        model: new Cecilia.Entities.Activity(), 
+        model: new Cecilia.Entities.Activity({duration: null}), 
         templateHelpers: function(){
           return {
             'modal_title': '',

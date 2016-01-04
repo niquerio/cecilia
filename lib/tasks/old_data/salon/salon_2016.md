@@ -1,4 +1,4 @@
-From the [Wikipedia](https://en.wikipedia.org/wiki/Salon_(gathering)) page:
+From the [Wikipedia](https://en.wikipedia.org/wiki/Salon_(gathering%29) page:
 
 > "A salon is a gathering of people under the roof of an inspiring host, held partly to amuse one another and partly to refine the taste and increase the knowledge of the participants through conversation. These gatherings often consciously followed Horace's definition of the aims of poetry, "either to please or to educate" ("aut delectare aut prodesse est")."
 

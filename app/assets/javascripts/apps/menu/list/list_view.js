@@ -39,5 +39,8 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
     className: "container-fluid",
     childViewContainer: "ul",
     childView: List.TopLevel,
+    triggers:{
+    "click .navbar-brand": "navigate:home",
+    },
   });
 });

@@ -31,6 +31,7 @@ describe("ActivityApp.List.Activity", function(){
       title: 'Class Title',
       description: 'Class Description',
       difficulty: 2,
+      difficulty_description: 'Hard',
       activity_type: 'Lecture',
       activity_subtype: 'Vocal and Instrumental',
       start_time: "2013-05-18T19:00:00.000-04:00",

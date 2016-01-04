@@ -31,6 +31,7 @@ gem 'momentjs-rails'
 gem 'fontello_rails_converter'
 gem 'select2-rails'
 gem "font-awesome-rails"
+gem "bootstrap-social-rails"
 source 'https://rails-assets.org' do
   gem 'rails-assets-simplemde'
   gem 'rails-assets-marked'

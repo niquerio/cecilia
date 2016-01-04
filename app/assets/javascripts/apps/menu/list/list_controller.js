@@ -60,9 +60,14 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       mobile_nav.on("childview:childview:navigate", function(parentArgs, childArgs){
         childViewNavigate(childArgs);
         parentArgs.$el.removeClass('open')
+        $('#cecilia-mobile-nav').collapse('toggle')
+      });
+      mobile_nav.on("navigate:home", function(){
+        Cecilia.trigger('page:show', 'home');
       });
       mobile_nav.on("childview:navigate", function(args){
         childViewNavigate(args);
+        $('#cecilia-mobile-nav').collapse('toggle')
       });
       Cecilia.regions.mobile.show(mobile_nav);
       Cecilia.regions.header.show(menu);
