@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'cynnabar_rails'
+set :application, 'cecilia_rails'
 set :repo_url, 'https://github.com/niquerio/cecilia'
 
 # Default branch is :master
