@@ -2,20 +2,20 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.ActivityType = Backbone.Model.extend({ });
   Entities.ActivityTypeCollection = Backbone.Collection.extend({
     model: Entities.ActivityType,
-    url: 'api/activity_types',
+    url: Cecilia.Constants.apiPrefix + 'activity_types',
     comparator: 'name',    
   });
   Entities.ActivitySubtype = Backbone.Model.extend({ });
   Entities.ActivitySubtypeCollection = Backbone.Collection.extend({
     model: Entities.ActivitySubtype,
-    url: 'api/activity_subtypes',
+    url: Cecilia.Constants.apiPrefix + 'activity_subtypes',
     comparator: 'name',    
   });
 
   Entities.Difficulty = Backbone.Model.extend({ });
   Entities.DifficultyCollection = Backbone.Collection.extend({
     model: Entities.Difficulty,
-    url: 'api/difficulties',
+    url: Cecilia.Constants.apiPrefix + 'difficulties',
     comparator: 'level',    
   });
   var API = {

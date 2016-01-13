@@ -2,7 +2,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.User = Backbone.Model.extend({ });
   Entities.UserCollection = Backbone.Collection.extend({
     model: Entities.User,
-    url: 'api/users',
+    url: Cecilia.Constants.apiPrefix + 'users',
     comparator: function(user) {
       return user.get("sca_first_name") + " " + user.get("sca_last_name");
     },
@@ -10,7 +10,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   
   Entities.Teacher = Backbone.Model.extend({
-    urlRoot: '/api/teachers',
+    urlRoot: Cecilia.Constants.apiPrefix + 'teachers',
     url: function(){ return this.urlRoot + '/' + this.get('username') }, 
     initialize: function(){
       if(this.get('activities')){
@@ -21,7 +21,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.CompleteTeacherCollection = Backbone.Collection.extend({
     model: Entities.Teacher,
-    url: '/api/teachers',
+    url: Cecilia.Constants.apiPrefix + 'teachers',
     comparator: function(teacher) {
       return teacher.get("sca_first_name") + " " + teacher.get("sca_last_name");
     },
@@ -29,7 +29,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   Entities.TeacherCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/teachers';
+      return Cecilia.Constants.apiPrefix + 'events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/teachers';
     },
     model: Entities.Teacher,
   });
@@ -39,7 +39,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   Entities.StaffMemberCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/staff'
+      return Cecilia.Constants.apiPrefix + 'events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/staff'
     },
     model: Entities.StaffMember,
   });

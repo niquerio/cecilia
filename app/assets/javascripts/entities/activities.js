@@ -1,6 +1,6 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.AdminActivity = Backbone.Model.extend({
-    urlRoot: '/api/admin/activities', 
+    urlRoot: Cecilia.Constants.apiPrefix + 'admin/activities', 
     initialize: function(){
       var self = this;
       this._create_teacher_collection();
@@ -36,13 +36,13 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.AdminActivityCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
+      return Cecilia.Constants.apiPrefix + 'admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
     },
     model: Entities.AdminActivity,
     comparator: 'title',
   });
   Entities.Activity = Backbone.Model.extend({
-    urlRoot: '/api/activities', 
+    urlRoot: Cecilia.Constants.apiPrefix + 'activities', 
     initialize: function(){
       if(this.get('teachers')){
         var teachers = this.get('teachers');
@@ -68,7 +68,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
   Entities.CompleteActivityCollection = Backbone.Collection.extend({
-    url: '/api/activities',
+    url: Cecilia.Constants.apiPrefix + 'activities',
     model: Entities.Activity,
     comparator: function(a, b){
       var aYear = a.get("year");  
@@ -86,7 +86,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.ActivityCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
+      return Cecilia.Constants.apiPrefix + 'events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities'
     },
     model: Entities.Activity,
     comparator: function(a, b){
@@ -125,7 +125,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.ScheduleDayCollection = Backbone.Collection.extend({
     model: Entities.ScheduleDay,
     url: function(){
-      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities/schedule'
+      return Cecilia.Constants.apiPrefix + 'events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities/schedule'
     },
   });
 

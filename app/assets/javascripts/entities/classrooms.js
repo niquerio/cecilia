@@ -1,6 +1,6 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Classroom = Backbone.Model.extend({
-    urlRoot: '/api/admin/classrooms', 
+    urlRoot: Cecilia.Constants.apiPrefix + 'admin/classrooms', 
     validate: function(attrs, options){
       var errors = {}
       if(! attrs.name){
@@ -13,7 +13,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.ClassroomCollection = Backbone.Collection.extend({
     url: function(){
-      return '/api/admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/classrooms'
+      return Cecilia.Constants.apiPrefix + 'admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/classrooms'
     },
     model: Entities.Classroom,
   });

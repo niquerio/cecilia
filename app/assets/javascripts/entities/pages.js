@@ -1,18 +1,18 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Page = Backbone.Model.extend({
     url: function(){
-      return '/api/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + 
+      return Cecilia.Constants.apiPrefix + 'events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + 
         '/pages/' + encodeURIComponent(this.attributes.slug);
         
     },
   });
   Entities.AdminPage = Backbone.Model.extend({
-    urlRoot: '/api/admin/pages'
+    urlRoot: Cecilia.Constants.apiPrefix + 'admin/pages'
   });
   Entities.AdminPageCollection = Backbone.Collection.extend({
     model: Entities.AdminPage,
     url: function(){
-      return '/api/admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/pages'
+      return Cecilia.Constants.apiPrefix + 'admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/pages'
     },
   });
 
