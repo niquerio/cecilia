@@ -39,6 +39,6 @@
       <% else -%>
       Cecilia.currentUser = null;
       <% end -%>
-      Cecilia.Constants.apiPrefix = <%= url_for("/api/") %>
+      Cecilia.Constants.apiPrefix = "<%= (Rails.application.config.relative_url_root || '') + '/api/' %>"
       Cecilia.start();
     </script>
