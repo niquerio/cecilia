@@ -64,6 +64,7 @@ group :development, :test do
 
   gem "teaspoon-mocha"
   gem "phantomjs"
+  gem "pry-rails"
 end
 
 group :test do
