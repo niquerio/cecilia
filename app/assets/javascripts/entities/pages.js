@@ -7,7 +7,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
   Entities.AdminPage = Backbone.Model.extend({
-    urlRoot: Cecilia.Constants.apiPrefix + 'admin/pages'
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'admin/pages/'  + encodeURIComponent(this.attributes.id); 
+    },
   });
   Entities.AdminPageCollection = Backbone.Collection.extend({
     model: Entities.AdminPage,

@@ -89,6 +89,10 @@ namespace :old_data do
     makePage('Salon', 'salon', 'old_data/salon/salon')
   end
 
+  desc "Migrate Big Sing"
+  task :big_sing => :environment do
+    makePage('Big Sing', 'big_sing', 'old_data/big_sing/big_sing')
+  end
   desc "Migrate Staff"
   task :staff => :environment do
     readFile('staff') { |fields|
@@ -136,7 +140,7 @@ namespace :old_data do
   end
 
   task :all => [:db_reset, :users, :events, :classrooms, :home, :faq, :directions, :food, :concerts, :evening_activities,
-      :fees, :master, :lodging, :staff, :classes, :salon ]
+      :fees, :master, :lodging, :staff, :classes, :salon, :big_sing ]
 
   def readFile (filename)
     path = Rails.root.join('lib','tasks',"#{filename}.tsv")

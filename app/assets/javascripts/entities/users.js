@@ -2,7 +2,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.User = Backbone.Model.extend({ });
   Entities.UserCollection = Backbone.Collection.extend({
     model: Entities.User,
-    url: Cecilia.Constants.apiPrefix + 'users',
+    url: function(){ return Cecilia.Constants.apiPrefix + 'users'},
     comparator: function(user) {
       return user.get("sca_first_name") + " " + user.get("sca_last_name");
     },
@@ -10,8 +10,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   
   Entities.Teacher = Backbone.Model.extend({
-    urlRoot: Cecilia.Constants.apiPrefix + 'teachers',
-    url: function(){ return this.urlRoot + '/' + this.get('username') }, 
+    url: function(){ return Cecilia.Constants.apiPrefix + 'teachers/' + this.get('username') }, 
     initialize: function(){
       if(this.get('activities')){
         var activities = this.get('activities');
@@ -21,7 +20,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Entities.CompleteTeacherCollection = Backbone.Collection.extend({
     model: Entities.Teacher,
-    url: Cecilia.Constants.apiPrefix + 'teachers',
+    url: function(){ return Cecilia.Constants.apiPrefix + 'teachers'},
     comparator: function(teacher) {
       return teacher.get("sca_first_name") + " " + teacher.get("sca_last_name");
     },

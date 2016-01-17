@@ -31,9 +31,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       { name: 'Classes & Activities', url: 'classes_activities',  children: [
         { name: 'FAQ',  url: 'faq'}, 
         { name: 'Classes',  url: 'classes'}, 
-        { name: 'Teachers',  url: 'teachers'}, 
         { name: 'Salon',  url: 'salon'}, 
+        { name: 'Big Sing',  url: 'big_sing'}, 
         { name: 'Concert',  url: 'concert'}, 
+        { name: 'Teachers',  url: 'teachers'}, 
       ] }, 
       { name: 'Archives',  url: 'archives', children: [
         { name: 'All Classes',  url: 'all_classes'}, 

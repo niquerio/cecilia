@@ -1,6 +1,8 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.AdminActivity = Backbone.Model.extend({
-    urlRoot: Cecilia.Constants.apiPrefix + 'admin/activities', 
+    url: function(){
+     return Cecilia.Constants.apiPrefix + 'admin/activities/' + encodeURIComponent(this.attributes.id); 
+    },
     initialize: function(){
       var self = this;
       this._create_teacher_collection();
@@ -18,6 +20,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       activity_type: "",
       activity_subtype: "",
       difficulty: "",
+      duration: 60,
       teachers: null,
       users: null,
     },
@@ -42,7 +45,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     comparator: 'title',
   });
   Entities.Activity = Backbone.Model.extend({
-    urlRoot: Cecilia.Constants.apiPrefix + 'activities', 
+    url: function(){
+     return  Cecilia.Constants.apiPrefix + 'activities/' + encodeURIComponent(this.attributes.id); 
+    },
     initialize: function(){
       if(this.get('teachers')){
         var teachers = this.get('teachers');
@@ -68,7 +73,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
   Entities.CompleteActivityCollection = Backbone.Collection.extend({
-    url: Cecilia.Constants.apiPrefix + 'activities',
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'activities';
+    },
     model: Entities.Activity,
     comparator: function(a, b){
       var aYear = a.get("year");  

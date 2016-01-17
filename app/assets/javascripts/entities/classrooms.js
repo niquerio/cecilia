@@ -1,6 +1,8 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.Classroom = Backbone.Model.extend({
-    urlRoot: Cecilia.Constants.apiPrefix + 'admin/classrooms', 
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'admin/classrooms/' + encodeURIComponent(this.attributes.id); 
+    },
     validate: function(attrs, options){
       var errors = {}
       if(! attrs.name){
