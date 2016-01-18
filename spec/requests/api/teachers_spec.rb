@@ -1,16 +1,16 @@
 require "rails_helper"
 
-RSpec.describe "GET /api/events/:event_id/teachers" do
+RSpec.describe "GET /cecilia/api/events/:event_id/teachers" do
   it "returns a list of teachers for a given event" do
     items = generate_activity
-    get "/api/events/#{items[:event].id}/teachers"
+    get "/cecilia/api/events/#{items[:event].id}/teachers"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("teachers")
   end
 end
 
-RSpec.describe "GET /api/teachers" do
+RSpec.describe "GET /cecilia/api/teachers" do
   it "returns complete list of teachers" do
     start_time = DateTime.now
     end_time = DateTime.now + 1.hour
@@ -20,7 +20,7 @@ RSpec.describe "GET /api/teachers" do
     activity = create(:activity, event_id: event.id)
 
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
-    get "/api/teachers"
+    get "/cecilia/api/teachers"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("all_teachers")

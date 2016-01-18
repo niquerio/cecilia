@@ -1,8 +1,8 @@
 require "rails_helper"
-RSpec.describe "GET /api/activity_types/" do
+RSpec.describe "GET /cecilia/api/activity_types/" do
   it "returns a list of activity types" do
     activity_type = create(:activity_type)
-    get "/api/activity_types"
+    get "/cecilia/api/activity_types"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("activity_types")

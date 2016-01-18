@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'shared_contexts'
 
-RSpec.describe "GET /api/admin/events/:event_id/activities/" do
+RSpec.describe "GET /cecilia/api/admin/events/:event_id/activities/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -22,14 +22,14 @@ RSpec.describe "GET /api/admin/events/:event_id/activities/" do
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)  
 
     sign_in(user)
-    get "/api/admin/events/#{event.id}/activities"
+    get "/cecilia/api/admin/events/#{event.id}/activities"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("admin_activities")
     sign_out
   end
 end
-RSpec.describe "GET /api/admin/activities/:id" do
+RSpec.describe "GET /cecilia/api/admin/activities/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -50,14 +50,14 @@ RSpec.describe "GET /api/admin/activities/:id" do
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)  
     
     sign_in(user)
-    get "/api/admin/activities/#{activity.id}"
+    get "/cecilia/api/admin/activities/#{activity.id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("admin_activity")
     sign_out
   end
 end
-RSpec.describe "POST /api/admin/activities/" do
+RSpec.describe "POST /cecilia/api/admin/activities/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -74,7 +74,7 @@ RSpec.describe "POST /api/admin/activities/" do
       users: [activity.teachers.first.user.id]
     }
     sign_in(user)
-    post "/api/admin/activities", activity_params
+    post "/cecilia/api/admin/activities", activity_params
     
     expect(response.status).to eq 201
     expect(Activity.last.title).to eq activity_params[:title]
@@ -87,7 +87,7 @@ RSpec.describe "POST /api/admin/activities/" do
     sign_out
   end
 end
-RSpec.describe "put /api/admin/classrooms/:id" do
+RSpec.describe "put /cecilia/api/admin/classrooms/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -124,7 +124,7 @@ RSpec.describe "put /api/admin/classrooms/:id" do
     }
 
     sign_in(user)
-    put "/api/admin/activities/#{activity.id}", activity_params
+    put "/cecilia/api/admin/activities/#{activity.id}", activity_params
     
     expect(response.status).to eq 200
     expect(Activity.last.title).to eq 'New Activity Title'
@@ -136,7 +136,7 @@ RSpec.describe "put /api/admin/classrooms/:id" do
     sign_out
   end
 end
-RSpec.describe "delete /api/admin/activities/:id" do
+RSpec.describe "delete /cecilia/api/admin/activities/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
   it "deletes activity and teacher for given activity id" do
@@ -159,7 +159,7 @@ RSpec.describe "delete /api/admin/activities/:id" do
     expect(Teacher.last.activity_id).to eq activity.id
     
     sign_in(user)
-    delete "/api/admin/activities/#{activity.id}"
+    delete "/cecilia/api/admin/activities/#{activity.id}"
 
     expect(Teacher.count).to eq 0
     expect(Activity.count).to eq 0

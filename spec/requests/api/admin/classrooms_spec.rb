@@ -1,7 +1,7 @@
 require "rails_helper"
 require 'shared_contexts'
 
-RSpec.describe "GET /api/admin/events/:event_id/classrooms/" do
+RSpec.describe "GET /cecilia/api/admin/events/:event_id/classrooms/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -11,14 +11,14 @@ RSpec.describe "GET /api/admin/events/:event_id/classrooms/" do
     classroom = create(:classroom, event_id: event.id)
     
     sign_in(user)
-    get "/api/admin/events/#{event.id}/classrooms"
+    get "/cecilia/api/admin/events/#{event.id}/classrooms"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("classrooms")
     sign_out
   end
 end
-RSpec.describe "POST /api/admin/classrooms/" do
+RSpec.describe "POST /cecilia/api/admin/classrooms/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -28,7 +28,7 @@ RSpec.describe "POST /api/admin/classrooms/" do
     classroom_params = attributes_for(:classroom)
     
     sign_in(user)
-    post "/api/admin/classrooms", {event_id: event.id, classroom: classroom_params}
+    post "/cecilia/api/admin/classrooms", {event_id: event.id, classroom: classroom_params}
     
     expect(response.status).to eq 201
     expect(Classroom.last.name).to eq classroom_params[:name]
@@ -36,7 +36,7 @@ RSpec.describe "POST /api/admin/classrooms/" do
     sign_out
   end
 end
-RSpec.describe "GET /api/admin/classrooms/:id" do
+RSpec.describe "GET /cecilia/api/admin/classrooms/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -46,14 +46,14 @@ RSpec.describe "GET /api/admin/classrooms/:id" do
     classroom = create(:classroom, event_id: event.id)
     
     sign_in(user)
-    get "/api/admin/classrooms/#{classroom.id}"
+    get "/cecilia/api/admin/classrooms/#{classroom.id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("classroom")
     sign_out
   end
 end
-RSpec.describe "put /api/admin/classrooms/:id" do
+RSpec.describe "put /cecilia/api/admin/classrooms/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -64,7 +64,7 @@ RSpec.describe "put /api/admin/classrooms/:id" do
     
     expect(Classroom.last.name).to eq classroom.name
     sign_in(user)
-    put "/api/admin/classrooms/#{classroom.id}", classroom: {name: 'New Classroom'} 
+    put "/cecilia/api/admin/classrooms/#{classroom.id}", classroom: {name: 'New Classroom'} 
     
     expect(response.status).to eq 200
     expect(Classroom.last.name).to eq 'New Classroom'
