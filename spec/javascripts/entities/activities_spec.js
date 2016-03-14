@@ -84,6 +84,54 @@ describe("Admin Activity Entity", function(){
         Cecilia.Entities.AdminActivityCollection.restore(); 
       });
     });
+    describe("admin:activity:entities:schedule request", function(){
+      it("should fetch scheduled activities", function(done){
+        this.activities = new Cecilia.Entities.AdminScheduleDayCollection();
+        var activity = new Cecilia.Entities.Activity();
+        this.activityArray = [activity];
+        var self = this;
+        sinon.stub(this.activities, "fetch", function(options){
+          return options.success(self.activityArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "AdminScheduleDayCollection").returns(this.activities);
+
+        var promise = Cecilia.request("admin:activity:entities:scheduled"); 
+
+        $.when(promise).done(function(fetchedActivities){
+          expect(self.activities.fetch).to.have.been.called.once;
+          expect(fetchedActivities).to.equal(self.activityArray);
+          done();
+        });
+        
+        delete this.activities;
+        delete this.activitiesArray;
+        Cecilia.Entities.AdminScheduleDayCollection.restore(); 
+      });
+    });
+    describe("admin:activity:entities:unscheduled request", function(){
+      it("should fetch unscheduled activities", function(done){
+        this.activities = new Cecilia.Entities.AdminUnscheduledActivityCollection();
+        var activity = new Cecilia.Entities.AdminActivity();
+        this.activityArray = [activity];
+        var self = this;
+        sinon.stub(this.activities, "fetch", function(options){
+          return options.success(self.activityArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "AdminUnscheduledActivityCollection").returns(this.activities);
+
+        var promise = Cecilia.request("admin:activity:entities:unscheduled"); 
+
+        $.when(promise).done(function(fetchedActivities){
+          expect(self.activities.fetch).to.have.been.called.once;
+          expect(fetchedActivities).to.equal(self.activityArray);
+          done();
+        });
+        
+        delete this.activities;
+        delete this.activitiesArray;
+        Cecilia.Entities.AdminUnscheduledActivityCollection.restore(); 
+      });
+    });
   });
 });
 describe("Activity entitity", function(){

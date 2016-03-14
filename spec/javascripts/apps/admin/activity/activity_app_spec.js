@@ -20,6 +20,18 @@ describe("AdminActivityApp", function(){
         Cecilia.navigate.restore();
       });
     });
+    describe("editSchedule",function(){
+      it("executes AdminActivitiesApp.EditSchedule.Controller.editSchedule", function(){
+        sinon.stub(Cecilia, "navigate");
+        sinon.stub(Cecilia.AdminActivityApp.EditSchedule.Controller, "editSchedule");
+
+        Cecilia.AdminActivityApp._API.editSchedule();
+        expect(Cecilia.AdminActivityApp.EditSchedule.Controller.editSchedule).to.have.been.called.once;
+
+        Cecilia.AdminActivityApp.EditSchedule.Controller.editSchedule.restore();
+        Cecilia.navigate.restore();
+      });
+    });
     describe("editActivity",function(){
       it("executes AdminActivitiesApp.Edit.Controller.editActivity", function(){
         sinon.stub(Cecilia, "navigate");
@@ -61,6 +73,15 @@ describe("AdminActivityApp", function(){
 
       routing_cleanup();
     }));
+    it("executes the API's editSchedule", sinon.test(function(){
+      this.stub(Cecilia.AdminActivityApp._API, "editSchedule");
+      routing_setup();
+
+      Cecilia.navigate("admin/scheduler", {trigger:true});
+      expect(Cecilia.AdminActivityApp._API.editSchedule).to.have.been.called.once;
+
+      routing_cleanup();
+    }));
 
   });
   describe("triggers",function(){
@@ -92,6 +113,18 @@ describe("AdminActivityApp", function(){
         
 
         Cecilia.trigger("admin:activity:list");
+        expect(Cecilia.navigate).to.have.been.called.once;
+
+        trigger_cleanup();
+      }));
+    });
+    describe("'admin:activity:editSchedule'",function(){
+      it("navigates to scheduler", sinon.test(function(){
+        trigger_setup();
+        this.stub(Cecilia.AdminActivityApp._API, "editSchedule");
+        
+
+        Cecilia.trigger("admin:activity:editSchedule");
         expect(Cecilia.navigate).to.have.been.called.once;
 
         trigger_cleanup();

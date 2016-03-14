@@ -140,6 +140,36 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
 
+  Entities.AdminScheduleHour = Backbone.Model.extend({
+    initialize: function(){
+      var activities = this.get('activities');
+      this.set('activities', new Entities.AdminActivityCollection(activities));
+    }
+  });
+  Entities.AdminScheduleHourCollection = Backbone.Collection.extend({
+    model: Entities.AdminScheduleHour,
+  });
+
+  Entities.AdminScheduleDay = Backbone.Model.extend({
+    initialize: function(){
+      var hours = this.get('hours');
+      this.set('hours', new Entities.AdminScheduleHourCollection(hours));
+    },
+  });
+
+  Entities.AdminScheduleDayCollection = Backbone.Collection.extend({
+    model: Entities.AdminScheduleDay,
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities/scheduled'
+    },
+    
+  });
+  Entities.AdminUnscheduledActivityCollection = Backbone.Collection.extend({
+    model: Entities.AdminActivity,
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'admin/events/' + encodeURIComponent(Cecilia.Constants.current_event_id) + '/activities/unscheduled'
+    },
+  });
 
   var API = {
     getActivities: function(){
@@ -188,6 +218,14 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       return this._getPromise(schedule);
     },
 
+    getAdminScheduled: function(){
+      var schedule = new Entities.AdminScheduleDayCollection();
+      return this._getPromise(schedule);
+    },
+    getAdminUnscheduled: function(){
+      var schedule = new Entities.AdminUnscheduledActivityCollection();
+      return this._getPromise(schedule);
+    },
     _getPromise: function(item){
       var defer = $.Deferred();
       item.fetch({
@@ -220,5 +258,11 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   });
   Cecilia.reqres.setHandler("activity:entities:schedule",function(){
     return API.getSchedule();
+  });
+  Cecilia.reqres.setHandler("admin:activity:entities:scheduled",function(){
+    return API.getAdminScheduled();
+  });
+  Cecilia.reqres.setHandler("admin:activity:entities:unscheduled",function(){
+    return API.getAdminUnscheduled();
   });
 });

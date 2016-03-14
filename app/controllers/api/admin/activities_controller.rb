@@ -72,23 +72,25 @@ module Api
         @activity = Activity.find(params[:id])
         act_params = activity_params;
         users = act_params.delete(:users)
-
-        old_teachers = Teacher.where(activity_id: @activity.id)
-        old_teachers.each{ |old_teacher|
-          if(users.include?(old_teacher.id))
-            users.delete(old_teacher.id)
-          else
-            old_teacher.destroy
-          end
-        }
         
-        users.each{ |user_id|
-          teacher = Teacher.new(activity: @activity, user_id: user_id)
-          if(!teacher.save)
-            render json: {errors: teacher.errors.full_messages},
-            status: :unprocessable_entity
-          end
-        }
+        if users
+          old_teachers = Teacher.where(activity_id: @activity.id)
+          old_teachers.each{ |old_teacher|
+            if(users.include?(old_teacher.id))
+              users.delete(old_teacher.id)
+            else
+              old_teacher.destroy
+            end
+          }
+          
+          users.each{ |user_id|
+            teacher = Teacher.new(activity: @activity, user_id: user_id)
+            if(!teacher.save)
+              render json: {errors: teacher.errors.full_messages},
+              status: :unprocessable_entity
+            end
+          }
+        end
         
         if @activity.update_attributes(act_params)
           @teachers = Teacher.where(activity: @activity)
@@ -109,6 +111,8 @@ module Api
           :activity_type_id, 
           :activity_subtype_id, 
           :duration, 
+          :start_time,
+          :classroom_id,
           :users => [])
       end
     end

@@ -4,6 +4,7 @@ Cecilia.module("AdminActivityApp", function(AdminActivityApp, Cecilia, Backbone,
     appRoutes: {
       "admin/activities" : "listActivities",
       "activities/:id/edit" : "editActivity",
+      "admin/scheduler" : "editSchedule",
     }
   });
 
@@ -14,6 +15,10 @@ Cecilia.module("AdminActivityApp", function(AdminActivityApp, Cecilia, Backbone,
     editActivity: function(id){
       AdminActivityApp.Edit.Controller.editActivity(id);
     },
+    editSchedule: function(){
+      AdminActivityApp.EditSchedule.Controller.editSchedule();
+    },
+    
 
   };
 
@@ -24,6 +29,10 @@ Cecilia.module("AdminActivityApp", function(AdminActivityApp, Cecilia, Backbone,
   Cecilia.on("admin:activity:list", function(){
     Cecilia.navigate('admin/activities')
     AdminActivityApp._API.listActivities();
+  });
+  Cecilia.on("admin:activity:editSchedule", function(){
+    Cecilia.navigate('admin/scheduler')
+    AdminActivityApp._API.editSchedule();
   });
 
 
