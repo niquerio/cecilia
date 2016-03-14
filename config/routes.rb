@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  scope '/cecilia' do
     namespace :api , defaults: { format: 'json' } do
       get 'events/:event_id/pages/:slug' => 'pages#show'
       get 'events/:event_id/activities' => 'activities#index'
@@ -33,7 +32,6 @@ Rails.application.routes.draw do
 
     devise_for :users
     root to: 'home#index'
-  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
