@@ -1,7 +1,11 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
   Entities.AdminActivity = Backbone.Model.extend({
     url: function(){
-     return Cecilia.Constants.apiPrefix + 'admin/activities/' + encodeURIComponent(this.attributes.id); 
+      var url_string = Cecilia.Constants.apiPrefix + 'admin/activities/';
+      if(this.attributes.id){
+        url_string = url_string + encodeURIComponent(this.attributes.id); 
+      }
+      return url_string 
     },
     initialize: function(){
       var self = this;
