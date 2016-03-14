@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe "GET /cecilia/api/activities/:id" do
+RSpec.describe "GET /api/activities/:id" do
   it "returns user info" do
     items = generate_activity
 
-    get "/cecilia/api/activities/#{items[:activity].id}"
+    get "/api/activities/#{items[:activity].id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("activity")

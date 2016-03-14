@@ -5,7 +5,7 @@ RSpec.describe "GET /cecilia/api/events/:event_id/pages/:slug" do
     event = create(:event)
     page = create(:page, title: "Directions", body: "Here's How to get to place", slug: "directions", event_id: event.id)
 
-    get "/cecilia/api/events/#{event.id}/pages/#{page.slug}"
+    get "/api/events/#{event.id}/pages/#{page.slug}"
 
     expect(response.status).to eq 200
     expect(response).to match_response_schema("page")

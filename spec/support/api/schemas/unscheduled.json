@@ -1,0 +1,14 @@
+{
+  "title": "Unscheduled Activities Schema",
+  "type": "array",
+  "items": {
+    "title": "Unscheduled Activity",
+    "type": "object",
+    "required": ["id","title","duration"],
+    "properties": {
+      "id": { "type": "number" },
+      "title": { "type": "string" },
+      "duration": { "type": "integer" }
+    }
+  }
+}

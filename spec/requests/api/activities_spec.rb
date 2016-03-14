@@ -1,21 +1,21 @@
 require "rails_helper"
 
-RSpec.describe "GET /cecilia/api/events/:event_id/activities/" do
+RSpec.describe "GET /api/events/:event_id/activities/" do
   #generates activity with all fields and with teacher
   it "returns a list of activities for a given event" do
     items = generate_activity 
 
-    get "/cecilia/api/events/#{items[:event].id}/activities"
+    get "/api/events/#{items[:event].id}/activities"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("activities")
   end
 end
-RSpec.describe "GET /cecilia/api/activities/" do
+RSpec.describe "GET /api/activities/" do
   it "returns a list of activities for a given event" do
     generate_activity 
 
-    get "/cecilia/api/activities"
+    get "/api/activities"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("all_activities")

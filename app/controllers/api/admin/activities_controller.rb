@@ -20,6 +20,32 @@ module Api
         end
         
       end 
+      def scheduled
+        @event = Event.find(params[:event_id]);
+        @activities = [] 
+        @classrooms = Classroom.where(event_id: params[:event_id]);
+        for i in 0 .. ((@event.end_date - @event.start_date)/86400).round
+          @activities[i] = Hash.new
+          for j in 9 .. 16
+            activities_in_timeslot = []
+            start = @event.start_date + i.day + j.hour
+            @classrooms.each do |classroom|
+              activity = Activity.where('event_id = ? AND start_time = ? AND classroom_id = ?', params[:event_id],  start, classroom.id).first; 
+              unless activity.nil?
+                activities_in_timeslot.push(activity)
+              else
+                activities_in_timeslot.push(Activity.new(classroom_id: classroom.id, start_time: start, duration: 60, event_id:@event.id))
+                
+              end
+            end 
+            @activities[i][start] = activities_in_timeslot;
+          end
+        end
+      end
+      def unscheduled
+        @event = Event.find(params[:event_id])
+        @activities = Activity.where('event_id = ? AND classroom_id IS NULL', params[:event_id])  
+      end
       def create
         act_params = activity_params;
         users = act_params.delete(:users)

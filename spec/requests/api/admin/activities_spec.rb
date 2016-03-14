@@ -1,11 +1,44 @@
 require "rails_helper"
 require 'shared_contexts'
+RSpec.describe "GET /api/events/:event_id/activities/unscheduled/" do
+  include_context "api request authentication helper methods"
+  include_context "api request global before and after hooks"
+  it "returns a list of unscheduled activities for a given event" do
+    items = generate_activity 
+    user = create(:user)
 
-RSpec.describe "GET /cecilia/api/admin/events/:event_id/activities/" do
+    sign_in(user)
+    get "/api/admin/events/#{items[:event].id}/activities/unscheduled"
+    expect(response.body).to eq('[]')
+    items = generate_unscheduled_activity 
+    get "/api/admin/events/#{items[:event].id}/activities/unscheduled"
+    
+    expect(response.status).to eq 200
+    expect(response).to match_response_schema("unscheduled")
+    sign_out
+  end
+end
+RSpec.describe "GET /api/events/:event_id/activities/scheduled/" do
+  include_context "api request authentication helper methods"
+  include_context "api request global before and after hooks"
+  it "returns a list of unscheduled activities for a given event" do
+    items = generate_activity 
+    user = create(:user)
+
+    sign_in(user)
+    get "/api/admin/events/#{items[:event].id}/activities/scheduled"
+    
+    expect(response.status).to eq 200
+    expect(response).to match_response_schema("admin_scheduled")
+    sign_out
+  end
+end
+
+RSpec.describe "GET /api/admin/events/:event_id/activities/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
-  it "returns a list of classrooms for a given event" do
+  it "returns a list of activities for a given event" do
     event = create(:event)
     title = create(:title)
     user = create(:user, title_id: title.id, sca_first_name: "Mundungus", sca_last_name: "Smith")
@@ -22,14 +55,14 @@ RSpec.describe "GET /cecilia/api/admin/events/:event_id/activities/" do
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)  
 
     sign_in(user)
-    get "/cecilia/api/admin/events/#{event.id}/activities"
+    get "/api/admin/events/#{event.id}/activities"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("admin_activities")
     sign_out
   end
 end
-RSpec.describe "GET /cecilia/api/admin/activities/:id" do
+RSpec.describe "GET /api/admin/activities/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -50,14 +83,14 @@ RSpec.describe "GET /cecilia/api/admin/activities/:id" do
     teacher = create(:teacher, user_id: user.id, activity_id: activity.id)  
     
     sign_in(user)
-    get "/cecilia/api/admin/activities/#{activity.id}"
+    get "/api/admin/activities/#{activity.id}"
     
     expect(response.status).to eq 200
     expect(response).to match_response_schema("admin_activity")
     sign_out
   end
 end
-RSpec.describe "POST /cecilia/api/admin/activities/" do
+RSpec.describe "POST /api/admin/activities/" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -74,7 +107,7 @@ RSpec.describe "POST /cecilia/api/admin/activities/" do
       users: [activity.teachers.first.user.id]
     }
     sign_in(user)
-    post "/cecilia/api/admin/activities", activity_params
+    post "/api/admin/activities", activity_params
     
     expect(response.status).to eq 201
     expect(Activity.last.title).to eq activity_params[:title]
@@ -87,7 +120,7 @@ RSpec.describe "POST /cecilia/api/admin/activities/" do
     sign_out
   end
 end
-RSpec.describe "put /cecilia/api/admin/classrooms/:id" do
+RSpec.describe "put /api/admin/classrooms/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
 
@@ -124,7 +157,7 @@ RSpec.describe "put /cecilia/api/admin/classrooms/:id" do
     }
 
     sign_in(user)
-    put "/cecilia/api/admin/activities/#{activity.id}", activity_params
+    put "/api/admin/activities/#{activity.id}", activity_params
     
     expect(response.status).to eq 200
     expect(Activity.last.title).to eq 'New Activity Title'
@@ -136,7 +169,7 @@ RSpec.describe "put /cecilia/api/admin/classrooms/:id" do
     sign_out
   end
 end
-RSpec.describe "delete /cecilia/api/admin/activities/:id" do
+RSpec.describe "delete /api/admin/activities/:id" do
   include_context "api request authentication helper methods"
   include_context "api request global before and after hooks"
   it "deletes activity and teacher for given activity id" do
@@ -159,10 +192,54 @@ RSpec.describe "delete /cecilia/api/admin/activities/:id" do
     expect(Teacher.last.activity_id).to eq activity.id
     
     sign_in(user)
-    delete "/cecilia/api/admin/activities/#{activity.id}"
+    delete "/api/admin/activities/#{activity.id}"
 
     expect(Teacher.count).to eq 0
     expect(Activity.count).to eq 0
     sign_out
   end
+end
+def generate_unscheduled_activity
+  event = create(:event)
+  title = create(:title)
+  activity_type = create(:activity_type)
+  activity_subtype = create(:activity_subtype)
+  difficulty = create(:difficulty)
+  user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
+  activity = create(:activity, 
+    activity_type: activity_type, 
+    activity_subtype: activity_subtype, 
+    title: "It's a class", 
+    description: "This is the description for this class", 
+    difficulty: difficulty, 
+    event_id: event.id, 
+    duration: 60) 
+
+  teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
+
+  return {event: event ,teacher: teacher, activity: activity, user: user}
+end
+def generate_activity
+  event = create(:event)
+  start_time = DateTime.now
+  title = create(:title)
+  activity_type = create(:activity_type)
+  activity_subtype = create(:activity_subtype)
+  difficulty = create(:difficulty)
+  user = create(:user, title: title, sca_first_name: "Mundungus", sca_last_name: "Smith")
+  classroom = create(:classroom, event_id: event.id)
+  activity = create(:activity, 
+    activity_type: activity_type, 
+    activity_subtype: activity_subtype, 
+    title: "It's a class", 
+    description: "This is the description for this class", 
+    difficulty: difficulty, 
+    event_id: event.id, 
+    classroom_id: classroom.id, 
+    start_time: start_time, 
+    duration: 60) 
+
+  teacher = create(:teacher, user_id: user.id, activity_id: activity.id)
+
+  return {event: event ,teacher: teacher, activity: activity, user: user}
 end
