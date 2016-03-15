@@ -1,4 +1,21 @@
 <h3>Unscheduled Classes</h3>
-<table class="table">
-<tbody><tr><td></td></tr></tbody>
+<table class="table table-bordered">
+<tbody>
+<% while(totalClasses > 0){ %>
+<tr>
+  <% for(i = 0; i< numCol; i++){ %>
+    <td>
+     <% 
+        totalClasses = totalClasses - 1;
+        var currentActivity = collection.shift();
+        if(currentActivity){ %>
+          <div id=<%=currentActivity.get('id')%> class="redips-drag">
+          <%=currentActivity.get('title')%>
+          </div>
+        <% } %>
+    </td>
+ <% } %>  
+</tr>
+<%}%>
+</tbody>
 </table>

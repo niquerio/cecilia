@@ -10,6 +10,7 @@ Cecilia.module("AdminActivityApp.EditSchedule", function(EditSchedule, Cecilia, 
         this.scheduledRegion.show(this.getOption("scheduledView"));
         this.unscheduledRegion.show(this.getOption("unscheduledView"));
         REDIPS.drag.init()
+        REDIPS.drag.dropMode = 'single';
       });
       
       var rd = REDIPS.drag;
@@ -50,10 +51,8 @@ Cecilia.module("AdminActivityApp.EditSchedule", function(EditSchedule, Cecilia, 
       return this.model.get('id')
     },
   });
-  EditSchedule.UnscheduledClasses = Marionette.CompositeView.extend({
+  EditSchedule.UnscheduledClasses = Marionette.ItemView.extend({
     template: "admin/scheduler/unscheduled_classes",
-    childView: EditSchedule.UnscheduledClass,
-    childViewContainer: "td",
   });
 
   EditSchedule.Activity = Marionette.ItemView.extend({
