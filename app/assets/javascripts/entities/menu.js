@@ -48,6 +48,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
         name: 'Admin', url: 'admin', children: [
           {name: 'Manage Classrooms', url: 'admin/classrooms'},
           {name: 'Manage Activities', url: 'admin/activities'},
+          {name: 'Activities Scheduler', url: 'admin/scheduler'},
           {name: 'Manage Pages', url: 'admin/pages'},
           {name: 'Logout', url: 'logout'},
         ],
