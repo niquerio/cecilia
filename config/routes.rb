@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get 'events/:event_id/activities/unscheduled' => 'activities#unscheduled'
         get 'events/:event_id/activities/scheduled' => 'activities#scheduled'
         get 'events/:event_id/activities' => 'activities#index'
+        resources :users, only: [:index, :create, :update, :show]
         resources :activities, only: [:create, :update, :destroy, :show]
         get 'events/:event_id/pages' => 'pages#index'
         resources :pages, only: [:update, :show]

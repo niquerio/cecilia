@@ -4,6 +4,7 @@
   "items": {
     "title": "User",
     "type": "object",
+    "required": ["id","title","sca_first_name","sca_last_name","username"],
     "properties": {
       "id": { "type": "id" },
       "title": { "type": "string" },
