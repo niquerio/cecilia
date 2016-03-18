@@ -82,3 +82,31 @@ describe("Difficulties entitity", function(){
     });
   });
 });
+describe("Titles entitity", function(){
+  describe("Collection", function(){
+    describe("title:entities request", function(){
+      it("should fetch titles", function(done){
+        this.titles = new Cecilia.Entities.TitleCollection();
+        var title = new Cecilia.Entities.Title();
+        this.titleArray = [title];
+        var self = this;
+        sinon.stub(this.titles, "fetch", function(options){
+          return options.success(self.titleArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "TitleCollection").returns(this.titles);
+
+        var promise = Cecilia.request("title:entities"); 
+
+        $.when(promise).done(function(fetchedTitles){
+          expect(self.titles.fetch).to.have.been.called.once;
+          expect(fetchedTitles).to.equal(self.titleArray);
+          done();
+        });
+        
+        delete this.titles;
+        delete this.titleArray;
+        Cecilia.Entities.TitleCollection.restore(); 
+      });
+    });
+  });
+});

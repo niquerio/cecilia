@@ -1,0 +1,12 @@
+{
+  "title": "Titles Schema",
+  "type": "array",
+  "items": {
+    "title": "Title",
+    "type": "object",
+    "properties": {
+      "id": { "type": "number" },
+      "name": { "type": "string" }
+    }
+  }
+}

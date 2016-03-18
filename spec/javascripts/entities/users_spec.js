@@ -48,6 +48,76 @@ describe("Users entitity", function(){
         Cecilia.Entities.AdminUser.restore(); 
       });
     });
+    describe("Validations", function(){
+      var self = this;
+      var validation_setup = function(){
+        self.user = new Cecilia.Entities.AdminUser({
+          sca_first_name: "Mundungus",
+          sca_last_name: "Smith",
+          username: 'mundy',
+          email: 'mundy@example.com',
+        }); 
+      }
+      var validation_cleanup = function(){
+        delete self.user;
+      }
+      it("accepts models with valid data", function(){
+        validation_setup();
+        expect(self.user.isValid()).to.be.true;
+        validation_cleanup();
+      });
+
+      it("refuses blank sca_first_name", function(){
+        validation_setup();
+        self.user.set("sca_first_name", "");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses blank sca_last_name", function(){
+        validation_setup();
+        self.user.set("sca_first_name", "");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+
+      it("refuses blank username", function(){
+        validation_setup();
+        self.user.set("username", "");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses username with spaces", function(){
+        validation_setup();
+        self.user.set("username", "blah blah");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses username with capital letters", function(){
+        validation_setup();
+        self.user.set("username", "BlaH");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses username with numbers", function(){
+        validation_setup();
+        self.user.set("username", "blah1");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+
+      it("refuses blank email", function(){
+        validation_setup();
+        self.user.set("email", "");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+      it("refuses invalid email", function(){
+        validation_setup();
+        self.user.set("email", "1029341209348");
+        expect(self.user.isValid()).to.be.false;
+        validation_cleanup();
+      });
+    });
 
   });
   describe("Collection", function(){

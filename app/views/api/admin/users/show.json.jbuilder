@@ -1,5 +1,6 @@
 json.id @user.id
 json.username @user.username
+json.email @user.email
 json.sca_first_name @user.sca_first_name
 json.sca_last_name @user.sca_last_name
 json.modern_first_name @user.modern_first_name

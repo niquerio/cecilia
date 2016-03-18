@@ -1,5 +1,6 @@
 json.array! (@users) do |user|
   json.id user.id
+  json.email user.email
   json.username user.username
   json.sca_first_name user.sca_first_name
   json.sca_last_name user.sca_last_name

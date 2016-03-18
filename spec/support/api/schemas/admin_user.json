@@ -1,7 +1,7 @@
 {
   "title": "User",
   "type": "object",
-  "required": ["id","title_id","sca_first_name","sca_last_name","modern_first_name","modern_last_name","username","bio"],
+  "required": ["id","title_id","sca_first_name","sca_last_name","modern_first_name","modern_last_name","username","email","bio"],
   "properties": {
     "id": { "type": "id" },
     "title_id": { "type": "number" },
@@ -10,6 +10,7 @@
     "modern_first_name": { "type": ["string",null] },
     "modern_last_name": { "type": ["string",null] },
     "username": { "type": "string" },
+    "email": { "type": "string" },
     "nickname": { "type": ["string",null] },
     "bio": { "type": ["string",null] }
   }

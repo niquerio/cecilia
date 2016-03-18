@@ -1,4 +1,9 @@
-      <h1><%= modal_title %></h2>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><%= modal_title %></h4></small>
+    </div>
     <form>
       <div class="modal-body">
         <div class="form-group">
@@ -40,7 +45,11 @@ titles.each(function(title){
         <textarea class="form-control" rows="4" id="user-bio" name="description" type="text" ><%= bio %></textarea>
       </div>
       </div>
+      <div class="modal-footer">
         <button class="btn btn-primary js-submit">
         <% if(typeof button_text !== 'undefined'){ %><%=button_text%> <%} else{ %>Save<%}%>
         </button>
-</form>
+      </div>
+    </form>
+  </div>
+</div>

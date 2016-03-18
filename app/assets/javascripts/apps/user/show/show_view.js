@@ -9,6 +9,9 @@ Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
 
   Show.Teacher = Marionette.CompositeView.extend({
     template: "user/show_teacher",
+    triggers: {
+      "click button.js-edit" : "user:edit",
+    },
     initialize: function(){
       this.collection = this.model.get('activities');
     },

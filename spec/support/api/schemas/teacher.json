@@ -5,6 +5,7 @@
     "title": "Teacher",
     "type": "object",
     "properties": {
+      "id": { "type": "number" },
       "title": { "type": "string" },
       "sca_first_name": { "type": "string" },
       "sca_last_name": { "type": "string" },

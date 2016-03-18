@@ -3,7 +3,8 @@ Cecilia.module("AdminUserApp.List", function(List, Cecilia, Backbone, Marionette
     template: "admin/user/list_item",
     tagName: "tr",
     triggers: {
-      "click button.js-edit": "user:edit"
+      "click button.js-edit": "user:edit",
+      "click a.js-show": "user:show"
     },
   });
   List.Users = Marionette.CompositeView.extend({

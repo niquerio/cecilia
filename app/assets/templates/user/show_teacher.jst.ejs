@@ -1,6 +1,10 @@
-<h1><%=title %> <%=sca_first_name %> <%=sca_last_name %>
+<h1>
+<% if(Cecilia.currentUser != undefined){ %>
+<button type="button" class="btn btn-primary js-edit btn-xs"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+<%} %>
+<%=title %> <%=sca_first_name %> <%=sca_last_name %>
 <% if (modern_first_name != 'NULL' || modern_last_name != 'NULL'){%><br><small><%=modern_first_name%> <%= modern_last_name %></small><% } %></h1>
-<% if(bio != 'NULL'){ %><p><%=bio%></p><% }%>
+<p><%= marked(bio)%></p>
 <h3>Classes</h3>
 <table class="table table-hover">
 <thead>

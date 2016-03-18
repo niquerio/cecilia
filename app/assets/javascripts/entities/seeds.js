@@ -1,4 +1,12 @@
 Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
+  Entities.Title = Backbone.Model.extend({ });
+  Entities.TitleCollection = Backbone.Collection.extend({
+    model: Entities.Title,
+    url: function(){
+      return Cecilia.Constants.apiPrefix + 'titles';
+    },
+    comparator: 'name',    
+  });
   Entities.ActivityType = Backbone.Model.extend({ });
   Entities.ActivityTypeCollection = Backbone.Collection.extend({
     model: Entities.ActivityType,
@@ -33,6 +41,10 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       var activity_subtypes = new Entities.ActivitySubtypeCollection();
       return this._getPromise(activity_subtypes)
     },
+    getTitles: function(){
+      var titles = new Entities.TitleCollection();
+      return this._getPromise(titles)
+    },
     getDifficulties: function(){
       var difficulties = new Entities.DifficultyCollection();
       return this._getPromise(difficulties)
@@ -48,6 +60,9 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   };
 
+  Cecilia.reqres.setHandler("title:entities",function(){
+    return API.getTitles();
+  });
   Cecilia.reqres.setHandler("activity_type:entities",function(){
     return API.getActivityTypes();
   });

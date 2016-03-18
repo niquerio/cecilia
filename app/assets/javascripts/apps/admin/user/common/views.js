@@ -15,9 +15,18 @@ Cecilia.module("AdminUserApp.Common.Views", function(Views, Cecilia, Backbone, M
     submitClicked: function(e){
       e.preventDefault();
       var data = Backbone.Syphon.serialize(this);
+      data['bio'] = this.simplemde.value();
       this.trigger("form:submit", data);
     },
     
+    onRender: function(){
+      this.$el.find('#user-title').select2({theme: "bootstrap"});
+    },
+    onAttach: function(){
+      this.simplemde = new SimpleMDE({ 
+        element: this.$el.find('#user-bio')[0],
+      });
+    },
     onFormDataInvalid: function(errors){
       var $view = this.$el
 

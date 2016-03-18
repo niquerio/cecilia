@@ -12,6 +12,9 @@ Cecilia.module("UserApp.Show", function(Show, Cecilia, Backbone, Marionette, $, 
           teacherView = new Cecilia.Common.Views.Missing({message: "This Teacher Doesn't Exist!"})
         }
 
+        teacherView.on("user:edit", function(args){
+          Cecilia.trigger("admin:user:edit", args.model.get('id'));
+        });
         teacherView.on("childview:activity:show", function(args){
           Cecilia.trigger("activity:show", args.model.get('id'));
         });

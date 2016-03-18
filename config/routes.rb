@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/teachers/:username' => 'teachers#show'
       get '/activities' => 'activities#index_all'
       get '/activities/:id' => 'activities#show'
+      resources :titles, only: [:index]
       resources :users, only: [:index]
       resources :activity_types, only: [:index]
       resources :activity_subtypes, only: [:index]
