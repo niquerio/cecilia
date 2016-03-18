@@ -2,9 +2,11 @@ describe("AdminActivityApp.EditSchedule.Layout", function(){
   var self = this;
   setup = function(){
     self.view = new Cecilia.AdminActivityApp.EditSchedule.Layout();
+    sinon.stub(REDIPS.drag, "init");
      
   }
   cleanup = function(){
+    REDIPS.drag.init.restore();
     delete self.view;
   }
   it("has a scheduled region", function(){

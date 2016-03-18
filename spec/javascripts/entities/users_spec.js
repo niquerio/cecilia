@@ -24,6 +24,31 @@ describe("Users entitity", function(){
         Cecilia.Entities.Teacher.restore(); 
       });
     });
+    describe("admin:user:entity request", function(){
+      it("should fetch user with id", function(done){
+        //setup
+        this.user = new Cecilia.Entities.AdminUser
+        var self = this;
+        sinon.stub(this.user, "fetch", function(options){
+          return options.success(self.user);
+        }); 
+        sinon.stub(Cecilia.Entities, "AdminUser").returns(this.user);
+
+        var id = 3;
+        var promise = Cecilia.request("admin:user:entity", 3); 
+        expect(Cecilia.Entities.AdminUser).to.have.been.calledWith({id: 3}).once;
+
+        $.when(promise).done(function(fetchedUser){
+          expect(self.user.fetch).to.have.been.called.once;
+          expect(fetchedUser).to.equal(self.user);
+          done();
+        });
+        
+        delete this.user;
+        Cecilia.Entities.AdminUser.restore(); 
+      });
+    });
+
   });
   describe("Collection", function(){
     describe("user:entities request", function(){
@@ -48,6 +73,30 @@ describe("Users entitity", function(){
         delete this.users;
         delete this.userArray;
         Cecilia.Entities.UserCollection.restore(); 
+      });
+    });
+    describe("admin:user:entities request", function(){
+      it("should fetch administratively editable users", function(done){
+        this.users = new Cecilia.Entities.AdminUserCollection();
+        var user = new Cecilia.Entities.AdminUser();
+        this.userArray = [user];
+        var self = this;
+        sinon.stub(this.users, "fetch", function(options){
+          return options.success(self.userArray);
+        }); 
+        sinon.stub(Cecilia.Entities, "AdminUserCollection").returns(this.users);
+
+        var promise = Cecilia.request("admin:user:entities"); 
+
+        $.when(promise).done(function(fetchedUsers){
+          expect(self.users.fetch).to.have.been.called.once;
+          expect(fetchedUsers).to.equal(self.userArray);
+          done();
+        });
+        
+        delete this.users;
+        delete this.userArray;
+        Cecilia.Entities.AdminUserCollection.restore(); 
       });
     });
     describe("user:entities:teachers request", function(){

@@ -5,8 +5,7 @@ describe("AdminActivityApp.EditSchedule.Controller", function(){
     var setup = function(){
       self.controller = Cecilia.AdminActivityApp.EditSchedule.Controller;
       self.view = new Marionette.LayoutView;
-      self.request = sinon.stub(Cecilia, "request").withArgs("admin:activity:entities:scheduled").returns({});
-      self.request.returns({});
+      self.request = sinon.stub(Cecilia, "request").returns({length: 3})
       self.loadingView = _.extend({}, Backbone.Events);
       sinon.stub(Cecilia.AdminActivityApp.EditSchedule, "Layout").returns(self.view);
       sinon.stub(Cecilia.Common.Views, "Loading").returns(self.loadingView);

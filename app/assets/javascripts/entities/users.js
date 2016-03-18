@@ -8,6 +8,22 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     },
   });
 
+  Entities.AdminUser = Backbone.Model.extend({ 
+    url: function(){
+      var url_string = Cecilia.Constants.apiPrefix + 'admin/users/';
+      if(this.attributes.id){
+        url_string = url_string + encodeURIComponent(this.attributes.id); 
+      }
+      return url_string 
+    },
+  });
+  Entities.AdminUserCollection = Backbone.Collection.extend({
+    model: Entities.AdminUser,
+    url: function(){ return Cecilia.Constants.apiPrefix + 'admin/users'},
+    comparator: function(user) {
+      return user.get("sca_first_name") + " " + user.get("sca_last_name");
+    },
+  });
   
   Entities.Teacher = Backbone.Model.extend({
     url: function(){ return Cecilia.Constants.apiPrefix + 'teachers/' + this.get('username') }, 
@@ -49,6 +65,14 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     getUsers: function(){
       var users = new Entities.UserCollection();
       return this._getPromise(users)
+    },
+    getAdminUsers: function(){
+      var users = new Entities.AdminUserCollection();
+      return this._getPromise(users)
+    },
+    getAdminUser: function(id){
+      var user = new Entities.AdminUser({id: id});
+      return this._getPromise(user)
     },
     getTeachers: function(){
       var teachers = new Entities.TeacherCollection();
@@ -92,6 +116,12 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
 
   Cecilia.reqres.setHandler("user:entities",function(){
     return API.getUsers();
+  });
+  Cecilia.reqres.setHandler("admin:user:entities",function(){
+    return API.getAdminUsers();
+  });
+  Cecilia.reqres.setHandler("admin:user:entity",function(id){
+    return API.getAdminUser(id);
   });
   Cecilia.reqres.setHandler("teacher:entity",function(username){
     return API.getTeacher(username);
