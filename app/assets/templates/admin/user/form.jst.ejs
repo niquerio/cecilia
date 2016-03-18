@@ -1,0 +1,21 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><%= title %></h4></small>
+    </div>
+    <form>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="user-sca_first_name" class="control-label"> SCA First Name:</label> 
+          <input class="form-control" id="user-sca_first_name" name="sca_first_name" type="text" value="<%= sca_first_name %>"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary js-submit">
+        <% if(typeof button_text !== 'undefined'){ %><%=button_text%> <%} else{ %>Save<%}%>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

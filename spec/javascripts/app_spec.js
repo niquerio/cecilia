@@ -4,6 +4,7 @@ describe("App", function(){
     sinon.stub(Cecilia.MenuApp, "start");
     sinon.stub(Cecilia.ActivityApp, "start");
     sinon.stub(Cecilia.UserApp, "start");
+    sinon.stub(Cecilia.AdminUserApp, "start");
     sinon.stub(Cecilia.AdminClassroomApp, "start");
     sinon.stub(Cecilia.AdminActivityApp, "start");
     sinon.stub(Cecilia.AdminPageApp, "start");
@@ -14,6 +15,7 @@ describe("App", function(){
     Cecilia.MenuApp.start.restore();
     Cecilia.ActivityApp.start.restore();
     Cecilia.UserApp.start.restore();
+    Cecilia.AdminUserApp.start.restore();
     Cecilia.AdminClassroomApp.start.restore();
     Cecilia.AdminActivityApp.start.restore();
     Cecilia.AdminPageApp.start.restore();

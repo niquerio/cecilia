@@ -8,6 +8,9 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
       var childViewNavigate = function(args){
         var url = args.model.get('url');
         switch(url){
+          case "admin/users":
+            Cecilia.trigger('admin:user:list');
+            break;
           case "admin/classrooms":
             Cecilia.trigger('admin:classroom:list');
             break;

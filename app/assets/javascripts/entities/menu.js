@@ -46,6 +46,7 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
     if(Cecilia.currentUser != null){
       menu.add({
         name: 'Admin', url: 'admin', children: [
+          {name: 'Manage Users', url: 'admin/users'},
           {name: 'Manage Classrooms', url: 'admin/classrooms'},
           {name: 'Manage Activities', url: 'admin/activities'},
           {name: 'Activities Scheduler', url: 'admin/scheduler'},

@@ -16,6 +16,16 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
       }
       return url_string 
     },
+    defaults: {
+      username: '',
+      sca_first_name: '',
+      sca_last_name: '',
+      modern_first_name: '',
+      modern_last_name: '',
+      title_id: 1,
+      bio: '',
+      
+    }
   });
   Entities.AdminUserCollection = Backbone.Collection.extend({
     model: Entities.AdminUser,

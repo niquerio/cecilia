@@ -43,6 +43,7 @@ Cecilia.on("start", function(){
   Cecilia.module("ActivityApp").start();
   Cecilia.module("UserApp").start();
   if(Cecilia.currentUser != null){
+    Cecilia.module("AdminUserApp").start();
     Cecilia.module("AdminClassroomApp").start();
     Cecilia.module("AdminActivityApp").start();
     Cecilia.module("AdminPageApp").start();
