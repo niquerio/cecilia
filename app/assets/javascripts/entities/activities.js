@@ -143,9 +143,14 @@ Cecilia.module("Entities", function(Entities, ContactManager, Backbone, Marionet
   Entities.AdminScheduleHour = Backbone.Model.extend({
     initialize: function(){
       var activities = this.get('activities');
-      this.set('activities', new Entities.AdminActivityCollection(activities));
+      this.set('activities', new Entities.AdminScheduleActivityCollection(activities));
     }
   });
+
+  Entities.AdminScheduleActivityCollection = Backbone.Collection.extend({
+    model: Entities.AdminActivity,
+  })
+
   Entities.AdminScheduleHourCollection = Backbone.Collection.extend({
     model: Entities.AdminScheduleHour,
   });
