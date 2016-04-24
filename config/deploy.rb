@@ -104,45 +104,8 @@ namespace :deploy do
   end
 
   before :starting,     :check_revision
-#  after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 
 end
 
-Rake::Task['deploy:assets:backup_manifest'].clear
-Rake::Task['deploy:assets:precompile'].clear
-
-namespace :deploy do
-  namespace :assets do
-    desc 'Precompile assets locally and then rsync to remote servers'
-    task :precompile do
-#      local_manifest_path = %x{ls public/assets/manifest*}.strip
-
-      %x{bundle exec rake assets:precompile assets:clean}
-
-      on roles(fetch(:assets_roles)) do |server|
-        %x{rsync -av ./public/assets/ #{server.user}@#{server.hostname}:#{release_path}/public/assets/}
-#        %x{rsync -av ./#{local_manifest_path} #{server.user}@#{server.hostname}:#{release_path}/assets_manifest#{File.extname(local_manifest_path)}}
-      end
-
-      %x{bundle exec rake assets:clobber}
-    end
-
-#    task :backup_manifest do
-#      on release_roles(fetch(:assets_roles)) do
-#        within release_path do
-#          backup_path = release_path.join('assets_manifest_backup')
-#
-#          manifest_path = detect_manifest_path.gsub(/\n/, ' ')
-#
-#          execute :mkdir, '-p', backup_path
-#          execute :cp,
-#            manifest_path,
-#            backup_path
-#        end
-#      end
-#    end
-
-  end
-end
