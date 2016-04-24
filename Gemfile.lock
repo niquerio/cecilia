@@ -180,6 +180,9 @@ GEM
       rails-assets-jquery (>= 1.7.0)
     rails-assets-jquery (2.2.1)
     rails-assets-marked (0.3.5)
+    rails-assets-moment (2.13.0)
+    rails-assets-moment-timezone (0.5.3)
+      rails-assets-moment (>= 2.6.0)
     rails-assets-simplemde (1.10.0)
     rails-assets-spin (1.1.6)
       rails-assets-jquery
@@ -314,6 +317,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails-assets-datatables!
   rails-assets-marked!
+  rails-assets-moment-timezone!
   rails-assets-simplemde!
   rails-assets-spin!
   rspec-rails

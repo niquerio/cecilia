@@ -20,6 +20,7 @@
 //= require backbone-support
 //= require backbone.marionette
 //= require moment
+//= require moment-timezone
 //= require select2
 //= require simplemde
 //= require marked

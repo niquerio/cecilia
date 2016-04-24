@@ -36,6 +36,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-marked'
   gem 'rails-assets-datatables'
   gem 'rails-assets-spin'
+  gem 'rails-assets-moment-timezone'
 end
 
 gem 'i18n'
