@@ -22,7 +22,7 @@ icon-playing<% } %>"></i>
 <%= activity_subtype %></span>
 <% } %></h4>
 <ul class="list-inline">
-  <li><strong>Time:</strong> <%= moment(start_time).format('dddd, h:mm a') %> - <%= moment(end_time).format('h:mm a')%></li>
+  <li><strong>Time:</strong> <%= moment(start_time).tz("America/Detroit").format('dddd, h:mm a') %> - <%= moment(end_time).tz("America/Detroit").format('h:mm a')%></li>
 <li><strong>Location:</strong> <%if (classroom) {%> <%= classroom %> <%}%> </li>
 </ul>
 
