@@ -1,6 +1,6 @@
 task :new_event => :environment do
-  start_date = '2017-May-19'
-  end_date = '2017-May-20'
+  start_date = '2017-May-20'
+  end_date = '2017-May-21'
   title = 'St. Cecilia at the Tower VI'
 
   last_year_event = Event.last

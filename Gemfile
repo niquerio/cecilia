@@ -19,7 +19,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
-gem 'acts_as_tree'
 gem 'backbone-on-rails'
 gem 'ejs'
 gem 'backbone-support'
