@@ -21,9 +21,10 @@ icon-playing<% } %>"></i>
 <% } %>
 <%= activity_subtype %></span>
 <% } %></h4>
+<% if (typeof start_time !== 'undefined'){ %> 
 <ul class="list-inline">
   <li><strong>Time:</strong> <%= moment(start_time).tz("America/Detroit").format('dddd, h:mm a') %> - <%= moment(end_time).tz("America/Detroit").format('h:mm a')%></li>
 <li><strong>Location:</strong> <%= classroom %> </li>
 </ul>
-
+<% } %>
 <div class="description h6"><%= description %></div>

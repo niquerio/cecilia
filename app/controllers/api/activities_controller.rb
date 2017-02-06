@@ -1,7 +1,8 @@
 module Api
   class ActivitiesController < ApplicationController
     def index
-      @activities = Activity.where('event_id = ? AND classroom_id IS NOT NULL', params[:event_id])  
+#      @activities = Activity.where('event_id = ? AND classroom_id IS NOT NULL', params[:event_id])  
+       @activities = Activity.where('event_id = ?', params[:event_id])
       @teachers = Teacher.all
       
     end
@@ -21,10 +22,10 @@ module Api
       @activities =  []
       
       for i in 0 .. ((@event.end_date - @event.start_date)/86400).round
+        next unless  Activity.exists?(['start_time >= ?', @event.start_date + i.day])  
         @activities[i] = Hash.new
         classrooms = Activity.where('start_time >= :start AND start_time <= :end', {start: @event.start_date + i.day, end: (@event.start_date + (1+i).day)}).distinct.pluck(:classroom_id)
         classroom_current_activities = Hash[*classrooms.map { |k| [k,nil]}.flatten]
-          
         start = Activity.where('start_time >= :start', {start: @event.start_date + i.day}).order(:start_time).first.start_time
         finish = Activity.where('start_time >= :start AND start_time <= :end', {start: @event.start_date + i.day, end: (@event.start_date + (1+i).day)}).order(:start_time).last.end_time
         
