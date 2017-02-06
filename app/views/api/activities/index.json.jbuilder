@@ -2,9 +2,11 @@ json.array! (@activities) do |activity|
   json.id activity.id
   json.title activity.title
   json.description activity.description
-  json.start_time activity.start_time
-  json.end_time activity.end_time
-  json.classroom activity.classroom.name
+  if activity.start_time 
+    json.start_time activity.start_time
+    json.end_time activity.end_time
+    json.classroom activity.classroom.name
+  end
   json.difficulty activity.difficulty.level
   json.difficulty_description activity.difficulty.description
   json.activity_type activity.activity_type.name
