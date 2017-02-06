@@ -1,3 +1,5 @@
+#For 2018 update the event date via the mysql console directly. (So that the event id can be 7)
+
 task :new_event => :environment do
   start_date = '2017-May-20'
   end_date = '2017-May-21'
@@ -6,8 +8,8 @@ task :new_event => :environment do
   last_year_event = Event.last
  
   event = Event.create do |e|
-    e.start_date = start_date.to_datetime
-    e.end_date = end_date.to_datetime
+    e.start_date = start_date
+    e.end_date = end_date
     e.title = title
   end
 
