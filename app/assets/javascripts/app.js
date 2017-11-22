@@ -5,7 +5,7 @@ Marionette.Renderer.render = function(template, data){
 var Cecilia = new Marionette.Application();
 
 Cecilia.Constants = {
-  current_event_id: 6,
+  current_event_id: 7,
 };
 
 Cecilia.navigate = function(route,  options){
