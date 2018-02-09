@@ -104,12 +104,12 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
-    ffi (1.9.18)
+    ffi (1.9.21)
     font-awesome-rails (4.7.0.3)
       railties (>= 3.2, < 5.2)
     fontello_rails_converter (0.4.6)
@@ -191,7 +191,7 @@ GEM
     rails-assets-moment (2.20.1)
     rails-assets-moment-timezone (0.5.14)
       rails-assets-moment (>= 2.9.0)
-    rails-assets-simplemde (1.11.2)
+    rails-assets-simplemde (1.10.1)
     rails-assets-spin (1.1.6)
       rails-assets-jquery
     rails-deprecated_sanitizer (1.0.3)
@@ -285,11 +285,13 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.5)
+
+    uglifier (4.1.6)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.4)
+    unf_ext (0.0.7.5)
+
     warden (1.2.7)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -313,7 +315,7 @@ DEPENDENCIES
   database_cleaner
   devise
   ejs
-  factory_girl_rails
+  factory_bot_rails
   font-awesome-rails
   fontello_rails_converter
   i18n
@@ -331,7 +333,7 @@ DEPENDENCIES
   rails-assets-datatables!
   rails-assets-marked!
   rails-assets-moment-timezone!
-  rails-assets-simplemde!
+  rails-assets-simplemde (~> 1.10.0)!
   rails-assets-spin!
   rspec-rails
   sass-rails (~> 5.0)

@@ -1,10 +1,10 @@
-describe.only("AdminUserApp.Edit.Controller", function(){
+describe("AdminUserApp.Edit.Controller", function(){
   var self = this;
   var setup = function(){
     self.controller = Cecilia.AdminUserApp.Edit.Controller;
     self.loadingView = _.extend({}, Backbone.Events);
     self.view = _.extend({}, Backbone.Events);
-    self.model = new Cecilia.Entities.AdminUser({id: 3});
+    self.model = new Cecilia.Entities.AdminUser({id: 3, username: 'Mundungus'});
     self.request = sinon.stub(Cecilia, "request").withArgs("admin:user:entity", 3).returns(self.model);
     self.request.returns({});
     sinon.stub(Cecilia.Common.Views, "Loading").returns(self.loadingView);
@@ -55,11 +55,10 @@ describe.only("AdminUserApp.Edit.Controller", function(){
     it("triggers 'admin:user:show' if saving the modification was successful", function(){
       setup();
       sinon.stub(Cecilia, "trigger")
-      
       self.controller.editUser(3)
       self.view.trigger("user:updated",self.model);
       
-      expect(Cecilia.trigger).to.have.been.calledWith("user:show",3);
+      expect(Cecilia.trigger).to.have.been.calledWith("teacher:show",self.model.get('username'));
 
       Cecilia.trigger.restore();
       cleanup();

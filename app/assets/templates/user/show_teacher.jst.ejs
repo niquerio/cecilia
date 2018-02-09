@@ -4,7 +4,7 @@
 <%} %>
 <%=title %> <%=sca_first_name %> <%=sca_last_name %>
 <% if (modern_first_name != 'NULL' || modern_last_name != 'NULL'){%><br><small><%=modern_first_name%> <%= modern_last_name %></small><% } %></h1>
-<p><%= marked(bio)%></p>
+<p><% if (bio != null) {%><%= marked(bio) %> <%}%></p>
 <h3>Classes</h3>
 <table class="table table-hover">
 <thead>

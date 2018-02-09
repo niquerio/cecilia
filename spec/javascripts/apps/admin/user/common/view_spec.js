@@ -8,21 +8,21 @@ describe("AdminUserApp.Common.Views.Form", function(){
         el: '#fixture',
         model: new Cecilia.Entities.AdminUser(modelData), 
       });
-
       var submitSpy = sinon.spy();
       view.on("form:submit", submitSpy);
-      view.once("render", function(){
+      view.once("attach", function(){
         expect(submitSpy.called).to.be.false;
         modelData.sca_first_name = "New Name";
 
         $("#user-sca_first_name").val(modelData.sca_first_name);
         view.ui.submitButton.click();
         expect(submitSpy.calledOnce).to.be.true;
-        expect(submitSpy.firstCall.args[0]).to.deep.equal(modelData);
+        expect(submitSpy.firstCall.args[0]["sca_first_name"]).to.equal(modelData.sca_first_name);
         done();
       });
 
       view.render();
+      view.triggerMethod("attach");
   });
   describe("error display", function(){
     var self = this;

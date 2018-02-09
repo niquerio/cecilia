@@ -3,7 +3,10 @@ Cecilia.module("AdminUserApp.Common.Views", function(Views, Cecilia, Backbone, M
   Views.Form = Marionette.ItemView.extend({
     template: "admin/user/form",
     templateHelpers: function(){
-      return { title: '' }
+      return { title: '', 
+        titles: new Backbone.Collection, 
+        modal_title: '', 
+        button_text: '' }
     },
     events: {
       "click @ui.submitButton": "submitClicked"

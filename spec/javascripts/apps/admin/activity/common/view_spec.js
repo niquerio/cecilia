@@ -8,7 +8,7 @@ describe("AdminActivityApp.Common.Views.Form", function(){
         'difficulty_id': null,
         'activity_subtype_id': null,
         'duration': '60',
-        'users': null
+        'users': []
       }
       var view = new Cecilia.AdminActivityApp.Common.Views.Form({
         el: '#fixture',
