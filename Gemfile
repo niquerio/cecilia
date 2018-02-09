@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
-ruby "2.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -31,7 +30,7 @@ gem 'select2-rails'
 gem "font-awesome-rails"
 gem "bootstrap-social-rails"
 source 'https://rails-assets.org' do
-  gem 'rails-assets-simplemde'
+  gem 'rails-assets-simplemde', "~> 1.10.0"
   gem 'rails-assets-marked'
   gem 'rails-assets-datatables'
   gem 'rails-assets-spin'
