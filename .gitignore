@@ -1,6 +1,7 @@
 #Related to getting email to work
 .env
 Procfile
+.ruby-version
 
 *.gem
 *.rbc
