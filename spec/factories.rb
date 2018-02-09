@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence :email do |n|
     "person#{n}@example.com"
   end
@@ -31,7 +31,7 @@ FactoryGirl.define do
     activity_subtype
     difficulty
     event
-    after(:build){ |activity| activity.teachers << FactoryGirl.create(:teacher, activity: activity) }
+    after(:build){ |activity| activity.teachers << FactoryBot.create(:teacher, activity: activity) }
   end
 
   factory :classroom do

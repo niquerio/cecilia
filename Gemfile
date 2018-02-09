@@ -56,7 +56,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
   gem 'byebug'
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "rspec-rails"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
