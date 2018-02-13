@@ -4,5 +4,5 @@ task :new_event do
       execute :rake, 'new_event'
     end 
   end
-  invoke 'puma:restart'
+  invoke 'deploy:restart'
 end
