@@ -10,9 +10,6 @@ set :repo_url, 'https://github.com/niquerio/cecilia'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/srv/www/cecilia'
 
-# Default value for :scm is :git
-set :scm, :git
-
 # Default value for :format is :pretty
 # set :format, :pretty
 
@@ -26,7 +23,7 @@ set :scm, :git
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/sockets')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -34,22 +31,11 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log')
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :puma_threads,    [2, 8]
-set :puma_workers,    0
-
 # Don't change these unless you know what you're doing
 set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.error.log"
-set :puma_error_log,  "#{release_path}/log/puma.access.log"
-set :puma_preload_app, true
-set :puma_worker_timeout, nil
-set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 set :rbenv_ruby, '2.4.2'
 set :rbenv_path, '/home/aelkiss/.rbenv'
 
@@ -91,8 +77,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      before 'deploy:restart', 'puma:start'
-      invoke 'deploy'
+			execute :sudo, '/bin/systemctl', 'restart', 'cecilia'
     end
   end
 
