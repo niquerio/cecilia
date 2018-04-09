@@ -38,9 +38,9 @@ Cecilia.module("MenuApp.List", function(List, Cecilia, Backbone, Marionette, $, 
           case "all_teachers":
             Cecilia.trigger('user:teachers:list:all');
             break;
-          case "staff":
-            Cecilia.trigger('user:staff:list');
-            break;
+          //case "staff":
+          //  Cecilia.trigger('user:staff:list');
+          //  break;
           case "logout":
             $.ajax({
                 url: 'users/sign_out',
