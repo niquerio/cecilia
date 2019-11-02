@@ -1,9 +1,9 @@
 #For 2018 update the event date via the mysql console directly. (So that the event id can be 7)
 
 task :new_event => :environment do
-  start_date = '2019-June-08'
-  end_date = '2019-June-09'
-  title = 'St. Cecilia at the Tower VIII'
+  start_date = '2020-April-25'
+  end_date = '2020-April-25'
+  title = 'St. Cecilia at the Tower IX'
 
   last_year_event = Event.find(7)
  
@@ -14,7 +14,7 @@ task :new_event => :environment do
   end
 
   Page.where(event: last_year_event).each do |last_year_page|
-    next if last_year_page.slug == 'big_sing'
+    #next if last_year_page.slug == 'big_sing'
     Page.create do |p|
       p.slug = last_year_page.slug
       p.title = last_year_page.title
